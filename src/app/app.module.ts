@@ -14,8 +14,6 @@ import { TemplatesModule } from './shared/templates/templates.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
-    TemplatesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

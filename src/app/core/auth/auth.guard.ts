@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     
+    console.log("Auth Guard success")
     return true;
   }
 }
