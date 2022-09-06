@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { LayoutToogleSidenav } from 'src/app/core/actions/layout.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -6,11 +8,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
+  constructor(private _store: Store) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  toggle(): void {
+    this._store.dispatch(new LayoutToogleSidenav());
   }
-
 }
