@@ -8,7 +8,7 @@ import { LayoutStateModel } from '../models/layout-state.model';
 @State<LayoutStateModel>({
   name: "dashboard",
   defaults: {
-    opened: false
+    opened: true
   }
 })
 @Injectable()
