@@ -6,5 +6,14 @@ mat-sidenav-container {
   right: 0;
   background: #eee;
 
-  mat-sidenav { width: 10vw; min-width: 190px; }
+  mat-sidenav { 
+    width: 10vw; 
+    min-width: 190px; 
+  }
+
+  mat-sidenav-content {
+    main {
+      padding: 32px;
+    }
+  }
 }

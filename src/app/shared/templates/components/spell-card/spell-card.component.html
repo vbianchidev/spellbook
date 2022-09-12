@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <h2><fa-icon [style.color]="elementsIcons.fire.color" [icon]="elementsIcons.fire.icon"></fa-icon>Create Bonfire</h2>
+    <div>
+      <span><strong>LEVEL: </strong>{{ 'CANTRIP' }}</span>
+      <span><strong>CASTING TIME: </strong>{{ '1 Action' }}</span>
+      <span><strong>DURATION: </strong>{{ '1 Minute' }}</span>
+      <span><strong>COMPONENTS: </strong>{{ 'V, S' }}</span>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    You create a bonfire on ground that you can see within range. Until the spell ends, the magic bonfire fills a 5-foot cube. 
+    Any creature in the bonfire’s space when you cast the spell must succeed on a Dexterity saving throw or take 1d8 fire damage. 
+    A creature must also make the saving throw when it moves into the bonfire’s space for the first time on a turn or ends its turn there.
+    The bonfire ignites flammable objects in its area that aren’t being worn or carried.
+    The spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-chip-list aria-label="Spells Tags">
+      <mat-chip>
+        <span matChipAvatar><fa-icon [icon]="elementsIcons.control.icon"></fa-icon></span>
+        CONTROL
+      </mat-chip>
+      <mat-chip color="primary">
+        DAMAGE
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card-actions>
+</mat-card>
