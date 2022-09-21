@@ -10,5 +10,6 @@ import { LayoutState } from 'src/app/core/states/layout.state';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavComponent {
+  
   @Select(LayoutState.isOpened) opened$!: Observable<boolean>;
 }

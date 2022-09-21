@@ -1,18 +1,27 @@
 <mat-list role="list">
-  <mat-list-item>
-    <div mat-card-avatar class="logo"></div>
+  <mat-list-item class="logo">
+    <fa-icon [icon]="logo"></fa-icon>
   </mat-list-item>
-  <div mat-subheader>Spells</div>
+  <div mat-subheader>Magias</div>
   <mat-list-item>
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <div mat-line> All </div>
+    <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+    <div mat-line> Todas </div>
   </mat-list-item>
+
+  <div mat-subheader>Minha conta</div>
   <mat-list-item>
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <div mat-line> Class </div>
+    <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+    <div mat-line> Fichas das adasads</div>
   </mat-list-item>
+
   <mat-list-item>
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <div mat-line> Leanerd </div>
+    <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+    <div mat-line> Grimórios </div>
   </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+    <div mat-line> Config </div>
+  </mat-list-item>
+
 </mat-list>

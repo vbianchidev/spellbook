@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SpellCardModule } from 'src/app/shared/templates/components/spell-card/spell-card.module';
+import { SpellCardModule } from '@components/ui-spell-card/spell-card.module';
+
+
 import { DashboardLayoutModule } from 'src/app/shared/templates/layout/dashboard-layout/dashboard-layout.module';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SpellBookRoutingModule } from './spellbook-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    SpellBookRoutingModule,
     DashboardLayoutModule,
     SpellCardModule
   ]
 })
-export class DashboardModule { }
+export class SpellBookModule { }

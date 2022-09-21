@@ -30,8 +30,7 @@ import { LayoutState } from 'src/app/core/states/layout.state';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    
-    
+    FontAwesomeModule,
     
     FlexLayoutModule,
     NgxsModule.forFeature([LayoutState])

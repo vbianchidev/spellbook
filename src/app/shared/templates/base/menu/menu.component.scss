@@ -1,6 +1,9 @@
-@use '@angular/material' as mat;
-
 .logo{
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+  width: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 48px;
+  text-align: center;
 }

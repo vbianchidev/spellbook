@@ -6,7 +6,7 @@ const routes: Routes = [
   { 
     path: '',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) 
+    loadChildren: () => import('./modules/spellbook/spellbook.module').then(m => m.SpellBookModule) 
   }, { 
     path: 'login', 
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule) 
