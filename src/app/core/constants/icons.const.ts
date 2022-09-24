@@ -1,7 +1,6 @@
 import { faBolt, faBookMedical, faChain, faCloudBolt, faDroplet, faFire, faFlask, faSkull, faSnowflake, faSun } from '@fortawesome/free-solid-svg-icons'
 
-
-export const SpellElementsIcons = {
+const IconsElements = {
   necromancy: {
     icon: faSkull,
     color: '#324376'
@@ -27,4 +26,8 @@ export const SpellElementsIcons = {
   control: {
     icon: faChain
   }
+}
+
+export const Icons = {
+  elements: IconsElements
 }

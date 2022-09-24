@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { interval, Observable, of } from 'rxjs';
-import { LayoutState } from 'src/app/core/store/layout.store';
+import { LayoutState } from 'src/app/core/states/layout.state';
 
 @Component({
   selector: 'app-sidenav',

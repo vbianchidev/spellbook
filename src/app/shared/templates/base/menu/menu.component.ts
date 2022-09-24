@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { faBook, faBookAtlas, faBookSkull } from '@fortawesome/free-solid-svg-icons';
-import { SpellElementsIcons } from 'src/app/core/constants/icons.const';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu',
@@ -9,6 +8,5 @@ import { SpellElementsIcons } from 'src/app/core/constants/icons.const';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent {
-
   logo = faBook
 }

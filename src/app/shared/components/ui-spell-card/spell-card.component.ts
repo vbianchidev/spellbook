@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SpellElementsIcons } from 'src/app/core/constants/icons.const';
+import { Icons } from 'src/app/core/constants/icons.const';
 
 @Component({
   selector: 'app-spell-card',
@@ -7,11 +7,6 @@ import { SpellElementsIcons } from 'src/app/core/constants/icons.const';
   styleUrls: ['./spell-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpellCardComponent implements OnInit {
-  elementsIcons = SpellElementsIcons
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class SpellCardComponent {
+  iconElement = Icons.elements;
 }

@@ -13,7 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxsModule } from '@ngxs/store';
-import { LayoutState } from 'src/app/core/store/layout.store';
+import { LayoutState } from 'src/app/core/states/layout.state';
 import { RouterModule } from '@angular/router';
 
 
