@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SpellElementsIcons } from 'src/app/core/constants/spell-elements-icons.const';
+import { SpellElementsIcons } from 'src/app/core/constants/icons.const';
 
 @Component({
   selector: 'app-spell-card',

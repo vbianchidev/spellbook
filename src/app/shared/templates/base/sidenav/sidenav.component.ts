@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { LayoutState } from 'src/app/core/states/layout.state';
+import { interval, Observable, of } from 'rxjs';
+import { LayoutState } from 'src/app/core/store/layout.store';
 
 @Component({
   selector: 'app-sidenav',
@@ -12,4 +12,5 @@ import { LayoutState } from 'src/app/core/states/layout.state';
 export class SidenavComponent {
   
   @Select(LayoutState.isOpened) opened$!: Observable<boolean>;
+
 }
