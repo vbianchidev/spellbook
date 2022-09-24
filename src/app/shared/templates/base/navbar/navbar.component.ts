@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { LayoutToogleSidenav } from 'src/app/core/actions/layout.actions';
+import { Layout } from 'src/app/core/actions/layout.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +12,6 @@ export class NavbarComponent {
   constructor(private _store: Store) {}
 
   toggle(): void {
-    this._store.dispatch(new LayoutToogleSidenav());
+    this._store.dispatch(new Layout.ToogleSidenav());
   }
 }

@@ -7,6 +7,7 @@ import { NgxsModule } from '@ngxs/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutState } from './core/states/layout.state';
 
 
 
@@ -18,9 +19,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot(),
     FontAwesomeModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxsModule.forFeature([LayoutState]),
+    NgxsModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

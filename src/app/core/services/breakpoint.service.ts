@@ -7,18 +7,13 @@ import { BehaviorSubject, distinctUntilChanged, tap } from 'rxjs';
 })
 export class BreakpointService {
 
-  private readonly breakpoint$ = this.breakpointObserver
+  readonly breakpoint$ = this.breakpointObserver
     .observe([
-      Breakpoints.Large, 
-      Breakpoints.Medium, 
-      Breakpoints.Small
+      Breakpoints.Large
     ])
     .pipe(
-      tap(value => console.log(value)),
       distinctUntilChanged()
     );
-  
-  public breakpointChange$: BehaviorSubject<string> = new BehaviorSubject("");
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 }

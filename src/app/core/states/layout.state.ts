@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { LayoutToogleSidenav } from '../actions/layout.actions';
+import { Layout } from '../actions/layout.actions';
 import { LayoutEntity } from '../entities/layout.entity';
 
 
@@ -19,7 +19,7 @@ export class LayoutState {
     return opened;
   }
 
-  @Action(LayoutToogleSidenav)
+  @Action(Layout.ToogleSidenav)
   public toggle({ getState, setState }: StateContext<LayoutEntity>): void {
     const state = getState();
     setState({
@@ -27,4 +27,18 @@ export class LayoutState {
       opened: !state.opened
     });
   }
+
+  @Action(Layout.SetSidenav)
+  public setOpened(
+    { getState, setState }: StateContext<LayoutEntity>,
+    { opened }: Layout.SetSidenav
+  ): void {
+    console.log("Cu", opened);
+    const state = getState();
+    setState({
+      ...state,
+      opened: opened
+    })
+  }
+
 }
