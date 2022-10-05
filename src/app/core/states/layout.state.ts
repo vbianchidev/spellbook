@@ -6,7 +6,7 @@ import { LayoutEntity } from '../entities/layout.entity';
 
 
 @State<LayoutEntity>({
-  name: "dashboard",
+  name: "layout",
   defaults: {
     opened: false
   }
@@ -33,12 +33,9 @@ export class LayoutState {
     { getState, setState }: StateContext<LayoutEntity>,
     { opened }: Layout.SetSidenav
   ): void {
-    console.log("Cu", opened);
-    const state = getState();
     setState({
-      ...state,
+      ...getState(),
       opened: opened
     })
   }
-
 }

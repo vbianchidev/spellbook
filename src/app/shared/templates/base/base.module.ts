@@ -34,7 +34,6 @@ import { RouterModule } from '@angular/router';
     FontAwesomeModule,
     RouterModule,
     FlexLayoutModule,
-    NgxsModule.forFeature([LayoutState])
   ],
   exports: [
     NavbarComponent,

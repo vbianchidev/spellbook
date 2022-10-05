@@ -1,4 +1,4 @@
-import { RPGClass } from '../types/rpg.types';
+import { RPGClass } from '../rules/rpg.rule';
 import { Spell } from './spell.model';
 
 export interface SpellBook {

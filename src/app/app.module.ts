@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxsModule } from '@ngxs/store';
-
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutState } from './core/states/layout.state';
@@ -17,15 +17,14 @@ import { LayoutState } from './core/states/layout.state';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FontAwesomeModule,
     FlexLayoutModule,
-    NgxsModule.forFeature([LayoutState]),
-    NgxsModule.forRoot(),
+    AppRoutingModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    NgxsModule.forRoot([LayoutState]), 
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
-  
 })
 export class AppModule { }

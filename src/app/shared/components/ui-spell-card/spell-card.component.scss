@@ -1,4 +1,8 @@
 :host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  
   mat-card {
     border-radius: 16px;
 
