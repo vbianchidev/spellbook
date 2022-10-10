@@ -8,7 +8,7 @@ import { RPGDamageType } from 'src/app/core/rules/rpg.rule';
   styleUrls: ['./spell-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpellCardComponent {
+export class SpellCardComponent implements OnInit {
   elements: any[] = []
   iconElement = Icons.elements;
 
