@@ -24,7 +24,6 @@ export class SpellCardComponent {
         ...value
       });
     }
-
     console.log(this.elements)
   }
 }
