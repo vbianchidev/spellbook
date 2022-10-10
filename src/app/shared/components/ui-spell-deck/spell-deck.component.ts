@@ -6,11 +6,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./spell-deck.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpellDeckComponent implements OnInit {
+export class SpellDeckComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

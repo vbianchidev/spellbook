@@ -3,6 +3,7 @@
     { 
       "id": 0,
       "name": "Acid Splash",
+      "type": "acid",
       "level": 0,
       "school": "Conjuration",
       "castingTime": "1 Action",
@@ -12,6 +13,7 @@
     }, { 
       "id": 1,
       "name": "Blade Ward",
+      "type": "slashing",
       "level": 0,
       "school": "Abjuration",
       "castingTime": "1 Action",
@@ -21,6 +23,7 @@
     }, { 
       "id": 2,
       "name": "Booming Blade",
+      "type": "slashing",
       "level": 0,
       "school": "Evocation",
       "castingTime": "1 Action",
@@ -30,6 +33,7 @@
     }, { 
       "id": 3,
       "name": "Chill Touch",
+      "type": "necrotic",
       "level": 0,
       "school": "Necromancy",
       "castingTime": "1 Action",
@@ -39,6 +43,7 @@
     }, { 
       "id": 4,
       "name": "Control Flames",
+      "type": "fire",
       "level": 0,
       "school": "Transmutation",
       "castingTime": "1 Action",
@@ -48,6 +53,7 @@
     }, { 
       "id": 5,
       "name": "Create Bonfire",
+      "type": "fire",
       "level": 0,
       "school": "Conjuration",
       "castingTime": "1 Action",
@@ -93,6 +99,7 @@
     }, { 
       "id": 10,
       "name": "Fire Bolt",
+      "type": "fire",
       "level": 0,
       "school": "Evocation",
       "castingTime": "1 Action",
@@ -102,6 +109,7 @@
     }, { 
       "id": 11,
       "name": "Friends",
+      "type": null,
       "level": 0,
       "school": "Enchantment",
       "castingTime": "1 Action",
@@ -111,6 +119,7 @@
     }, { 
       "id": 12,
       "name": "Frostbite",
+      "type": "cold",
       "level": 0,
       "school": "Evocation",
       "castingTime": "1 Action",
@@ -120,6 +129,7 @@
     }, { 
       "id": 13,
       "name": "Green-Flame Blade",
+      "type": "fire",
       "level": 0,
       "school": "Evocation",
       "castingTime": "1 Action",
@@ -129,6 +139,7 @@
     }, { 
       "id": 14,
       "name": "Guidance",
+      "type": null,
       "level": 0,
       "school": "Divination",
       "castingTime": "1 Action",
@@ -138,6 +149,7 @@
     }, { 
       "id": 15,
       "name": "Gust",
+      "type": null,
       "level": 0,
       "school": "Transmutation",
       "castingTime": "1 Action",
@@ -147,6 +159,7 @@
     }, { 
       "id": 16,
       "name": "Infestation",
+      "type": "poison",
       "level": 0,
       "school": "Conjuration",
       "castingTime": "1 Action",

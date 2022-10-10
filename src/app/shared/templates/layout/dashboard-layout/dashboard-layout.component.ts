@@ -6,11 +6,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardLayoutComponent implements OnInit {
-
+export class DashboardLayoutComponent {
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
