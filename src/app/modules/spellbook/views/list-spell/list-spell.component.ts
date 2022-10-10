@@ -4,10 +4,10 @@ import { RPGDamageType } from 'src/app/core/rules/rpg.rule';
 
 @Component({
   templateUrl: './list-spell.component.html',
-  styleUrls: ['./list-spell.component.scss']
+  styleUrls: ['./list-spell.component.scss'],
 })
 export class ListSpellComponent implements OnInit {
-  elements: any[] = []
+  elements: any[] = [];
   iconElement = Icons.elements;
 
   ngOnInit(): void {
@@ -15,15 +15,14 @@ export class ListSpellComponent implements OnInit {
   }
 
   mapElements(): void {
-    for(let key in this.iconElement) {
+    for (let key in this.iconElement) {
       const value = this.iconElement[key as RPGDamageType];
-      this.elements.push({ 
+      this.elements.push({
         element: key,
-        ...value
+        ...value,
       });
     }
 
-    console.log(this.elements)
+    console.log(this.elements);
   }
-
 }

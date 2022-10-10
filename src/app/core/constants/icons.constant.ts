@@ -23,61 +23,61 @@ interface IconElement {
 }
 
 const IconsElements: Record<RPGDamageType, IconElement> = {
-  acid: { 
-    color: "#53A548", 
-    icon: faFlask 
+  acid: {
+    color: '#53A548',
+    icon: faFlask,
   },
-  cold: { 
-    color: "#55C1FF", 
-    icon: faSnowflake 
+  cold: {
+    color: '#55C1FF',
+    icon: faSnowflake,
   },
-  fire: { 
-    color: "#EB5E28", 
-    icon: faFire 
+  fire: {
+    color: '#EB5E28',
+    icon: faFire,
   },
-  force: { 
-    color: "#A4BFEB", 
-    icon: faWind 
+  force: {
+    color: '#A4BFEB',
+    icon: faWind,
   },
-  lightning: { 
-    color: "#FFD23F", 
-    icon: faBolt 
+  lightning: {
+    color: '#FFD23F',
+    icon: faBolt,
   },
-  necrotic: { 
-    color: "#370031", 
-    icon: faSkull 
+  necrotic: {
+    color: '#370031',
+    icon: faSkull,
   },
-  poison: { 
-    color: "#53A548", 
-    icon: faDroplet
+  poison: {
+    color: '#53A548',
+    icon: faDroplet,
   },
-  psychic: { 
-    color: "#6320EE", 
-    icon: faBrain 
+  psychic: {
+    color: '#6320EE',
+    icon: faBrain,
   },
-  radiant: { 
-    color: "#FFD23F", 
-    icon: faSun 
-  }, 
-  thunder: { 
-    color: "#173753", 
-    icon: faCloudBolt 
+  radiant: {
+    color: '#FFD23F',
+    icon: faSun,
+  },
+  thunder: {
+    color: '#173753',
+    icon: faCloudBolt,
   },
 
-  bludgeoning: { 
-    color: "#FF312E", 
-    icon: faGavel 
+  bludgeoning: {
+    color: '#FF312E',
+    icon: faGavel,
   },
-  piercing: { 
-    color: "#FF312E", 
-    icon: faPen
+  piercing: {
+    color: '#FF312E',
+    icon: faPen,
   },
-  slashing: { 
-    color: "#FF312E", 
-    icon: faCut
+  slashing: {
+    color: '#FF312E',
+    icon: faCut,
   },
-}
+};
 
 export const Icons = {
-  elements: IconsElements
-}
+  elements: IconsElements,
+};

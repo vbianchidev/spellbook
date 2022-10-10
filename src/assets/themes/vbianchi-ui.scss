@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -15,12 +14,14 @@ $spellbook-primary: mat.define-palette($spellbook-light-primary);
 $spellbook-accent: mat.define-palette($spellbook-light-accent);
 $spellbook-warn: mat.define-palette($spellbook-light-warn);
 
-$spellbook-theme: mat.define-light-theme((
-  color: (
-    primary: $spellbook-primary,
-    accent: $spellbook-accent,
-    warn: $spellbook-warn,
+$spellbook-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $spellbook-primary,
+      accent: $spellbook-accent,
+      warn: $spellbook-warn,
+    ),
   )
-));
+);
 
 @include mat.all-component-themes($spellbook-theme);

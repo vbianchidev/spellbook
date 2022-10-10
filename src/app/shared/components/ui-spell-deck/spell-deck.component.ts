@@ -4,10 +4,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   selector: 'app-spell-deck',
   templateUrl: './spell-deck.component.html',
   styleUrls: ['./spell-deck.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpellDeckComponent {
-
-  constructor() { }
-
+  constructor() {}
 }

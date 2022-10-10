@@ -11,14 +11,9 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ],
-      imports: [
-        MatIconModule,
-        MatButtonModule,
-        MatToolbarModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [NavbarComponent],
+      imports: [MatIconModule, MatButtonModule, MatToolbarModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;

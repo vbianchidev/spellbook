@@ -6,7 +6,7 @@ import { Layout } from 'src/app/core/actions/layout.actions';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
   constructor(private _store: Store) {}

@@ -16,14 +16,8 @@ import { NgxsModule } from '@ngxs/store';
 import { LayoutState } from 'src/app/core/states/layout.state';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    SidenavComponent,
-    MenuComponent,
-  ],
+  declarations: [NavbarComponent, SidenavComponent, MenuComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -35,10 +29,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     FlexLayoutModule,
   ],
-  exports: [
-    NavbarComponent,
-    SidenavComponent,
-    MenuComponent,
-  ],
+  exports: [NavbarComponent, SidenavComponent, MenuComponent],
 })
-export class BaseModule { }
+export class BaseModule {}

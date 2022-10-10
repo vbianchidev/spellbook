@@ -5,20 +5,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 
-
-
 @NgModule({
-  declarations: [
-    SpellCardComponent
-  ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    MatCardModule,
-    MatChipsModule,
-  ],
-  exports: [
-    SpellCardComponent
-  ],
+  declarations: [SpellCardComponent],
+  imports: [CommonModule, FontAwesomeModule, MatCardModule, MatChipsModule],
+  exports: [SpellCardComponent],
 })
-export class SpellCardModule { }
+export class SpellCardModule {}

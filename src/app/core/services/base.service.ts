@@ -3,17 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export abstract class BaseService<T> {
   private _url: string = environment.baseUrl;
 
-  public abstract _route: string;  
+  public abstract _route: string;
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   public getOne(): Observable<T> {
     return this._http.get<T>(`${this._url}/${this._route}`);
@@ -34,5 +32,4 @@ export abstract class BaseService<T> {
   public delete(_id: string): Observable<boolean> {
     return this._http.delete<boolean>(`${this._url}/${this._route}/${_id}`);
   }
-
 }

@@ -3,19 +3,16 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Layout } from '../actions/layout.actions';
 import { LayoutEntity } from '../entities/layout.entity';
 
-
-
 @State<LayoutEntity>({
-  name: "layout",
+  name: 'layout',
   defaults: {
-    opened: false
-  }
+    opened: false,
+  },
 })
 @Injectable()
 export class LayoutState {
-
-  @Selector() 
-  static isOpened({opened}: LayoutEntity): boolean {
+  @Selector()
+  static isOpened({ opened }: LayoutEntity): boolean {
     return opened;
   }
 
@@ -24,7 +21,7 @@ export class LayoutState {
     const state = getState();
     setState({
       ...state,
-      opened: !state.opened
+      opened: !state.opened,
     });
   }
 
@@ -35,7 +32,7 @@ export class LayoutState {
   ): void {
     setState({
       ...getState(),
-      opened: opened
-    })
+      opened: opened,
+    });
   }
 }

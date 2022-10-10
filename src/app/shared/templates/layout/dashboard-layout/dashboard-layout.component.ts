@@ -4,8 +4,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   selector: 'app-dashboard-layout',
   templateUrl: './dashboard-layout.component.html',
   styleUrls: ['./dashboard-layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardLayoutComponent {
-  constructor() { }
+  constructor() {}
 }

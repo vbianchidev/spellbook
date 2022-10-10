@@ -5,14 +5,11 @@ import { BreakpointService } from './core/services/breakpoint.service';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>'
+  template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-  constructor(
-    private _breakPoint: BreakpointService,
-    private _store: Store
-  ) {
-    this._breakPoint.breakpoint$.subscribe(change => {
+  constructor(private _breakPoint: BreakpointService, private _store: Store) {
+    this._breakPoint.breakpoint$.subscribe((change) => {
       this._store.dispatch(new Layout.SetSidenav(change.matches));
     });
   }

@@ -1,8 +1,8 @@
-$dark-text: #1B1F3B;
-$light-text: #F7F7FF;
+$dark-text: #1b1f3b;
+$light-text: #f7f7ff;
 
 $spellbook-light-primary: (
-  50:  #eaeafc,
+  50: #eaeafc,
   100: #c9caf6,
   200: #a4a7f0,
   300: #7e84ea,
@@ -31,11 +31,11 @@ $spellbook-light-primary: (
     A200: $light-text,
     A400: $light-text,
     A700: $light-text,
-  )
+  ),
 );
 
 $spellbook-light-accent: (
-  50:  #fff3e1,
+  50: #fff3e1,
   100: #ffdfb4,
   200: #ffcb83,
   300: #ffb552,
@@ -64,11 +64,11 @@ $spellbook-light-accent: (
     A200: $light-text,
     A400: $light-text,
     A700: $light-text,
-  )
+  ),
 );
 
 $spellbook-light-warn: (
-  50:  #ffe9ed,
+  50: #ffe9ed,
   100: #ffc9cf,
   200: #f79293,
   300: #ef6569,
@@ -97,5 +97,5 @@ $spellbook-light-warn: (
     A200: $light-text,
     A400: $light-text,
     A700: $light-text,
-  )
+  ),
 );

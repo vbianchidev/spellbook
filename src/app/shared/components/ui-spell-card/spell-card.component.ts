@@ -6,10 +6,10 @@ import { RPGDamageType } from 'src/app/core/rules/rpg.rule';
   selector: 'app-spell-card',
   templateUrl: './spell-card.component.html',
   styleUrls: ['./spell-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpellCardComponent implements OnInit {
-  elements: any[] = []
+  elements: any[] = [];
   iconElement = Icons.elements;
 
   ngOnInit(): void {
@@ -17,13 +17,13 @@ export class SpellCardComponent implements OnInit {
   }
 
   mapElements(): void {
-    for(let key in this.iconElement) {
+    for (let key in this.iconElement) {
       const value = this.iconElement[key as RPGDamageType];
-      this.elements.push({ 
+      this.elements.push({
         element: key,
-        ...value
+        ...value,
       });
     }
-    console.log(this.elements)
+    console.log(this.elements);
   }
 }

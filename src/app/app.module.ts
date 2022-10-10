@@ -9,22 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutState } from './core/states/layout.state';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FlexLayoutModule,
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([LayoutState]), 
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsModule.forRoot([LayoutState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

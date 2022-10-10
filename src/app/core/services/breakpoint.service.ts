@@ -3,14 +3,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BreakpointService {
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Large])
-    .pipe(
-      distinctUntilChanged()
-    );
+    .pipe(distinctUntilChanged());
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver) {}
 }

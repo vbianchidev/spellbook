@@ -5,8 +5,8 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
-  logo = faBook
+  logo = faBook;
 }

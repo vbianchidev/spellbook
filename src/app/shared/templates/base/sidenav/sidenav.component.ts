@@ -7,7 +7,7 @@ import { LayoutState } from 'src/app/core/states/layout.state';
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavComponent {
   @Select(LayoutState.isOpened) opened$!: Observable<boolean>;
