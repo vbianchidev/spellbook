@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpellCardComponent } from './ui-spell-card.component';
+import { CardComponent } from './card.component';
 
-describe('SpellCardComponent', () => {
-  let component: SpellCardComponent;
-  let fixture: ComponentFixture<SpellCardComponent>;
+describe('CardComponent', () => {
+  let component: CardComponent;
+  let fixture: ComponentFixture<CardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SpellCardComponent],
+      declarations: [CardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SpellCardComponent);
+    fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

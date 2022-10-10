@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListSpellComponent } from './list-spell.component';
+import { SpellBookListComponent } from './spellbook-list.component';
 
 describe('ListSpellComponent', () => {
-  let component: ListSpellComponent;
-  let fixture: ComponentFixture<ListSpellComponent>;
+  let component: SpellBookListComponent;
+  let fixture: ComponentFixture<SpellBookListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ListSpellComponent],
+      declarations: [SpellBookListComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListSpellComponent);
+    fixture = TestBed.createComponent(SpellBookListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

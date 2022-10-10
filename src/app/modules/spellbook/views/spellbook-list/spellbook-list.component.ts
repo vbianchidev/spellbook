@@ -1,14 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Icons } from 'src/app/core/constants/icons.constant';
 import { RPGDamageType } from 'src/app/core/rules/rpg.rule';
 
 @Component({
-  selector: 'app-spell-card',
-  templateUrl: './ui-spell-card.component.html',
-  styleUrls: ['./ui-spell-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './spellbook-list.component.html',
+  styleUrls: [ './spellbook-list.component.scss'],
 })
-export class SpellCardComponent implements OnInit {
+export class SpellBookListComponent implements OnInit {
   elements: any[] = [];
   iconElement = Icons.elements;
 
@@ -24,6 +22,7 @@ export class SpellCardComponent implements OnInit {
         ...value,
       });
     }
+
     console.log(this.elements);
   }
 }

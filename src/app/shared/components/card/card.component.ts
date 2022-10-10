@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Icons } from 'src/app/core/constants/icons.constant';
 import { RPGDamageType } from 'src/app/core/rules/rpg.rule';
 
 @Component({
-  templateUrl: './list-spell.component.html',
-  styleUrls: ['./list-spell.component.scss'],
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListSpellComponent implements OnInit {
+export class CardComponent implements OnInit {
   elements: any[] = [];
   iconElement = Icons.elements;
 
@@ -22,7 +24,6 @@ export class ListSpellComponent implements OnInit {
         ...value,
       });
     }
-
     console.log(this.elements);
   }
 }
