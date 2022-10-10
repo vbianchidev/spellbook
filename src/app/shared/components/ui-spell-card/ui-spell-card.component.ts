@@ -4,8 +4,8 @@ import { RPGDamageType } from 'src/app/core/rules/rpg.rule';
 
 @Component({
   selector: 'app-spell-card',
-  templateUrl: './spell-card.component.html',
-  styleUrls: ['./spell-card.component.scss'],
+  templateUrl: './ui-spell-card.component.html',
+  styleUrls: ['./ui-spell-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpellCardComponent implements OnInit {

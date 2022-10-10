@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpellCardComponent } from './spell-card.component';
+import { SpellCardComponent } from './ui-spell-card.component';
 
 describe('SpellCardComponent', () => {
   let component: SpellCardComponent;
