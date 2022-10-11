@@ -8,13 +8,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./modules/spellbook/spellbook.module').then(
-        (m) => m.SpellBookModule
+        (m) => m.SpellModule
       ),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./modules/login/login.module').then((m) => m.LoginModule),
+      import('./modules/login/login.module').then(
+        (m) => m.LoginModule
+      ),
   },
 ];
 

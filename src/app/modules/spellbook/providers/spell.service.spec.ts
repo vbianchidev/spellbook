@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SpellbookService } from './spellbook.service';
+import { SpellService } from './spell.service';
 
-describe('SpellbookService', () => {
-  let service: SpellbookService;
+describe('SpellService', () => {
+  let service: SpellService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SpellbookService);
+    service = TestBed.inject(SpellService);
   });
 
   it('should be created', () => {

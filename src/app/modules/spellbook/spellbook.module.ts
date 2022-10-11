@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { SpellBookRoutingModule } from './spellbook-routing.module';
+import { SpellRoutingModule } from './spell-routing.module';
 
 @NgModule({
   declarations: [
-    SpellBookRoutingModule.components
+    SpellRoutingModule.components
   ],
   imports: [
     CommonModule,
-    SpellBookRoutingModule,
+    SpellRoutingModule,
     BianchiUiModule,
     SharedModule
   ],
 })
-export class SpellBookModule {}
+export class SpellModule {}
