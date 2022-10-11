@@ -1,4 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Layout } from 'src/app/core/actions/layout.actions';
+import { LayoutState } from 'src/app/core/states/layout.state';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -7,5 +12,14 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardLayoutComponent {
-  constructor() {}
+  @Select(LayoutState.isOpened) 
+  opened$!: Observable<boolean>;
+
+  logo = faBook;
+
+  constructor(private _store: Store) {}
+
+  toggle(): void {
+    this._store.dispatch(new Layout.ToogleSidenav());
+  }
 }

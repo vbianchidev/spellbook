@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ComponentsModule } from '@components/components.module';
-import { LayoutsModule } from './layouts/layouts.module';
 
-import { TemplatesModule } from './templates/base.module';
+import { LayoutsModule } from './layouts/layouts.module';
 
 
 
@@ -10,7 +9,6 @@ import { TemplatesModule } from './templates/base.module';
   exports: [
     ComponentsModule,
     LayoutsModule,
-    TemplatesModule
   ]
 })
 export class SharedModule { }

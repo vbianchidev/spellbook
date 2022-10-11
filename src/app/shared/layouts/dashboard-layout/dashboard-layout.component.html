@@ -1,3 +1,50 @@
-<app-sidenav>
-  <router-outlet></router-outlet>
-</app-sidenav>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="opened$ | async">
+    <mat-list role="list">
+      <mat-list-item class="logo" [routerLink]="['/']">
+        <fa-icon [icon]="logo"></fa-icon>
+      </mat-list-item>
+      <div mat-subheader>Magias</div>
+
+      <mat-list-item [routerLink]="['/']">
+        <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+        <div mat-line>Todas</div>
+      </mat-list-item>
+
+      <div mat-subheader>Minha conta</div>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+        <div mat-line>Matheus</div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+        <div mat-line>Grimórios</div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
+        <div mat-line>Config</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>SpellBook</span>
+      <span class="flex-spacer"></span>
+      <button mat-icon-button>
+        <mat-icon>book</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+    <main>
+      <ng-content></ng-content>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

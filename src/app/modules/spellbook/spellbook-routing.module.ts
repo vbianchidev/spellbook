@@ -8,7 +8,9 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardLayoutComponent,
-    children: [{ path: '', component: SpellBookListComponent }],
+    children: [{ 
+      path: '', component: SpellBookListComponent 
+    }],
   },
 ];
 
@@ -17,5 +19,7 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class SpellBookRoutingModule {
-  static components = [SpellBookListComponent]
+  static components = [ 
+    SpellBookListComponent 
+  ]
 }

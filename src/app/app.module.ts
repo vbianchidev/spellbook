@@ -8,6 +8,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutState } from './core/states/layout.state';
+import { CoreModule } from './core/core.module';
+import { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,7 @@ import { LayoutState } from './core/states/layout.state';
     BrowserAnimationsModule,
     NgxsModule.forRoot([LayoutState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
