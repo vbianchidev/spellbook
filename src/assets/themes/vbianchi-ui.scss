@@ -11,15 +11,15 @@
 @import "light/colors";
 
 $spellbook-primary: mat.define-palette($spellbook-light-primary);
-$spellbook-accent: mat.define-palette($spellbook-light-accent);
-$spellbook-warn: mat.define-palette($spellbook-light-warn);
+$spellbook-accent:  mat.define-palette($spellbook-light-accent);
+$spellbook-warn:    mat.define-palette($spellbook-light-warn);
 
-$spellbook-theme: mat.define-light-theme(
+$spellbook-theme: mat.define-dark-theme(
   (
     color: (
       primary: $spellbook-primary,
-      accent: $spellbook-accent,
-      warn: $spellbook-warn,
+      accent:  $spellbook-accent,
+      warn:    $spellbook-warn,
     ),
   )
 );

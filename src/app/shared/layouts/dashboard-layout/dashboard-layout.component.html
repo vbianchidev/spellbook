@@ -11,13 +11,11 @@
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
+
 <mat-sidenav-container>
-  <mat-sidenav
-    class="mat-elevation-z8"
-    [mode]="'side'"
-    [opened]="opened$ | async">
+  <mat-sidenav [mode]="'side'" [opened]="opened$ | async">
     <mat-list role="list">
-      <div mat-subheader>Magias</div>
+      <div class="subheader" mat-subheader>Magias</div>
       <mat-list-item [routerLink]="['/']">
         <mat-icon mat-list-icon><fa-icon [icon]="logo"></fa-icon></mat-icon>
         <div mat-line>Todas</div>
@@ -26,8 +24,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <main [class.open]="opened$ | async" class="mat-elevation-z6">
+    <mat-card [class.open]="opened$ | async">
       <router-outlet></router-outlet>
-    </main>
+    </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
