@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Layout } from 'src/app/core/actions/layout.actions';
-import { LayoutState } from 'src/app/core/states/layout.state';
+import { Layout } from 'src/app/core/store/layout.actions';
+import { LayoutState } from 'src/app/core/store/layout.state';
 
 @Component({
   selector: 'app-dashboard-layout',

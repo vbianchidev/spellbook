@@ -27,7 +27,10 @@ export type RPGClass =
   | 'warlock';
 
 // Player's Handbook(5e) (2014), p.196:
-export type RPGPhysicalDamage = 'bludgeoning' | 'piercing' | 'slashing';
+export type RPGPhysicalDamage = 
+  | 'bludgeoning' 
+  | 'piercing' 
+  | 'slashing';
 
 export type RPGMagicalDamage =
   | 'acid'

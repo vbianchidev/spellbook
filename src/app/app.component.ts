@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Layout } from './core/actions/layout.actions';
+import { Layout } from './core/store/layout.actions';
 import { BreakpointService } from './core/services/breakpoint.service';
 
 @Component({

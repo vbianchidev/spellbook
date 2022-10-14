@@ -1,4 +1,10 @@
 export namespace Layout {
+
+  export interface StateModel {
+    opened: boolean;
+    mobileMode?: boolean;
+  }
+
   export class ToogleSidenav {
     static readonly type = '[LAYOUT] Toogle Sidenav';
   }

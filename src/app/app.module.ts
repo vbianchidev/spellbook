@@ -7,7 +7,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutState } from './core/states/layout.state';
+import { LayoutState } from './core/store/layout.state';
 import { CoreModule } from './core/core.module';
 import { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';
 import { BreakpointService } from './core/services/breakpoint.service';
