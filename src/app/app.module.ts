@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { LayoutState } from './core/states/layout.state';
 import { CoreModule } from './core/core.module';
 import { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';
+import { BreakpointService } from './core/services/breakpoint.service';
 
 @NgModule({
   declarations: [AppComponent],

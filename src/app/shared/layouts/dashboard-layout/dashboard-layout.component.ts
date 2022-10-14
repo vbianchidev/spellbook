@@ -15,6 +15,9 @@ export class DashboardLayoutComponent {
   @Select(LayoutState.isOpened) 
   opened$!: Observable<boolean>;
 
+  @Select(LayoutState.deviceMode) 
+  deviceMode$!: Observable<boolean>;
+
   logo = faBook;
 
   constructor(private _store: Store) {}

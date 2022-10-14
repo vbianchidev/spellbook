@@ -7,6 +7,7 @@ import { LayoutEntity } from '../entities/layout.entity';
   name: 'layout',
   defaults: {
     opened: false,
+    mobileMode: undefined
   },
 })
 @Injectable()
@@ -14,6 +15,11 @@ export class LayoutState {
   @Selector()
   static isOpened({ opened }: LayoutEntity): boolean {
     return opened;
+  }
+
+  @Selector()
+  static deviceMode({ mobileMode }: LayoutEntity): boolean {
+    return mobileMode as boolean;
   }
 
   @Action(Layout.ToogleSidenav)
@@ -33,6 +39,7 @@ export class LayoutState {
     setState({
       ...getState(),
       opened: opened,
+      mobileMode: opened
     });
   }
 }

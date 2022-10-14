@@ -14,7 +14,7 @@ $spellbook-primary: mat.define-palette($spellbook-light-primary);
 $spellbook-accent:  mat.define-palette($spellbook-light-accent);
 $spellbook-warn:    mat.define-palette($spellbook-light-warn);
 
-$spellbook-theme: mat.define-dark-theme(
+$spellbook-theme: mat.define-light-theme(
   (
     color: (
       primary: $spellbook-primary,

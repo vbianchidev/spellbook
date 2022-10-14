@@ -10,7 +10,7 @@ import { BreakpointService } from './core/services/breakpoint.service';
 export class AppComponent {
   constructor(private _breakPoint: BreakpointService, private _store: Store) {
     this._breakPoint.breakpoint$.subscribe((change) => {
-      this._store.dispatch(new Layout.SetSidenav(change.matches));
+      this._store.dispatch(new Layout.SetSidenav(!change.matches));
     });
   }
 }

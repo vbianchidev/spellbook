@@ -13,4 +13,11 @@ describe('BreakpointService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('Should be handset mode', (done: DoneFn)=> {
+    service.breakpoint$.subscribe(value => {
+      expect(value.matches).toBe(true);
+      done();
+    })
+  })
 });

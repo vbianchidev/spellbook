@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export abstract class BaseService<T> {
-  private _url: string = environment.baseUrl;
+  private readonly _url: string = environment.baseUrl;
 
-  public abstract _route: string;
+  public abstract readonly endpoint: string;
 
   constructor(private _http: HttpClient) {}
 
-  public getOne(): Observable<T> {
-    return this._http.get<T>(`${this._url}/${this._route}`);
+  public getAll(): Observable<T> {
+    return this._http.get<T>(`${this._url}/${this.endpoint}`);
   }
 
-  public getAll(_id: string): Observable<T[]> {
-    return this._http.get<T[]>(`${this._url}/${this._route}/${_id}`);
+  public getOne(_id: string): Observable<T[]> {
+    return this._http.get<T[]>(`${this._url}/${this.endpoint}/${_id}`);
   }
 
-  public save(_data: T): Observable<T> {
-    return this._http.post<T>(`${this._url}/${this._route}`, _data);
+  public create(_data: T): Observable<T> {
+    return this._http.post<T>(`${this._url}/${this.endpoint}`, _data);
   }
 
   public update(_id: string, _data: T): Observable<T> {
-    return this._http.patch<T>(`${this._url}/${this._route}/${_id}`, _data);
+    return this._http.patch<T>(`${this._url}/${this.endpoint}/${_id}`, _data);
   }
 
   public delete(_id: string): Observable<boolean> {
-    return this._http.delete<boolean>(`${this._url}/${this._route}/${_id}`);
+    return this._http.delete<boolean>(`${this._url}/${this.endpoint}/${_id}`);
   }
 }
