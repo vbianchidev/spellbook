@@ -26,6 +26,18 @@ export type RPGClass =
   | 'sorcerer'
   | 'warlock';
 
+export type RPGMagicSchool = 
+  | 'abjuration' 
+  | 'transmutation' 
+  | 'conjuration'
+  | 'divination'
+  | 'enchantment'
+  | 'evocation'
+  | 'illusion'
+  | 'necromancy';
+
+export type RPGMagicComponents = 'V' | 'S' | 'M';
+
 // Player's Handbook(5e) (2014), p.196:
 export type RPGPhysicalDamage = 
   | 'bludgeoning' 
@@ -44,7 +56,7 @@ export type RPGMagicalDamage =
   | 'radiant'
   | 'thunder';
 
-export type RPGMagicCondition =
+export type RPGCondition =
   | 'blinded'
   | 'charmed'
   | 'deafened'
@@ -61,4 +73,4 @@ export type RPGMagicCondition =
   | 'stunned'
   | 'unconscious';
 
-export type RPGDamageType = RPGPhysicalDamage | RPGMagicalDamage;
+export type RPGMagicEffect = RPGPhysicalDamage | RPGMagicalDamage;

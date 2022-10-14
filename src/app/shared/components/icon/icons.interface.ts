@@ -14,15 +14,16 @@ import {
   faWind,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';
 
-import { RPGDamageType } from '../rules/rpg.rule';
 
-interface IconElement {
+
+export interface IconElement {
   icon: IconDefinition;
   color: string;
 }
 
-const IconsElements: Record<RPGDamageType, IconElement> = {
+const IconsElements: Record<RPGMagicEffect, IconElement> = {
   acid: {
     color: '#53A548',
     icon: faFlask,

@@ -13,8 +13,8 @@ import { SpellRoutingModule } from './spell-routing.module';
   imports: [
     CommonModule,
     SpellRoutingModule,
-    BianchiUiModule,
     SharedModule
+    
   ],
 })
 export class SpellModule {}

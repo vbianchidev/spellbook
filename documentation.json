@@ -1,0 +1,3374 @@
+{
+    "pipes": [
+        {
+            "name": "SpellLevelPipe",
+            "id": "pipe-SpellLevelPipe-c73115ef008746b46deed3d304d19adbb646e4701011534c75e6e85e89f094811458f92fce855ed7754519dd340593de4ab0a8b5b5e55bf93cfac2465826957a",
+            "file": "src/app/shared/pipes/spell-level.pipe.ts",
+            "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string | number",
+                    "typeParameters": [],
+                    "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "ngname": "iscantrip",
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'iscantrip'\n})\nexport class SpellLevelPipe implements PipeTransform {\n  transform(value: number): string | number {\n    return value === 0 ? 'TRUQUE' : value;\n  }\n}\n"
+        }
+    ],
+    "interfaces": [
+        {
+            "name": "IconElement",
+            "id": "interface-IconElement-f0480128d70ad2d245527faa891ab12e4f8bf052c844b54e1725a925dc6cc6f8f4c6d0b7aa4311e83fa530d121550621667c40fed258afa06373dfe665ae6684",
+            "file": "src/app/shared/components/icon/icons.interface.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\n  faBolt,\n  faBrain,\n  faCloudBolt,\n  faCut,\n  faDroplet,\n  faFire,\n  faFlask,\n  faGavel,\n  faPen,\n  faSkull,\n  faSnowflake,\n  faSun,\n  faWind,\n  IconDefinition,\n} from '@fortawesome/free-solid-svg-icons';\nimport { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';\n\n\n\nexport interface IconElement {\n  icon: IconDefinition;\n  color: string;\n}\n\nconst IconsElements: Record<RPGMagicEffect, IconElement> = {\n  acid: {\n    color: '#53A548',\n    icon: faFlask,\n  },\n  cold: {\n    color: '#55C1FF',\n    icon: faSnowflake,\n  },\n  fire: {\n    color: '#EB5E28',\n    icon: faFire,\n  },\n  force: {\n    color: '#A4BFEB',\n    icon: faWind,\n  },\n  lightning: {\n    color: '#FFD23F',\n    icon: faBolt,\n  },\n  necrotic: {\n    color: '#370031',\n    icon: faSkull,\n  },\n  poison: {\n    color: '#53A548',\n    icon: faDroplet,\n  },\n  psychic: {\n    color: '#6320EE',\n    icon: faBrain,\n  },\n  radiant: {\n    color: '#FFD23F',\n    icon: faSun,\n  },\n  thunder: {\n    color: '#173753',\n    icon: faCloudBolt,\n  },\n\n  bludgeoning: {\n    color: '#FF312E',\n    icon: faGavel,\n  },\n  piercing: {\n    color: '#FF312E',\n    icon: faPen,\n  },\n  slashing: {\n    color: '#FF312E',\n    icon: faCut,\n  },\n};\n\nexport const Icons = {\n  elements: IconsElements,\n};\n",
+            "properties": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IconDefinition",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "RPGIcon",
+            "id": "interface-RPGIcon-b98e3b0c07d82db910ed249c187bd2af7dfdbb5d80831fa34c61d0e827b82c2359b379fde14beb55925bc5022f13833132e40df49c7c8768cdf0cf6db627c642",
+            "file": "src/app/core/rules/core.rule.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { IconDefinition } from '@fortawesome/fontawesome-svg-core';\n\nexport interface RPGIcon {\n  icon: IconDefinition;\n  color: string;\n}\n",
+            "properties": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IconDefinition",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "SpellEntity",
+            "id": "interface-SpellEntity-bece6e44ef3f2d539e86770019963aa2d5ce050f973c8bf07813926465cb376c2ddf4760895e8d2e16c9657df656ca5f25ff1aa7f81eef1f87140fba74cb4fd8",
+            "file": "src/app/modules/spell/store/spell.entity.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { RPGMagicComponents, RPGMagicEffect, RPGMagicSchool } from 'src/app/core/rules/rpg.rule';\r\n\r\nexport interface SpellEntity {\r\n  id: number;\r\n  name: string;\r\n  description: string;\r\n  type: RPGMagicEffect;\r\n  level: number;\r\n  school: RPGMagicSchool;\r\n  castingTime: string;\r\n  range: string;\r\n  duration: string;\r\n  components: RPGMagicComponents[];\r\n}",
+            "properties": [
+                {
+                    "name": "castingTime",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "components",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "RPGMagicComponents[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "duration",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "level",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "range",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "school",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "RPGMagicSchool",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "RPGMagicEffect",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "StateModel",
+            "id": "interface-StateModel-2c0f4c92e40214ea39660577ef44ac3ce55e9515f297fdceda1382931923687a94af51172dbd4e1f28f98738490dca69e65992d387306394f4771344ad5e0c2e",
+            "file": "src/app/core/store/layout.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export namespace Layout {\n\n  export interface StateModel {\n    opened: boolean;\n    mobileMode?: boolean;\n  }\n\n  export class ToogleSidenav {\n    static readonly type = '[LAYOUT] Toogle Sidenav';\n  }\n\n  export class SetSidenav {\n    constructor(public opened: boolean) {}\n    static readonly type = '[LAYOUT] Set Sidenav';\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "mobileMode",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "opened",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "AuthService",
+            "id": "injectable-AuthService-461d6899ec67ad46e2811b3a6735e1d7565837f9d771baa815820a82b5d3721704d801e584e281b7df69767bb8f408d49030cfd34e003eea6b44cb1e8b446dc4",
+            "file": "src/app/core/auth/auth.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "isAuthenticated",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class AuthService {\n  public isAuthenticated(): boolean {\n    return true;\n  }\n}\n",
+            "type": "injectable"
+        },
+        {
+            "name": "BaseService",
+            "id": "injectable-BaseService-fa1f3c5bbe09b77849e6a10003da2761f4b29c2bbbe2781387c8ab136685117205f32e65910bf1da632a185a8f57ac3d14131a28fb5b82a6e3148e326e634f53",
+            "file": "src/app/core/services/base.service.ts",
+            "properties": [
+                {
+                    "name": "_url",
+                    "defaultValue": "environment.baseUrl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        121,
+                        144
+                    ]
+                },
+                {
+                    "name": "endpoint",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123,
+                        126,
+                        144
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "create",
+                    "args": [
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "delete",
+                    "args": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getAll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "getOne",
+                    "args": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T[]>",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "update",
+                    "args": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { environment } from 'src/environments/environment';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport abstract class BaseService<T> {\n  private readonly _url: string = environment.baseUrl;\n\n  public abstract readonly endpoint: string;\n\n  constructor(private _http: HttpClient) {}\n\n  public getAll(): Observable<T> {\n    return this._http.get<T>(`${this._url}/${this.endpoint}`);\n  }\n\n  public getOne(_id: string): Observable<T[]> {\n    return this._http.get<T[]>(`${this._url}/${this.endpoint}/${_id}`);\n  }\n\n  public create(_data: T): Observable<T> {\n    return this._http.post<T>(`${this._url}/${this.endpoint}`, _data);\n  }\n\n  public update(_id: string, _data: T): Observable<T> {\n    return this._http.patch<T>(`${this._url}/${this.endpoint}/${_id}`, _data);\n  }\n\n  public delete(_id: string): Observable<boolean> {\n    return this._http.delete<boolean>(`${this._url}/${this.endpoint}/${_id}`);\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "_http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "BianchiUiService",
+            "id": "injectable-BianchiUiService-2340f69748a4cf5d5fba47039683de39ca0687ca7acf035dded66e3d136d27c7d1c6718e8104b7b5c9b7f0e12cf71d0e1662a65893c82b302abb260fced1c461",
+            "file": "projects/bianchi-ui/src/lib/bianchi-ui.service.ts",
+            "properties": [],
+            "methods": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class BianchiUiService {\n\n  constructor() { }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 6
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "BreakpointService",
+            "id": "injectable-BreakpointService-db758a28a760a69101b824151d3bd69e8d1e4971180429b80c3324d1cd943b414e8b9ca5e34aa43848d2247d998e5311c98af606cef4c5b272f8f40779718142",
+            "file": "src/app/core/services/breakpoint.service.ts",
+            "properties": [
+                {
+                    "name": "breakpoint$",
+                    "defaultValue": "this.breakpointObserver\n    .observe([Breakpoints.Handset])\n    .pipe(distinctUntilChanged())",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        144
+                    ]
+                }
+            ],
+            "methods": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';\nimport { distinctUntilChanged } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class BreakpointService {\n  readonly breakpoint$ = this.breakpointObserver\n    .observe([Breakpoints.Handset])\n    .pipe(distinctUntilChanged());\n\n  constructor(private breakpointObserver: BreakpointObserver) {}\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "breakpointObserver",
+                        "type": "BreakpointObserver",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "breakpointObserver",
+                        "type": "BreakpointObserver",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "LayoutState",
+            "id": "injectable-LayoutState-014a176813d45dd62f1ec834adb0bf953c8ac57f009d571d402af1a113f8567069dcb4e93f6cbdc213f631e5d68a05a1226bdb41d6ba4e769a788b7b0a4b690f",
+            "file": "src/app/core/store/layout.state.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "deviceMode",
+                    "args": [
+                        {
+                            "type": "Layout.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Selector",
+                            "stringifiedArguments": ""
+                        }
+                    ],
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "Layout.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isOpened",
+                    "args": [
+                        {
+                            "type": "Layout.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Selector",
+                            "stringifiedArguments": ""
+                        }
+                    ],
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "Layout.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setOpened",
+                    "args": [
+                        {
+                            "type": "StateContext<Layout.StateModel>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "type": "Layout.SetSidenav",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Action",
+                            "stringifiedArguments": "Layout.SetSidenav"
+                        }
+                    ],
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "StateContext<Layout.StateModel>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "type": "Layout.SetSidenav",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "toggle",
+                    "args": [
+                        {
+                            "type": "StateContext<Layout.StateModel>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Action",
+                            "stringifiedArguments": "Layout.ToogleSidenav"
+                        }
+                    ],
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "StateContext<Layout.StateModel>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Action, Selector, State, StateContext } from '@ngxs/store';\nimport { Layout } from './layout.actions';\n\n@State<Layout.StateModel>({\n  name: 'layout',\n  defaults: {\n    opened: false,\n    mobileMode: undefined\n  },\n})\n@Injectable()\nexport class LayoutState {\n  @Selector()\n  static isOpened({ opened }: Layout.StateModel): boolean {\n    return opened;\n  }\n\n  @Selector()\n  static deviceMode({ mobileMode }: Layout.StateModel): boolean {\n    return mobileMode as boolean;\n  }\n\n  @Action(Layout.ToogleSidenav)\n  public toggle({ getState, setState }: StateContext<Layout.StateModel>): void {\n    const state = getState();\n    setState({\n      ...state,\n      opened: !state.opened,\n    });\n  }\n\n  @Action(Layout.SetSidenav)\n  public setOpened(\n    { getState, setState }: StateContext<Layout.StateModel>,\n    { opened }: Layout.SetSidenav\n  ): void {\n    setState({\n      ...getState(),\n      opened: opened,\n      mobileMode: opened\n    });\n  }\n}\n",
+            "type": "injectable"
+        },
+        {
+            "name": "SpellService",
+            "id": "injectable-SpellService-687464f79f92679038434c60947374168b86173fa32f4ccb0faffef51e3c00f4b5c1edfa1699eb1bf90526c8fb7132a4d91f14764e088bd99e22e074f16a5961",
+            "file": "src/app/modules/spell/providers/spell.service.ts",
+            "properties": [
+                {
+                    "name": "endpoint",
+                    "defaultValue": "'spell'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        123
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                },
+                {
+                    "name": "_url",
+                    "defaultValue": "environment.baseUrl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        121,
+                        144
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "name": "create",
+                    "args": [
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                },
+                {
+                    "name": "delete",
+                    "args": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                },
+                {
+                    "name": "getAll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                },
+                {
+                    "name": "getOne",
+                    "args": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T[]>",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                },
+                {
+                    "name": "update",
+                    "args": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "_data",
+                            "type": "T",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "BaseService"
+                    }
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { BaseService } from 'src/app/core/services/base.service';\nimport { SpellContainerComponent } from '../spell-container.component';\nimport { SpellEntity } from '../store/spell.entity';\n\n@Injectable({\n  providedIn: SpellContainerComponent\n})\nexport class SpellService extends BaseService<SpellEntity> {\n  public endpoint: string = 'spell';\n\n  constructor(private http: HttpClient) { \n    super(http);\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": "BaseService",
+            "type": "injectable"
+        }
+    ],
+    "guards": [
+        {
+            "name": "AuthGuard",
+            "id": "injectable-AuthGuard-fafb43b36a0e48e8aa949bf38ae03c4af7c648ea0e341b91c8a633e2b8ca655c6d406f6ff888ae7ae1b9cdbd6f1f59000f587339b09724156ca5eec018e65d67",
+            "file": "src/app/core/auth/auth.guard.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "canActivate",
+                    "args": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "state",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable | Promise | boolean | UrlTree",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "state",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport {\n  ActivatedRouteSnapshot,\n  CanActivate,\n  Router,\n  RouterStateSnapshot,\n  UrlTree,\n} from '@angular/router';\nimport { Observable } from 'rxjs';\nimport { AuthService } from './auth.service';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class AuthGuard implements CanActivate {\n  constructor(private _auth: AuthService, private _router: Router) {}\n\n  canActivate(\n    route: ActivatedRouteSnapshot,\n    state: RouterStateSnapshot\n  ):\n    | Observable<boolean | UrlTree>\n    | Promise<boolean | UrlTree>\n    | boolean\n    | UrlTree {\n    if (!this._auth.isAuthenticated()) {\n      this._router.navigate(['login']);\n      return false;\n    }\n\n    console.log('Auth Guard success');\n    return true;\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_auth",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "_router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "_auth",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "_router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "guard"
+        },
+        {
+            "name": "SpellResolver",
+            "id": "injectable-SpellResolver-4569e697928f65d29453a3bb4a6ef12d043a79726026a126e6edb2c9deb4444593e73a8a1517d65ec83d2703350b9556cecf2415abfca5206ef0ff6e4a30372a",
+            "file": "src/app/modules/spell/providers/spell.resolver.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "resolve",
+                    "args": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "state",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "state",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport {\n  Router, Resolve,\n  RouterStateSnapshot,\n  ActivatedRouteSnapshot\n} from '@angular/router';\nimport { Observable, of } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class SpellResolver implements Resolve<boolean> {\n  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {\n    return of(true);\n  }\n}\n",
+            "type": "guard"
+        }
+    ],
+    "interceptors": [],
+    "classes": [
+        {
+            "name": "EnsureModuleLoadedOnceGuard",
+            "id": "class-EnsureModuleLoadedOnceGuard-a5b3e60fe51a667fc21e8b620ed979f342c93bdb685423234f8948d49adc3ddbfe95464afe1abfa53150f3fdbd662c316c28c3c3744673a4f22cdf32307af8f2",
+            "file": "src/app/core/guards/ensure-module-loaded-once.guard.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class EnsureModuleLoadedOnceGuard {\r\n  constructor(targetModule: any) {\r\n    if(targetModule) {\r\n      throw new Error(`${targetModule.constructor.name} has already been loaded. \r\n        Import Core modules in the AppModule only.`);\r\n    }\r\n  }\r\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "targetModule",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 1,
+                "jsdoctags": [
+                    {
+                        "name": "targetModule",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "SetSidenav",
+            "id": "class-SetSidenav-2c0f4c92e40214ea39660577ef44ac3ce55e9515f297fdceda1382931923687a94af51172dbd4e1f28f98738490dca69e65992d387306394f4771344ad5e0c2e",
+            "file": "src/app/core/store/layout.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export namespace Layout {\n\n  export interface StateModel {\n    opened: boolean;\n    mobileMode?: boolean;\n  }\n\n  export class ToogleSidenav {\n    static readonly type = '[LAYOUT] Toogle Sidenav';\n  }\n\n  export class SetSidenav {\n    constructor(public opened: boolean) {}\n    static readonly type = '[LAYOUT] Set Sidenav';\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "opened",
+                        "type": "boolean",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "opened",
+                        "type": "boolean",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "opened",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'[LAYOUT] Set Sidenav'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        124,
+                        144
+                    ]
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "SpellState",
+            "id": "class-SpellState-f1b047481af58e0bdb2bdf4b48e5b2142a0a6bba1f56930c67f37a1ad6505c0762b31be0a5a72432e01767b110e3b15b4f10229432dad554b67b5ebbf1ec7af7",
+            "file": "src/app/modules/spell/store/spell.state.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { SpellService } from '../providers/spell.service';\r\n\r\nexport class SpellState {\r\n  constructor(private service: SpellService) {}\r\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "service",
+                        "type": "SpellService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 3,
+                "jsdoctags": [
+                    {
+                        "name": "service",
+                        "type": "SpellService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "ToogleSidenav",
+            "id": "class-ToogleSidenav-2c0f4c92e40214ea39660577ef44ac3ce55e9515f297fdceda1382931923687a94af51172dbd4e1f28f98738490dca69e65992d387306394f4771344ad5e0c2e",
+            "file": "src/app/core/store/layout.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export namespace Layout {\n\n  export interface StateModel {\n    opened: boolean;\n    mobileMode?: boolean;\n  }\n\n  export class ToogleSidenav {\n    static readonly type = '[LAYOUT] Toogle Sidenav';\n  }\n\n  export class SetSidenav {\n    constructor(public opened: boolean) {}\n    static readonly type = '[LAYOUT] Set Sidenav';\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "type",
+                    "defaultValue": "'[LAYOUT] Toogle Sidenav'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        124,
+                        144
+                    ]
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-c3569e09a8d5e8d9140a31dbfeb6b08ee8e6b6596cf0df8f2ec542c97917558e1301a80244f2e31d7379105d11044a45019ca96f20371f8aa30c43f1263d00bb",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<router-outlet></router-outlet>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { Store } from '@ngxs/store';\nimport { Layout } from './core/store/layout.actions';\nimport { BreakpointService } from './core/services/breakpoint.service';\n\n@Component({\n  selector: 'app-root',\n  template: '<router-outlet></router-outlet>',\n})\nexport class AppComponent {\n  constructor(private _breakPoint: BreakpointService, private _store: Store) {\n    this._breakPoint.breakpoint$.subscribe((change) => {\n      this._store.dispatch(new Layout.SetSidenav(!change.matches));\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_breakPoint",
+                        "type": "BreakpointService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "_store",
+                        "type": "Store",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "_breakPoint",
+                        "type": "BreakpointService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "_store",
+                        "type": "Store",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "BianchiUiComponent",
+            "id": "component-BianchiUiComponent-196b0abd0356511b7f3ae670bc0164fd869aa117a27a2843d4794f2d7e7edb8b696b1c0abcc310c017ccad553a3b84847d2823057997fd743ad61465797acd70",
+            "file": "projects/bianchi-ui/src/lib/bianchi-ui.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "lib-bianchi-ui",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<p>\n  Shwernols\n</p>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'lib-bianchi-ui',\n  template: `\n    <p>\n      Shwernols\n    </p>\n  `,\n  styles: [\n  ]\n})\nexport class BianchiUiComponent {\n  constructor() { }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 13
+            }
+        },
+        {
+            "name": "CardComponent",
+            "id": "component-CardComponent-c399872749ba35a6f63dcc5e05451cd31bbf4d964e8ceca6737d02efebfdc8b422d84a6e20d089eb5ed4ebf66bc13ccb84860700f082ca11df60b884cf89fccf",
+            "file": "src/app/shared/components/card/card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-card",
+            "styleUrls": [
+                "./card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "spell",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "SpellEntity",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';\nimport { SpellEntity } from 'src/app/modules/spell/store/spell.entity';\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class CardComponent {\n  @Input()\n  spell!: SpellEntity;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\n  display: flex;\n  flex-direction: column;\n  row-gap: 24px;\n\n  mat-card {\n    border-radius: 16px;\n\n    mat-card-header {\n      display: flex;\n      flex-direction: column;\n      margin-bottom: 16px;\n\n      h2 {\n        fa-icon {\n          margin-right: 16px;\n        }\n      }\n\n      div {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        flex-wrap: wrap;\n        row-gap: 8px;\n\n        span {\n          width: 25%;\n\n          @media screen and (max-width: 1200px) {\n            width: 50%;\n          }\n\n          @media screen and (max-width: 600px) {\n            width: 100%;\n          }\n        }\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<mat-card>\n  <mat-card-header>\n    <h2><app-icon [element]=\"spell.type\"></app-icon> {{ spell.name }}</h2>\n    <div>\n      <span><strong>LEVEL: </strong>{{ spell.level | iscantrip }}</span>\n      <span><strong>CASTING TIME: </strong>{{ spell.castingTime }}</span>\n      <span><strong>DURATION: </strong>{{ spell.duration }}</span>\n      <span><strong>COMPONENTS: </strong>{{ spell.components }}</span>\n    </div>\n  </mat-card-header>\n  <mat-card-content>\n    {{ spell.description }}\n  </mat-card-content>\n  <mat-card-actions>\n    <mat-chip-list aria-label=\"Spells Tags\">\n      <mat-chip color=\"primary\"> DAMAGE </mat-chip>\n    </mat-chip-list>\n  </mat-card-actions>\n</mat-card>\n"
+        },
+        {
+            "name": "DashboardLayoutComponent",
+            "id": "component-DashboardLayoutComponent-87f5247113ab81fa85850a9917a25a254ae5c36731a962b227e0574430de90c2e6428338e60ff3fa9a08f57288ce0e3ee876a0dec98c460008def9361fd5df82",
+            "file": "src/app/shared/layouts/dashboard-layout/dashboard-layout.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-dashboard-layout",
+            "styleUrls": [
+                "./dashboard-layout.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./dashboard-layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "deviceMode$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "decorators": [
+                        {
+                            "name": "Select",
+                            "stringifiedArguments": "LayoutState.deviceMode"
+                        }
+                    ]
+                },
+                {
+                    "name": "logo",
+                    "defaultValue": "faBook",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "opened$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "decorators": [
+                        {
+                            "name": "Select",
+                            "stringifiedArguments": "LayoutState.isOpened"
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "toggle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';\nimport { faBook } from '@fortawesome/free-solid-svg-icons';\nimport { Select, Store } from '@ngxs/store';\nimport { Observable } from 'rxjs';\nimport { Layout } from 'src/app/core/store/layout.actions';\nimport { LayoutState } from 'src/app/core/store/layout.state';\n\n@Component({\n  selector: 'app-dashboard-layout',\n  templateUrl: './dashboard-layout.component.html',\n  styleUrls: ['./dashboard-layout.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class DashboardLayoutComponent {\n  @Select(LayoutState.isOpened) \n  opened$!: Observable<boolean>;\n\n  @Select(LayoutState.deviceMode) \n  deviceMode$!: Observable<boolean>;\n\n  logo = faBook;\n\n  constructor(private _store: Store) {}\n\n  toggle(): void {\n    this._store.dispatch(new Layout.ToogleSidenav());\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\r\n  display: flex;\r\n  flex-direction: column;\r\n  height: 100vh;\r\n  \r\n  mat-sidenav-container {\r\n    display: flex;\r\n    flex-direction: row;\r\n    height: 100%;\r\n    \r\n    mat-sidenav {\r\n      padding: 16px;\r\n      width: 20%;\r\n      min-width: 300px;\r\n    }\r\n  }\r\n}\r\n\r\n.open { margin-left: 32px !important; }",
+                    "styleUrl": "./dashboard-layout.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_store",
+                        "type": "Store",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 21,
+                "jsdoctags": [
+                    {
+                        "name": "_store",
+                        "type": "Store",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<mat-toolbar color=\"primary\">\n  <button mat-icon-button (click)=\"toggle()\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <span>SpellBook</span>\n  <span class=\"flex-spacer\"></span>\n  <button mat-icon-button>\n    <mat-icon>book</mat-icon>\n  </button>\n  <button mat-icon-button>\n    <mat-icon>account_circle</mat-icon>\n  </button>\n</mat-toolbar>\n\n<mat-sidenav-container>\n  <mat-sidenav\n    [mode]=\"(deviceMode$ | async) ? 'side' : 'over'\"\n    [opened]=\"opened$ | async\">\n    <mat-list role=\"list\">\n      <div class=\"subheader\" mat-subheader>Personagens</div>\n      <mat-list-item [routerLink]=\"['/']\">\n        <mat-icon mat-list-icon>\n          <fa-icon [icon]=\"logo\"></fa-icon>\n        </mat-icon>\n        <div mat-line>Todas</div>\n      </mat-list-item>\n    </mat-list>\n  </mat-sidenav>\n\n  <mat-sidenav-content>\n    <router-outlet></router-outlet>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+        },
+        {
+            "name": "IconComponent",
+            "id": "component-IconComponent-b86271b449895d40639e159239351b5c79823baaaf95476e5d62f0e56ddd00ae87fecf07bc03582f314020afdef3a5cbffe046df0aa9778ac668fbf148199b48",
+            "file": "src/app/shared/components/icon/icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-icon",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<fa-icon\n  [style.color]=\"icon.color\"\n  [icon]=\"icon.icon\">\n</fa-icon>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "element",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "RPGMagicEffect",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "icon",
+                    "defaultValue": "{\n    color: '#000000',\n    icon: faQuestionCircle\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IconElement",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';\nimport { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';\nimport { IconElement, Icons } from './icons.interface';\n\n@Component({\n  selector: 'app-icon',\n  template: `\n    <fa-icon \n      [style.color]=\"icon.color\" \n      [icon]=\"icon.icon\">\n    </fa-icon>\n  `,\n})\nexport class IconComponent {\n  @Input()\n  element!: RPGMagicEffect;\n\n  icon: IconElement = {\n    color: '#000000',\n    icon: faQuestionCircle\n  };\n\n  constructor() {\n    if(this.element) {\n      this.icon = Icons.elements[this.element];\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 22
+            }
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-1a037ccd710e8e89077b3139c257f80b1183055f285e63dfbd56c30162ed7ff8ddd16e8efd81a36f21d27c6fd274d07c929c0a281d34378ea4ea01645280a789",
+            "file": "src/app/modules/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss'],\n})\nexport class LoginComponent {\n  constructor() {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "templateData": "<p>login works!</p>\n"
+        },
+        {
+            "name": "LoginLayoutComponent",
+            "id": "component-LoginLayoutComponent-18623de813ec4a2ccb28284827cc97292ce3ccc406aae16b13fc8b4b99bc3b5f8ab1a298404d6fc0336ef6190bda550c416726a71becb957c017b845009c635a",
+            "file": "src/app/shared/layouts/login-layout/login-layout.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login-layout",
+            "styleUrls": [
+                "./login-layout.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login-layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-login-layout',\n  templateUrl: './login-layout.component.html',\n  styleUrls: ['./login-layout.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LoginLayoutComponent {\n  constructor() {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./login-layout.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 9
+            },
+            "templateData": "<p>login-layout works!</p>\n"
+        },
+        {
+            "name": "SpellContainerComponent",
+            "id": "component-SpellContainerComponent-6c4f462394c4c44cb9c83e5f98535f31b2f171b80ebeb04bd3993cc0be0a5f763e357cc81adf54583e19508cfd8ecbb900d95b9111b7aa27cee08d47cf2e0d4e",
+            "file": "src/app/modules/spell/spell-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "styleUrls": [],
+            "styles": [],
+            "template": "<router-outlet></router-outlet>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  template: '<router-outlet></router-outlet>',\n})\nexport class SpellContainerComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": ""
+        },
+        {
+            "name": "SpellDetailComponent",
+            "id": "component-SpellDetailComponent-579ee0ab00a9638ccf2967a83f49e6c0cb03e1bbb8b068e86cb170345e5322c15fa1b02a2439cf2b19be27c1702ee63bcc7aaf6bf008c88012afe3e41f824ffd",
+            "file": "src/app/modules/spell/views/spell-detail/spell-detail.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-spell-detail",
+            "styleUrls": [
+                "./spell-detail.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./spell-detail.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-spell-detail',\n  templateUrl: './spell-detail.component.html',\n  styleUrls: ['./spell-detail.component.scss']\n})\nexport class SpellDetailComponent {}",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./spell-detail.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<p>spell-detail works!</p>\n"
+        },
+        {
+            "name": "SpellListComponent",
+            "id": "component-SpellListComponent-d2a3987e7f91b5d6c4f0c78b080ec9aecdef8257d23df7d4998e60ea2392e0969b4a5ae99a8dbae8c73b351a8208cd9f507b00e1e9efdc7f33d11f5960342f98",
+            "file": "src/app/modules/spell/views/spell-list/spell-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-spell-list",
+            "styleUrls": [
+                "./spell-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./spell-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "spellMock",
+                    "defaultValue": "{\n    id: 0,\n    name: 'Mock Spell',\n    description: `\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n      Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n      Pellentesque commodo purus sed consectetur lacinia. \n      Aenean ornare quam quis imperdiet accumsan. \n      Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n      Mauris a ultrices justo. Aenean sit amet volutpat felis. \n      Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n      Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n      Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n      Vestibulum egestas at purus posuere scelerisque.`,\n    type: 'acid',\n    level: 0,\n    school: 'evocation',\n    castingTime: '1 Action',\n    range: '60 Feet',\n    duration: 'Instantaneous',\n    components: ['V', 'S']\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SpellEntity",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SpellEntity } from '../../store/spell.entity';\n\n@Component({\n  selector: 'app-spell-list',\n  templateUrl: './spell-list.component.html',\n  styleUrls: ['./spell-list.component.scss']\n})\nexport class SpellListComponent {\n  spellMock: SpellEntity = {\n    id: 0,\n    name: 'Mock Spell',\n    description: `\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n      Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n      Pellentesque commodo purus sed consectetur lacinia. \n      Aenean ornare quam quis imperdiet accumsan. \n      Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n      Mauris a ultrices justo. Aenean sit amet volutpat felis. \n      Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n      Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n      Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n      Vestibulum egestas at purus posuere scelerisque.`,\n    type: 'acid',\n    level: 0,\n    school: 'evocation',\n    castingTime: '1 Action',\n    range: '60 Feet',\n    duration: 'Instantaneous',\n    components: ['V', 'S']\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./spell-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<app-card [spell]=\"spellMock\"></app-card>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-7987fda02bb4e68056cdfc4e409bce4ae366e26dabe268f81c6f365c0987590a88004b9ae89601d8fa1ce1afae85a6892749026a4d5cc3a8fb6855ae45ea908e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { NgxsModule } from '@ngxs/store';\nimport { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { LayoutState } from './core/store/layout.state';\nimport { CoreModule } from './core/core.module';\nimport { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';\nimport { BreakpointService } from './core/services/breakpoint.service';\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    BrowserModule,\n    FlexLayoutModule,\n    AppRoutingModule,\n    FontAwesomeModule,\n    BrowserAnimationsModule,\n    NgxsModule.forRoot([LayoutState]),\n    NgxsReduxDevtoolsPluginModule.forRoot(),\n    CoreModule,\n  ],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "CoreModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-50a59ccb8ef9d5bd855e36bfff4fdeb1c687c0ba09b71686e2c93a5164536501ab669f1cfb1ba5b062fbef6a6229c51d452f8ae9e0bf32217ddcdd043f71b7a9",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { AuthGuard } from './core/auth/auth.guard';\n\nconst routes: Routes = [\n  {\n    path: '',\n    loadChildren: () =>\n      \"import('./modules/spell/spell.module').then(\\\n        (m) => m.SpellModule\\\n      )\",\n  }, {\n    path: 'login',\n    loadChildren: () =>\n      \"import('./modules/login/login.module').then(\\\n        (m) => m.LoginModule\\\n      )\",\n  },\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule],\n})\nexport class AppRoutingModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "BianchiUiModule",
+            "id": "module-BianchiUiModule-4748f777d68d5aa55dddb70f46b05141c5fbd3160af3e8f19f00655762c159aa07e13eb28c7132573f33687f02f02da15e0719e7f913f05abea01715e4fe2e06",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/bianchi-ui/src/lib/bianchi-ui.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BianchiUiComponent } from './bianchi-ui.component';\n\n\n\n@NgModule({\n  declarations: [\n    BianchiUiComponent\n  ],\n  imports: [\n  ],\n  exports: [\n    BianchiUiComponent\n  ]\n})\nexport class BianchiUiModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "BianchiUiComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "BianchiUiComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ComponentsModule",
+            "id": "module-ComponentsModule-2ec912226197f655282905e0e5926194921b39b7446bf23465ee92f4fe9e487cf59f299b555c7ba372453cefde18ab2ac792097eefb0882dbc50a67057947543",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/components/components.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatChipsModule } from '@angular/material/chips';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { CardComponent } from './card/card.component';\nimport { IconComponent } from './icon/icon.component';\nimport { SpellLevelPipe } from '../pipes/spell-level.pipe';\nimport { PipesModule } from '../pipes/pipes.module';\n\n\n\n@NgModule({\n  imports: [\n    PipesModule,\n    CommonModule, \n    FontAwesomeModule, \n    MatCardModule, \n    MatChipsModule,\n  ],\n  declarations: [CardComponent, IconComponent],\n  exports:      [CardComponent, IconComponent],\n})\nexport class ComponentsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CardComponent"
+                        },
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "CardComponent"
+                        },
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CoreModule",
+            "id": "module-CoreModule-05e06cc8fb66579de77a3c988cf5802f316e6b98df53b46a9a52242408844116c68eecac76280973b60bc149dba505bbd451ab88465a122c8db19b7c4ca9bf60",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/core/core.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule, Optional, SkipSelf } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';\nimport { BreakpointService } from './services/breakpoint.service';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ], \n  providers: [\n    BreakpointService\n  ]\n})\nexport class CoreModule extends EnsureModuleLoadedOnceGuard {\n  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {\n    super(parentModule);\n  }\n}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "BreakpointService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "DashboardLayoutModule",
+            "id": "module-DashboardLayoutModule-84e6a0d2573218dd00b3f597f12b55ac46206ed912eab753fb0c42bb5b5ee85ebd6e9b8290c07b21a929457c70b57f19ce8c87b7eb047041ee5928d961edeb70",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/layouts/dashboard-layout/dashboard-layout.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatListModule } from '@angular/material/list';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { RouterModule } from '@angular/router';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\n\nimport { DashboardLayoutComponent } from './dashboard-layout.component';\n\n@NgModule({\n  declarations: [DashboardLayoutComponent],\n  imports: [\n    CommonModule, \n    RouterModule,\n    MatCardModule,\n    MatListModule, \n    MatIconModule,\n    MatButtonModule,\n    MatToolbarModule,\n    MatSidenavModule,\n    FontAwesomeModule,\n  ],\n  exports: [DashboardLayoutComponent],\n})\nexport class DashboardLayoutModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "DashboardLayoutComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "DashboardLayoutComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LayoutsModule",
+            "id": "module-LayoutsModule-dc743a27a5181aa805914738ddf99c0d1fe7c522daaecf917daeda12109b2bc44766381fe1f5f68c21dc12ca19603025228dd90eb5b987bb245653a6626c00fb",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/layouts/layouts.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DashboardLayoutModule } from './dashboard-layout/dashboard-layout.module';\nimport { LoginLayoutModule } from './login-layout/login-layout.module';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n    LoginLayoutModule\n  ],\n  exports: [\n    DashboardLayoutModule\n  ]\n})\nexport class LayoutsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "LoginLayoutModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "DashboardLayoutModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginLayoutModule",
+            "id": "module-LoginLayoutModule-6f4db4835e57377c2bb54767271c09297efb3bdc96aca26701fe0d6cdf97bacce0d010b33c9be72ad2bd45908656fdfc104a92d5fd9b7a5144d475e909e29ddc",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/layouts/login-layout/login-layout.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\n\nimport { LoginLayoutComponent } from './login-layout.component';\n\n\n\n@NgModule({\n  declarations: [LoginLayoutComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class LoginLayoutModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginLayoutComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginModule",
+            "id": "module-LoginModule-ba8bb3e1663614fef6067bf489e169230ff1312a61db49e2a064c83041781fae1a2057b89d2841875cd120ebb6aa6a06a453972747e4381ce13e379c37e0d5c1",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/modules/login/login.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { LoginRoutingModule } from './login-routing.module';\nimport { LoginComponent } from './login.component';\n\n@NgModule({\n  declarations: [LoginComponent],\n  imports: [CommonModule, LoginRoutingModule],\n})\nexport class LoginModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "LoginRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginRoutingModule",
+            "id": "module-LoginRoutingModule-266d4df47265a6ab5a1af3460b7da067563f13393c52ffbdfdf1a1981cb90621c4df99921e4132033dffc6dea30b5723c39d0e33822f17d3f861a0e72786866e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/modules/login/login-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { LoginComponent } from './login.component';\n\nconst routes: Routes = [{ path: '', component: LoginComponent }];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule],\n})\nexport class LoginRoutingModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PipesModule",
+            "id": "module-PipesModule-458ed8d7f8bacaa3cbb85b3596957ca8d07821956a75bc0d75e0a56627f7be5788a255dcf4f630796178efb51ce15050692d2dde9d8506b6cec7a84f294b3ffb",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/pipes/pipes.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { SpellLevelPipe } from './spell-level.pipe';\n\n\n@NgModule({\n  declarations: [SpellLevelPipe],\n  exports:      [SpellLevelPipe],\n})\nexport class PipesModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "SpellLevelPipe"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SpellLevelPipe"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SharedModule",
+            "id": "module-SharedModule-61b10f5c6e3c052fe58dde0e3e2c2d0d65ea12e58ac0397cbf087dc7ffa6c6338026b139ab86ca3b368f5b23fda4a1674cca4dcb6b0693e8030806b21f0c1985",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/shared.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ComponentsModule } from '@components/components.module';\nimport { LayoutsModule } from './layouts/layouts.module';\nimport { PipesModule } from './pipes/pipes.module';\n\n\n\n@NgModule({\n  exports: [\n    PipesModule,\n    LayoutsModule,\n    ComponentsModule,\n  ]\n})\nexport class SharedModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LayoutsModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SpellModule",
+            "id": "module-SpellModule-9f6f76f3565b78609954c4687f7d84a306ea8c4360168a17dac1fa34a0c19d6f2e450449023d6451ff47df19d6a7bbcf93ad8c1f286b7464665f055edaf12681",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/modules/spell/spell.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';\nimport { SharedModule } from 'src/app/shared/shared.module';\nimport { SpellResolver } from './providers/spell.resolver';\nimport { SpellService } from './providers/spell.service';\n\nimport { SpellRoutingModule } from './spell-routing.module';\n\n@NgModule({\n  declarations: [SpellRoutingModule.components],\n  providers:    [SpellService, SpellResolver],\n  imports: [\n    CommonModule,\n    SpellRoutingModule,\n    SharedModule\n    \n  ],\n})\nexport class SpellModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "SpellService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "SharedModule"
+                        },
+                        {
+                            "name": "SpellRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SpellRoutingModule",
+            "id": "module-SpellRoutingModule-74c4cbdfe082a97a2d4473924a0e95c5c7d6df12558f1b0af7eba544536c4e200772bec8b8da8ffd725a8945c9e62bdfff666941890429c142cca77abbc8f2d2",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/modules/spell/spell-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { DashboardLayoutComponent } from 'src/app/shared/layouts/dashboard-layout/dashboard-layout.component';\nimport { SpellContainerComponent } from './spell-container.component';\nimport { SpellDetailComponent } from './views/spell-detail/spell-detail.component';\nimport { SpellListComponent } from './views/spell-list/spell-list.component';\n\n\nconst routes: Routes = [\n  {\n    path: '',\n    component: DashboardLayoutComponent,\n    children: [{ \n      path: '', \n      component: SpellContainerComponent, \n      children: [\n        {path: '', component: SpellListComponent},\n        {path: 'spell/:id', component: SpellDetailComponent}\n      ]\n    }],\n  },\n];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule],\n})\nexport class SpellRoutingModule {\n  static components = [ \n    SpellContainerComponent,\n    SpellListComponent,\n    SpellDetailComponent\n  ]\n}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bianchi-ui/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true,\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3333/',\n}"
+            },
+            {
+                "name": "Fire",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Icons",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/icon/icons.interface.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  elements: IconsElements,\n}"
+            },
+            {
+                "name": "IconsElements",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/icon/icons.interface.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Record<RPGMagicEffect, IconElement>",
+                "defaultValue": "{\n  acid: {\n    color: '#53A548',\n    icon: faFlask,\n  },\n  cold: {\n    color: '#55C1FF',\n    icon: faSnowflake,\n  },\n  fire: {\n    color: '#EB5E28',\n    icon: faFire,\n  },\n  force: {\n    color: '#A4BFEB',\n    icon: faWind,\n  },\n  lightning: {\n    color: '#FFD23F',\n    icon: faBolt,\n  },\n  necrotic: {\n    color: '#370031',\n    icon: faSkull,\n  },\n  poison: {\n    color: '#53A548',\n    icon: faDroplet,\n  },\n  psychic: {\n    color: '#6320EE',\n    icon: faBrain,\n  },\n  radiant: {\n    color: '#FFD23F',\n    icon: faSun,\n  },\n  thunder: {\n    color: '#173753',\n    icon: faCloudBolt,\n  },\n\n  bludgeoning: {\n    color: '#FF312E',\n    icon: faGavel,\n  },\n  piercing: {\n    color: '#FF312E',\n    icon: faPen,\n  },\n  slashing: {\n    color: '#FF312E',\n    icon: faCut,\n  },\n}"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/bianchi-ui/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "spellMock",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "mock/mock.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  \"spells\": [\n    {\n      \"id\": 0,\n      \"name\": \"Acid Splash\",\n      \"type\": \"acid\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Blade Ward\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Abjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"1 Round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Booming Blade\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"1 round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Chill Touch\",\n      \"type\": \"necrotic\",\n      \"level\": 0,\n      \"school\": \"Necromancy\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"1 round\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Control Flames\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous or 1 hour\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Create Bonfire\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Dancing Lights\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Druidcraft\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Eldritch Blast\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Encode Thoughts\",\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"8 hours\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Fire Bolt\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Friends\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 12,\n      \"name\": \"Frostbite\",\n      \"type\": \"cold\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Green-Flame Blade\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 14,\n      \"name\": \"Guidance\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Divination\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Touch\",\n      \"duration\": \"Concentration up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 15,\n      \"name\": \"Gust\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 16,\n      \"name\": \"Infestation\",\n      \"type\": \"poison\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    }\n  ]\n}"
+            },
+            {
+                "name": "spellMock",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "SpellEntity",
+                "defaultValue": "{\n  id: 0,\n  name: 'Mock Spell',\n  description: `\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n    Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n    Pellentesque commodo purus sed consectetur lacinia. \n    Aenean ornare quam quis imperdiet accumsan. \n    Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n    Mauris a ultrices justo. Aenean sit amet volutpat felis. \n    Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n    Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n    Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n    Vestibulum egestas at purus posuere scelerisque.`,\n  type: 'acid',\n  level: 0,\n  school: 'evocation',\n  castingTime: '1 Action',\n  range: '60 Feet',\n  duration: 'Instantaneous',\n  components: ['V', 'S']\n}"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CardComponent>",
+                "defaultValue": "(args: CardComponent) => ({\n  props: args,\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "RPGClass",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"artificer\" | \"barbarian\" | \"bard\" | \"cleric\" | \"druid\" | \"fighter\" | \"mage\" | \"monk\" | \"paladin\" | \"rogue\" | \"ranger\" | \"sorcerer\" | \"warlock\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGCondition",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"blinded\" | \"charmed\" | \"deafened\" | \"exhaustion\" | \"frightened\" | \"grappled\" | \"incapacitated\" | \"invisible\" | \"paralyzed\" | \"petrified\" | \"poisoned\" | \"prone\" | \"restrained\" | \"stunned\" | \"unconscious\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGMagicalDamage",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"acid\" | \"cold\" | \"fire\" | \"force\" | \"lightning\" | \"necrotic\" | \"poison\" | \"psychic\" | \"radiant\" | \"thunder\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGMagicComponents",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"V\" | \"S\" | \"M\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGMagicEffect",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "RPGPhysicalDamage | RPGMagicalDamage",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGMagicSchool",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"abjuration\" | \"transmutation\" | \"conjuration\" | \"divination\" | \"enchantment\" | \"evocation\" | \"illusion\" | \"necromancy\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGPhysicalDamage",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"bludgeoning\" | \"piercing\" | \"slashing\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            },
+            {
+                "name": "RPGRace",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"dragonborn\" | \"dwarf\" | \"elf\" | \"gnome\" | \"half-elf\" | \"half-orc\" | \"halfling\" | \"human\" | \"tiefling\"",
+                "file": "src/app/core/rules/rpg.rule.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "projects/bianchi-ui/src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bianchi-ui/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/bianchi-ui/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true,\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3333/',\n}"
+                }
+            ],
+            "src/stories/card.stories.ts": [
+                {
+                    "name": "Fire",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "spellMock",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SpellEntity",
+                    "defaultValue": "{\n  id: 0,\n  name: 'Mock Spell',\n  description: `\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n    Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n    Pellentesque commodo purus sed consectetur lacinia. \n    Aenean ornare quam quis imperdiet accumsan. \n    Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n    Mauris a ultrices justo. Aenean sit amet volutpat felis. \n    Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n    Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n    Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n    Vestibulum egestas at purus posuere scelerisque.`,\n  type: 'acid',\n  level: 0,\n  school: 'evocation',\n  castingTime: '1 Action',\n  range: '60 Feet',\n  duration: 'Instantaneous',\n  components: ['V', 'S']\n}"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CardComponent>",
+                    "defaultValue": "(args: CardComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/shared/components/icon/icons.interface.ts": [
+                {
+                    "name": "Icons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/icon/icons.interface.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  elements: IconsElements,\n}"
+                },
+                {
+                    "name": "IconsElements",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/icon/icons.interface.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Record<RPGMagicEffect, IconElement>",
+                    "defaultValue": "{\n  acid: {\n    color: '#53A548',\n    icon: faFlask,\n  },\n  cold: {\n    color: '#55C1FF',\n    icon: faSnowflake,\n  },\n  fire: {\n    color: '#EB5E28',\n    icon: faFire,\n  },\n  force: {\n    color: '#A4BFEB',\n    icon: faWind,\n  },\n  lightning: {\n    color: '#FFD23F',\n    icon: faBolt,\n  },\n  necrotic: {\n    color: '#370031',\n    icon: faSkull,\n  },\n  poison: {\n    color: '#53A548',\n    icon: faDroplet,\n  },\n  psychic: {\n    color: '#6320EE',\n    icon: faBrain,\n  },\n  radiant: {\n    color: '#FFD23F',\n    icon: faSun,\n  },\n  thunder: {\n    color: '#173753',\n    icon: faCloudBolt,\n  },\n\n  bludgeoning: {\n    color: '#FF312E',\n    icon: faGavel,\n  },\n  piercing: {\n    color: '#FF312E',\n    icon: faPen,\n  },\n  slashing: {\n    color: '#FF312E',\n    icon: faCut,\n  },\n}"
+                }
+            ],
+            "mock/mock.ts": [
+                {
+                    "name": "spellMock",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "mock/mock.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  \"spells\": [\n    {\n      \"id\": 0,\n      \"name\": \"Acid Splash\",\n      \"type\": \"acid\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Blade Ward\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Abjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"1 Round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Booming Blade\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"1 round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Chill Touch\",\n      \"type\": \"necrotic\",\n      \"level\": 0,\n      \"school\": \"Necromancy\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"1 round\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Control Flames\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous or 1 hour\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Create Bonfire\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Dancing Lights\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Druidcraft\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Eldritch Blast\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Encode Thoughts\",\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"8 hours\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Fire Bolt\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Friends\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 12,\n      \"name\": \"Frostbite\",\n      \"type\": \"cold\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Green-Flame Blade\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 14,\n      \"name\": \"Guidance\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Divination\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Touch\",\n      \"duration\": \"Concentration up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 15,\n      \"name\": \"Gust\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 16,\n      \"name\": \"Infestation\",\n      \"type\": \"poison\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    }\n  ]\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/app/core/rules/rpg.rule.ts": [
+                {
+                    "name": "RPGClass",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"artificer\" | \"barbarian\" | \"bard\" | \"cleric\" | \"druid\" | \"fighter\" | \"mage\" | \"monk\" | \"paladin\" | \"rogue\" | \"ranger\" | \"sorcerer\" | \"warlock\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGCondition",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"blinded\" | \"charmed\" | \"deafened\" | \"exhaustion\" | \"frightened\" | \"grappled\" | \"incapacitated\" | \"invisible\" | \"paralyzed\" | \"petrified\" | \"poisoned\" | \"prone\" | \"restrained\" | \"stunned\" | \"unconscious\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGMagicalDamage",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"acid\" | \"cold\" | \"fire\" | \"force\" | \"lightning\" | \"necrotic\" | \"poison\" | \"psychic\" | \"radiant\" | \"thunder\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGMagicComponents",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"V\" | \"S\" | \"M\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGMagicEffect",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "RPGPhysicalDamage | RPGMagicalDamage",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGMagicSchool",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"abjuration\" | \"transmutation\" | \"conjuration\" | \"divination\" | \"enchantment\" | \"evocation\" | \"illusion\" | \"necromancy\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGPhysicalDamage",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"bludgeoning\" | \"piercing\" | \"slashing\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                },
+                {
+                    "name": "RPGRace",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"dragonborn\" | \"dwarf\" | \"elf\" | \"gnome\" | \"half-elf\" | \"half-orc\" | \"halfling\" | \"human\" | \"tiefling\"",
+                    "file": "src/app/core/rules/rpg.rule.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                }
+            ]
+        }
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "loadChildren": "./modules/spell/spell.module#SpellModule",
+                        "children": [
+                            {
+                                "kind": "module",
+                                "children": [
+                                    {
+                                        "name": "routes",
+                                        "filename": "src/app/modules/spell/spell-routing.module.ts",
+                                        "module": "SpellRoutingModule",
+                                        "children": [
+                                            {
+                                                "path": "",
+                                                "component": "DashboardLayoutComponent",
+                                                "children": [
+                                                    {
+                                                        "path": "",
+                                                        "component": "SpellContainerComponent",
+                                                        "children": [
+                                                            {
+                                                                "path": "",
+                                                                "component": "SpellListComponent"
+                                                            },
+                                                            {
+                                                                "path": "spell/:id",
+                                                                "component": "SpellDetailComponent"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "kind": "module"
+                                    }
+                                ],
+                                "module": "SpellModule"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "login",
+                        "loadChildren": "./modules/login/login.module#LoginModule",
+                        "children": [
+                            {
+                                "kind": "module",
+                                "children": [
+                                    {
+                                        "name": "routes",
+                                        "filename": "src/app/modules/login/login-routing.module.ts",
+                                        "module": "LoginRoutingModule",
+                                        "children": [
+                                            {
+                                                "path": "",
+                                                "component": "LoginComponent"
+                                            }
+                                        ],
+                                        "kind": "module"
+                                    }
+                                ],
+                                "module": "LoginModule"
+                            }
+                        ]
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "mock/mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "spellMock",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bianchi-ui/src/lib/bianchi-ui.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BianchiUiComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bianchi-ui/src/lib/bianchi-ui.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "BianchiUiService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bianchi-ui/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/bianchi-ui/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/auth/auth.guard.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "AuthGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/auth/auth.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/guards/ensure-module-loaded-once.guard.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "EnsureModuleLoadedOnceGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/rules/core.rule.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "RPGIcon",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/base.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "BaseService",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/breakpoint.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "BreakpointService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/store/layout.actions.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "SetSidenav",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/store/layout.actions.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "ToogleSidenav",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/store/layout.actions.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "StateModel",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/store/layout.state.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "LayoutState",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/providers/spell.resolver.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "SpellResolver",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/providers/spell.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "SpellService",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/spell-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SpellContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/store/spell.entity.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SpellEntity",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/store/spell.state.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "SpellState",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/views/spell-detail/spell-detail.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SpellDetailComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/views/spell-list/spell-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SpellListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/card/card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/icon/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/icon/icons.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IconElement",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/icon/icons.interface.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Icons",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/icon/icons.interface.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconsElements",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/layouts/dashboard-layout/dashboard-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DashboardLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/layouts/login-layout/login-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/pipes/spell-level.pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "SpellLevelPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Fire",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "spellMock",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
