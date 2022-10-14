@@ -8,7 +8,7 @@ import { SpellEntity } from '../store/spell.entity';
   providedIn: SpellContainerComponent
 })
 export class SpellService extends BaseService<SpellEntity> {
-  public endpoint: string = 'spell';
+  public endpoint: string = 'spells';
 
   constructor(private http: HttpClient) { 
     super(http);

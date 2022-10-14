@@ -13,12 +13,12 @@ export abstract class BaseService<T> {
 
   constructor(private _http: HttpClient) {}
 
-  public getAll(): Observable<T> {
-    return this._http.get<T>(`${this._url}/${this.endpoint}`);
+  public getAll(): Observable<T[]> {
+    return this._http.get<T[]>(`${this._url}/${this.endpoint}`);
   }
 
-  public getOne(_id: string): Observable<T[]> {
-    return this._http.get<T[]>(`${this._url}/${this.endpoint}/${_id}`);
+  public getOne(_id: string): Observable<T> {
+    return this._http.get<T>(`${this._url}/${this.endpoint}/${_id}`);
   }
 
   public create(_data: T): Observable<T> {

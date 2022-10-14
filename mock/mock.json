@@ -1,0 +1,88 @@
+{
+  "spells": [
+    {
+      "id": 0,
+      "name": "Acid Splash",
+      "description": "",
+      "type": "acid",
+      "level": 0,
+      "school": "conjuration",
+      "castingTime": "1 Action",
+      "range": "60 Feet",
+      "duration": "Instantaneous",
+      "components": ["V", "S"]
+    },
+    {
+      "id": 1,
+      "name": "Blade Ward",
+      "description": "",
+      "type": "slashing",
+      "level": 0,
+      "school": "abjuration",
+      "castingTime": "1 Action",
+      "range": "Self",
+      "duration": "1 Round",
+      "components": ["V", "S"]
+    },
+    {
+      "id": 2,
+      "name": "Booming Blade",
+      "description": "",
+      "type": "slashing",
+      "level": 0,
+      "school": "evocation",
+      "castingTime": "1 Action",
+      "range": "Self (5-foot radius)",
+      "duration": "1 round",
+      "components": ["S", "M"]
+    },
+    {
+      "id": 3,
+      "name": "Chill Touch",
+      "description": "",
+      "type": "necrotic",
+      "level": 0,
+      "school": "necromancy",
+      "castingTime": "1 Action",
+      "range": "120 Feet",
+      "duration": "1 round",
+      "components": ["V", "S"]
+    },
+    {
+      "id": 4,
+      "name": "Control Flames",
+      "description": "",
+      "type": "fire",
+      "level": 0,
+      "school": "transmutation",
+      "castingTime": "1 Action",
+      "range": "60 Feet",
+      "duration": "Instantaneous or 1 hour",
+      "components": ["V", "S"]
+    },
+    {
+      "id": 5,
+      "name": "Create Bonfire",
+      "description": "",
+      "type": "fire",
+      "level": 0,
+      "school": "conjuration",
+      "castingTime": "1 Action",
+      "range": "60 Feet",
+      "duration": "Concentration, up to 1 minute",
+      "components": ["S"]
+    },
+    {
+      "id": 6,
+      "name": "Dancing Lights",
+      "description": "",
+      "type": "radiant",
+      "level": 0,
+      "school": "Evocation",
+      "castingTime": "1 Action",
+      "range": "120 Feet",
+      "duration": "Concentration, up to 1 minute",
+      "components": ["v", "s", "m"]
+    }
+  ]
+}

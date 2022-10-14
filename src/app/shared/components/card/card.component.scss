@@ -25,11 +25,7 @@
         row-gap: 8px;
 
         span {
-          width: 25%;
-
-          @media screen and (max-width: 1200px) {
-            width: 50%;
-          }
+          width: 50%;
 
           @media screen and (max-width: 600px) {
             width: 100%;

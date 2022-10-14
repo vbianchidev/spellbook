@@ -1,13 +1,10 @@
 import { CardComponent } from '@components/card/card.component';
-import { Story, Meta } from '@storybook/angular/types-6-0';
-import { SpellEntity } from 'src/app/modules/spell/store/spell.entity';
-import { moduleMetadata } from '@storybook/angular';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { SpellLevelPipe } from 'src/app/shared/pipes/spell-level.pipe';
-import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { ComponentsModule } from '@components/components.module';
 import { IconComponent } from '@components/icon/icon.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Story } from '@storybook/angular/types-6-0';
+import { SpellEntity } from 'src/app/modules/spell/store/spell.entity';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 
 const spellMock: SpellEntity = {
   id: 0,
