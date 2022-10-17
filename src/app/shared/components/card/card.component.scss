@@ -6,6 +6,12 @@
   mat-card {
     border-radius: 16px;
 
+    mat-card-actions {
+      mat-chip-list{
+      display: flex;
+      justify-content: space-between;}
+    }
+
     mat-card-header {
       display: flex;
       flex-direction: column;

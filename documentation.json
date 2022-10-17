@@ -244,6 +244,41 @@
             "indexSignatures": [],
             "kind": 165,
             "methods": []
+        },
+        {
+            "name": "StateModel",
+            "id": "interface-StateModel-35efd8dfe6e7255b2d1330e34ae8f500aabf11eb89a22c0e564bb9d513ae4da20fd20654c8f711db493664ba521947890aee7b38d042c65d4724bf8ebf50fbd6-1",
+            "file": "src/app/modules/spell/store/spell.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { SpellEntity } from './spell.entity';\r\n  \r\nexport namespace Spell {\r\n  export interface StateModel {\r\n    spells: SpellEntity[];\r\n    selectedSpell?: SpellEntity;\r\n  }\r\n\r\n  export class GetAll {\r\n    static readonly type = '[SPELL] Select all Spells';\r\n  }\r\n\r\n  export class Select {\r\n    constructor(public _id: number) {}\r\n    static readonly type = '[SPELL] Select a Spell';\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "selectedSpell",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SpellEntity",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "spells",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SpellEntity[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "StateModel-1"
         }
     ],
     "injectables": [
@@ -276,7 +311,7 @@
         },
         {
             "name": "BaseService",
-            "id": "injectable-BaseService-fa1f3c5bbe09b77849e6a10003da2761f4b29c2bbbe2781387c8ab136685117205f32e65910bf1da632a185a8f57ac3d14131a28fb5b82a6e3148e326e634f53",
+            "id": "injectable-BaseService-d1bc6a338f67e84661fe5286ee1218aea9b621840a42479a5b5b7d7c7a5aa83cfb33c3427e22445281be82e8dc2f19b270527985eb8a1eeb42cbcd3034291691",
             "file": "src/app/core/services/base.service.ts",
             "properties": [
                 {
@@ -375,7 +410,7 @@
                     "name": "getAll",
                     "args": [],
                     "optional": false,
-                    "returnType": "Observable<T>",
+                    "returnType": "Observable<T[]>",
                     "typeParameters": [],
                     "line": 16,
                     "deprecated": false,
@@ -395,7 +430,7 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "Observable<T[]>",
+                    "returnType": "Observable<T>",
                     "typeParameters": [],
                     "line": 20,
                     "deprecated": false,
@@ -466,7 +501,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { environment } from 'src/environments/environment';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport abstract class BaseService<T> {\n  private readonly _url: string = environment.baseUrl;\n\n  public abstract readonly endpoint: string;\n\n  constructor(private _http: HttpClient) {}\n\n  public getAll(): Observable<T> {\n    return this._http.get<T>(`${this._url}/${this.endpoint}`);\n  }\n\n  public getOne(_id: string): Observable<T[]> {\n    return this._http.get<T[]>(`${this._url}/${this.endpoint}/${_id}`);\n  }\n\n  public create(_data: T): Observable<T> {\n    return this._http.post<T>(`${this._url}/${this.endpoint}`, _data);\n  }\n\n  public update(_id: string, _data: T): Observable<T> {\n    return this._http.patch<T>(`${this._url}/${this.endpoint}/${_id}`, _data);\n  }\n\n  public delete(_id: string): Observable<boolean> {\n    return this._http.delete<boolean>(`${this._url}/${this.endpoint}/${_id}`);\n  }\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { environment } from 'src/environments/environment';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport abstract class BaseService<T> {\n  private readonly _url: string = environment.baseUrl;\n\n  public abstract readonly endpoint: string;\n\n  constructor(private _http: HttpClient) {}\n\n  public getAll(): Observable<T[]> {\n    return this._http.get<T[]>(`${this._url}/${this.endpoint}`);\n  }\n\n  public getOne(_id: string): Observable<T> {\n    return this._http.get<T>(`${this._url}/${this.endpoint}/${_id}`);\n  }\n\n  public create(_data: T): Observable<T> {\n    return this._http.post<T>(`${this._url}/${this.endpoint}`, _data);\n  }\n\n  public update(_id: string, _data: T): Observable<T> {\n    return this._http.patch<T>(`${this._url}/${this.endpoint}/${_id}`, _data);\n  }\n\n  public delete(_id: string): Observable<boolean> {\n    return this._http.delete<boolean>(`${this._url}/${this.endpoint}/${_id}`);\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -738,12 +773,12 @@
         },
         {
             "name": "SpellService",
-            "id": "injectable-SpellService-687464f79f92679038434c60947374168b86173fa32f4ccb0faffef51e3c00f4b5c1edfa1699eb1bf90526c8fb7132a4d91f14764e088bd99e22e074f16a5961",
+            "id": "injectable-SpellService-56c640bcb04c080293b0097395c29323892053fb83a4059991c046e380e9c5169438bfdc5f6d3278a81ee329f9f8e81f1480c3e8b4923a600314ff38f4c25bfc",
             "file": "src/app/modules/spell/providers/spell.service.ts",
             "properties": [
                 {
                     "name": "endpoint",
-                    "defaultValue": "'spell'",
+                    "defaultValue": "'spells'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -848,7 +883,7 @@
                     "name": "getAll",
                     "args": [],
                     "optional": false,
-                    "returnType": "Observable<T>",
+                    "returnType": "Observable<T[]>",
                     "typeParameters": [],
                     "line": 16,
                     "deprecated": false,
@@ -871,7 +906,7 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "Observable<T[]>",
+                    "returnType": "Observable<T>",
                     "typeParameters": [],
                     "line": 20,
                     "deprecated": false,
@@ -948,7 +983,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { BaseService } from 'src/app/core/services/base.service';\nimport { SpellContainerComponent } from '../spell-container.component';\nimport { SpellEntity } from '../store/spell.entity';\n\n@Injectable({\n  providedIn: SpellContainerComponent\n})\nexport class SpellService extends BaseService<SpellEntity> {\n  public endpoint: string = 'spell';\n\n  constructor(private http: HttpClient) { \n    super(http);\n  }\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { BaseService } from 'src/app/core/services/base.service';\nimport { SpellContainerComponent } from '../spell-container.component';\nimport { SpellEntity } from '../store/spell.entity';\n\n@Injectable({\n  providedIn: SpellContainerComponent\n})\nexport class SpellService extends BaseService<SpellEntity> {\n  public endpoint: string = 'spells';\n\n  constructor(private http: HttpClient) { \n    super(http);\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -976,6 +1011,151 @@
                 ]
             },
             "extends": "BaseService",
+            "type": "injectable"
+        },
+        {
+            "name": "SpellState",
+            "id": "injectable-SpellState-1ab1b70aa7b913fc622ec0ed1c7d025298f4986d47990149cef10d1d8893a18a91ace7cd338aba3e8ac1c14f34d1d6de56cbbd0fd91f68d0bedfc50acf3089b7",
+            "file": "src/app/modules/spell/store/spell.state.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getAll",
+                    "args": [
+                        {
+                            "type": "StateContext<Spell.StateModel>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Action",
+                            "stringifiedArguments": "Spell.GetAll"
+                        }
+                    ],
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "StateContext<Spell.StateModel>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "selectedSpell",
+                    "args": [
+                        {
+                            "type": "Spell.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "SpellEntity",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Selector",
+                            "stringifiedArguments": ""
+                        }
+                    ],
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "Spell.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "spellList",
+                    "args": [
+                        {
+                            "type": "Spell.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "SpellEntity[]",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Selector",
+                            "stringifiedArguments": ""
+                        }
+                    ],
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "type": "Spell.StateModel",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Action, Selector, State, StateContext } from '@ngxs/store';\r\nimport { tap } from 'rxjs';\r\n\r\nimport { SpellService } from '../providers/spell.service';\r\nimport { Spell } from './spell.actions';\r\nimport { SpellEntity } from './spell.entity';\r\n\r\n@State<Spell.StateModel>({\r\n  name: 'spell',\r\n  defaults: {\r\n    spells: [],\r\n    selectedSpell: undefined\r\n  }\r\n})\r\n@Injectable()\r\nexport class SpellState {\r\n\r\n  @Selector()\r\n  static spellList({ spells }: Spell.StateModel): SpellEntity[] {\r\n    return spells;\r\n  }\r\n\r\n  @Selector()\r\n  static selectedSpell({ selectedSpell }: Spell.StateModel): SpellEntity {\r\n    return selectedSpell as SpellEntity;\r\n  }\r\n\r\n  constructor(private service: SpellService) {}\r\n\r\n  @Action(Spell.GetAll)\r\n  public getAll({ setState }: StateContext<Spell.StateModel>): void {\r\n    this.service.getAll()\r\n      .pipe(\r\n        tap(result => {\r\n          console.log(result)\r\n          setState({\r\n            spells: result,\r\n            selectedSpell: undefined\r\n          })\r\n        })\r\n      )\r\n      .subscribe();\r\n  }\r\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "service",
+                        "type": "SpellService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 27,
+                "jsdoctags": [
+                    {
+                        "name": "service",
+                        "type": "SpellService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "type": "injectable"
         }
     ],
@@ -1181,6 +1361,106 @@
             "hostListeners": []
         },
         {
+            "name": "GetAll",
+            "id": "class-GetAll-35efd8dfe6e7255b2d1330e34ae8f500aabf11eb89a22c0e564bb9d513ae4da20fd20654c8f711db493664ba521947890aee7b38d042c65d4724bf8ebf50fbd6",
+            "file": "src/app/modules/spell/store/spell.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { SpellEntity } from './spell.entity';\r\n  \r\nexport namespace Spell {\r\n  export interface StateModel {\r\n    spells: SpellEntity[];\r\n    selectedSpell?: SpellEntity;\r\n  }\r\n\r\n  export class GetAll {\r\n    static readonly type = '[SPELL] Select all Spells';\r\n  }\r\n\r\n  export class Select {\r\n    constructor(public _id: number) {}\r\n    static readonly type = '[SPELL] Select a Spell';\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "type",
+                    "defaultValue": "'[SPELL] Select all Spells'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        124,
+                        144
+                    ]
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "Select",
+            "id": "class-Select-35efd8dfe6e7255b2d1330e34ae8f500aabf11eb89a22c0e564bb9d513ae4da20fd20654c8f711db493664ba521947890aee7b38d042c65d4724bf8ebf50fbd6",
+            "file": "src/app/modules/spell/store/spell.actions.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { SpellEntity } from './spell.entity';\r\n  \r\nexport namespace Spell {\r\n  export interface StateModel {\r\n    spells: SpellEntity[];\r\n    selectedSpell?: SpellEntity;\r\n  }\r\n\r\n  export class GetAll {\r\n    static readonly type = '[SPELL] Select all Spells';\r\n  }\r\n\r\n  export class Select {\r\n    constructor(public _id: number) {}\r\n    static readonly type = '[SPELL] Select a Spell';\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_id",
+                        "type": "number",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "_id",
+                        "type": "number",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "_id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'[SPELL] Select a Spell'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        124,
+                        144
+                    ]
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
             "name": "SetSidenav",
             "id": "class-SetSidenav-2c0f4c92e40214ea39660577ef44ac3ce55e9515f297fdceda1382931923687a94af51172dbd4e1f28f98738490dca69e65992d387306394f4771344ad5e0c2e",
             "file": "src/app/core/store/layout.actions.ts",
@@ -1242,48 +1522,6 @@
                     ]
                 }
             ],
-            "methods": [],
-            "indexSignatures": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "hostBindings": [],
-            "hostListeners": []
-        },
-        {
-            "name": "SpellState",
-            "id": "class-SpellState-f1b047481af58e0bdb2bdf4b48e5b2142a0a6bba1f56930c67f37a1ad6505c0762b31be0a5a72432e01767b110e3b15b4f10229432dad554b67b5ebbf1ec7af7",
-            "file": "src/app/modules/spell/store/spell.state.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "class",
-            "sourceCode": "import { SpellService } from '../providers/spell.service';\r\n\r\nexport class SpellState {\r\n  constructor(private service: SpellService) {}\r\n}",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "service",
-                        "type": "SpellService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 3,
-                "jsdoctags": [
-                    {
-                        "name": "service",
-                        "type": "SpellService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "properties": [],
             "methods": [],
             "indexSignatures": [],
             "inputsClass": [],
@@ -1438,7 +1676,7 @@
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-c399872749ba35a6f63dcc5e05451cd31bbf4d964e8ceca6737d02efebfdc8b422d84a6e20d089eb5ed4ebf66bc13ccb84860700f082ca11df60b884cf89fccf",
+            "id": "component-CardComponent-82ebb41f28fb8c783947b14f9f0563156bd121162b0d04e38ff43e0a19da32a4f47ff87b86208682a67759651f296bb14d8840d6a35ca9b1efba03356aaf22b0",
             "file": "src/app/shared/components/card/card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1475,11 +1713,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';\nimport { SpellEntity } from 'src/app/modules/spell/store/spell.entity';\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class CardComponent {\n  @Input()\n  spell!: SpellEntity;\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { SpellEntity } from 'src/app/modules/spell/store/spell.entity';\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class CardComponent {\n  @Input()\n  spell!: SpellEntity;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: flex;\n  flex-direction: column;\n  row-gap: 24px;\n\n  mat-card {\n    border-radius: 16px;\n\n    mat-card-header {\n      display: flex;\n      flex-direction: column;\n      margin-bottom: 16px;\n\n      h2 {\n        fa-icon {\n          margin-right: 16px;\n        }\n      }\n\n      div {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        flex-wrap: wrap;\n        row-gap: 8px;\n\n        span {\n          width: 25%;\n\n          @media screen and (max-width: 1200px) {\n            width: 50%;\n          }\n\n          @media screen and (max-width: 600px) {\n            width: 100%;\n          }\n        }\n      }\n    }\n  }\n}\n",
+                    "data": ":host {\n  display: flex;\n  flex-direction: column;\n  row-gap: 24px;\n\n  mat-card {\n    border-radius: 16px;\n\n    mat-card-header {\n      display: flex;\n      flex-direction: column;\n      margin-bottom: 16px;\n\n      h2 {\n        fa-icon {\n          margin-right: 16px;\n        }\n      }\n\n      div {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        flex-wrap: wrap;\n        row-gap: 8px;\n\n        span {\n          width: 50%;\n\n          @media screen and (max-width: 600px) {\n            width: 100%;\n          }\n        }\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./card.component.scss"
                 }
             ],
@@ -1607,8 +1845,9 @@
         },
         {
             "name": "IconComponent",
-            "id": "component-IconComponent-b86271b449895d40639e159239351b5c79823baaaf95476e5d62f0e56ddd00ae87fecf07bc03582f314020afdef3a5cbffe046df0aa9778ac668fbf148199b48",
+            "id": "component-IconComponent-1c7d6617f3a15f9a9a8ba8fdcada1585427a05284bfc98cdc0d32ea3bb8bfff51f9795a8450db2f2e308aefa19e53efeb225f9ea62ad1e79cb941d048df869a2",
             "file": "src/app/shared/components/icon/icon.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1623,9 +1862,10 @@
             "inputsClass": [
                 {
                     "name": "element",
+                    "defaultValue": "'acid'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 18,
                     "type": "RPGMagicEffect",
                     "decorators": []
                 }
@@ -1640,10 +1880,21 @@
                     "type": "IconElement",
                     "optional": false,
                     "description": "",
-                    "line": 19
+                    "line": 20
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1651,18 +1902,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';\nimport { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';\nimport { IconElement, Icons } from './icons.interface';\n\n@Component({\n  selector: 'app-icon',\n  template: `\n    <fa-icon \n      [style.color]=\"icon.color\" \n      [icon]=\"icon.icon\">\n    </fa-icon>\n  `,\n})\nexport class IconComponent {\n  @Input()\n  element!: RPGMagicEffect;\n\n  icon: IconElement = {\n    color: '#000000',\n    icon: faQuestionCircle\n  };\n\n  constructor() {\n    if(this.element) {\n      this.icon = Icons.elements[this.element];\n    }\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';\nimport { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';\nimport { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';\nimport { IconElement, Icons } from './icons.interface';\n\n@Component({\n  selector: 'app-icon',\n  template: `\n    <fa-icon \n      [style.color]=\"icon.color\" \n      [icon]=\"icon.icon\">\n    </fa-icon>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class IconComponent implements OnInit {\n  @Input()\n  element: RPGMagicEffect = 'acid';\n\n  icon: IconElement = {\n    color: '#000000',\n    icon: faQuestionCircle\n  };\n\n  ngOnInit() {\n    this.icon = Icons.elements[this.element];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 22
-            }
+            "implements": [
+                "OnInit"
+            ]
         },
         {
             "name": "LoginComponent",
@@ -1833,7 +2079,7 @@
         },
         {
             "name": "SpellListComponent",
-            "id": "component-SpellListComponent-d2a3987e7f91b5d6c4f0c78b080ec9aecdef8257d23df7d4998e60ea2392e0969b4a5ae99a8dbae8c73b351a8208cd9f507b00e1e9efdc7f33d11f5960342f98",
+            "id": "component-SpellListComponent-b2d0d473e18975c3e7084dfb6e0fd6ff7208fa59e22671d1d32118d377a4dc24008f77812ab0a4d991e21cb300deada2a58d6874314449b420cccd6fec8dfb77",
             "file": "src/app/modules/spell/views/spell-list/spell-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1853,17 +2099,33 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "spellMock",
-                    "defaultValue": "{\n    id: 0,\n    name: 'Mock Spell',\n    description: `\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n      Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n      Pellentesque commodo purus sed consectetur lacinia. \n      Aenean ornare quam quis imperdiet accumsan. \n      Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n      Mauris a ultrices justo. Aenean sit amet volutpat felis. \n      Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n      Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n      Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n      Vestibulum egestas at purus posuere scelerisque.`,\n    type: 'acid',\n    level: 0,\n    school: 'evocation',\n    castingTime: '1 Action',\n    range: '60 Feet',\n    duration: 'Instantaneous',\n    components: ['V', 'S']\n  }",
+                    "name": "spellList$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "SpellEntity",
+                    "type": "Observable<SpellEntity[]>",
                     "optional": false,
                     "description": "",
-                    "line": 10
+                    "line": 15,
+                    "decorators": [
+                        {
+                            "name": "Select",
+                            "stringifiedArguments": "SpellState.spellList"
+                        }
+                    ]
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1871,16 +2133,45 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SpellEntity } from '../../store/spell.entity';\n\n@Component({\n  selector: 'app-spell-list',\n  templateUrl: './spell-list.component.html',\n  styleUrls: ['./spell-list.component.scss']\n})\nexport class SpellListComponent {\n  spellMock: SpellEntity = {\n    id: 0,\n    name: 'Mock Spell',\n    description: `\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n      Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n      Pellentesque commodo purus sed consectetur lacinia. \n      Aenean ornare quam quis imperdiet accumsan. \n      Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n      Mauris a ultrices justo. Aenean sit amet volutpat felis. \n      Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n      Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n      Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n      Vestibulum egestas at purus posuere scelerisque.`,\n    type: 'acid',\n    level: 0,\n    school: 'evocation',\n    castingTime: '1 Action',\n    range: '60 Feet',\n    duration: 'Instantaneous',\n    components: ['V', 'S']\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Select, Store } from '@ngxs/store';\nimport { Observable } from 'rxjs';\nimport { Spell } from '../../store/spell.actions';\nimport { SpellEntity } from '../../store/spell.entity';\nimport { SpellState } from '../../store/spell.state';\n\n@Component({\n  selector: 'app-spell-list',\n  templateUrl: './spell-list.component.html',\n  styleUrls: ['./spell-list.component.scss']\n})\nexport class SpellListComponent implements OnInit {\n  @Select(SpellState.spellList) \n  spellList$!: Observable<SpellEntity[]>;\n\n  constructor(private _store: Store) { }\n\n  ngOnInit(): void {\n    console.log('pau')\n    this._store.dispatch(Spell.GetAll);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ":host {\r\n  margin: 1em;\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: space-between;\r\n\r\n  app-card {\r\n    flex: 0 1 calc(50% - 1em);\r\n    margin-bottom: 1em;\r\n\r\n    @media screen and (max-width: 960px) {\r\n      flex: 0 1 calc(100% - 1em);\r\n      max-width: 100%;\r\n    }\r\n  }\r\n}",
                     "styleUrl": "./spell-list.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<app-card [spell]=\"spellMock\"></app-card>\n"
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_store",
+                        "type": "Store",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "_store",
+                        "type": "Store",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ng-container *ngFor=\"let spell of spellList$ | async\">\n  <app-card [spell]=\"spell\"></app-card>\n</ng-container>\n"
         }
     ],
     "modules": [
@@ -2399,13 +2690,13 @@
         },
         {
             "name": "SpellModule",
-            "id": "module-SpellModule-9f6f76f3565b78609954c4687f7d84a306ea8c4360168a17dac1fa34a0c19d6f2e450449023d6451ff47df19d6a7bbcf93ad8c1f286b7464665f055edaf12681",
+            "id": "module-SpellModule-afb7b49dce6420c2e9b2eafb8e462947f62e3428999ff7ae660ab78ad69d816e0cb3652834e2a096786627063c1b9b56f01ba05bf860236df72278c85cf30e4b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/modules/spell/spell.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';\nimport { SharedModule } from 'src/app/shared/shared.module';\nimport { SpellResolver } from './providers/spell.resolver';\nimport { SpellService } from './providers/spell.service';\n\nimport { SpellRoutingModule } from './spell-routing.module';\n\n@NgModule({\n  declarations: [SpellRoutingModule.components],\n  providers:    [SpellService, SpellResolver],\n  imports: [\n    CommonModule,\n    SpellRoutingModule,\n    SharedModule\n    \n  ],\n})\nexport class SpellModule {}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { HttpClientModule } from '@angular/common/http';\nimport { NgModule } from '@angular/core';\nimport { NgxsModule } from '@ngxs/store';\nimport { SharedModule } from 'src/app/shared/shared.module';\n\nimport { SpellResolver } from './providers/spell.resolver';\nimport { SpellService } from './providers/spell.service';\nimport { SpellRoutingModule } from './spell-routing.module';\nimport { SpellState } from './store/spell.state';\n\n@NgModule({\n  declarations: [SpellRoutingModule.components],\n  providers:    [SpellService, SpellResolver],\n  imports: [\n    HttpClientModule,\n    CommonModule,\n    SpellRoutingModule,\n    SharedModule,\n    NgxsModule.forFeature([SpellState]),\n  ],\n})\nexport class SpellModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2484,6 +2775,36 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "acid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "bludgeoning",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "cold",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2521,13 +2842,33 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3333/',\n}"
+                "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3000',\n}"
+            },
+            {
+                "name": "fire",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Fire",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "force",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -2554,6 +2895,66 @@
                 "defaultValue": "{\n  acid: {\n    color: '#53A548',\n    icon: faFlask,\n  },\n  cold: {\n    color: '#55C1FF',\n    icon: faSnowflake,\n  },\n  fire: {\n    color: '#EB5E28',\n    icon: faFire,\n  },\n  force: {\n    color: '#A4BFEB',\n    icon: faWind,\n  },\n  lightning: {\n    color: '#FFD23F',\n    icon: faBolt,\n  },\n  necrotic: {\n    color: '#370031',\n    icon: faSkull,\n  },\n  poison: {\n    color: '#53A548',\n    icon: faDroplet,\n  },\n  psychic: {\n    color: '#6320EE',\n    icon: faBrain,\n  },\n  radiant: {\n    color: '#FFD23F',\n    icon: faSun,\n  },\n  thunder: {\n    color: '#173753',\n    icon: faCloudBolt,\n  },\n\n  bludgeoning: {\n    color: '#FF312E',\n    icon: faGavel,\n  },\n  piercing: {\n    color: '#FF312E',\n    icon: faPen,\n  },\n  slashing: {\n    color: '#FF312E',\n    icon: faCut,\n  },\n}"
             },
             {
+                "name": "lightning",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "necrotic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "piercing",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "poison",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "psychic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "radiant",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "require",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2570,6 +2971,16 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "literal type"
+            },
+            {
+                "name": "slashing",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "spellMock",
@@ -2600,6 +3011,26 @@
                 "deprecationMessage": "",
                 "type": "Story<CardComponent>",
                 "defaultValue": "(args: CardComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "thunder",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/icons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -2695,6 +3126,148 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "src/stories/icons.stories.ts": [
+                {
+                    "name": "acid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "bludgeoning",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "cold",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "fire",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "force",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "lightning",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "necrotic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "piercing",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "poison",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "psychic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "radiant",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "slashing",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<IconComponent>",
+                    "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "thunder",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/icons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -2758,7 +3331,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3333/',\n}"
+                    "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3000',\n}"
                 }
             ],
             "src/stories/card.stories.ts": [
@@ -3190,6 +3763,33 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/modules/spell/store/spell.actions.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "GetAll",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/store/spell.actions.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Select",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/spell/store/spell.actions.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "StateModel",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/modules/spell/store/spell.entity.ts",
                 "type": "interface",
                 "linktype": "interface",
@@ -3200,11 +3800,11 @@
             },
             {
                 "filePath": "src/app/modules/spell/store/spell.state.ts",
-                "type": "class",
-                "linktype": "classe",
+                "type": "injectable",
+                "linktype": "injectable",
                 "name": "SpellState",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -3222,7 +3822,7 @@
                 "linktype": "component",
                 "name": "SpellListComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -3345,6 +3945,146 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "acid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "bludgeoning",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "cold",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "fire",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "force",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "lightning",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "necrotic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "piercing",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "poison",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "psychic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "radiant",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "slashing",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/icons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "thunder",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

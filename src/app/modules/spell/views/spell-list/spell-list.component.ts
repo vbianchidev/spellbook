@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Spell } from '../../store/spell.actions';
+import { SpellActions } from '../../store/spell.actions';
 import { SpellEntity } from '../../store/spell.entity';
 import { SpellState } from '../../store/spell.state';
 
@@ -17,7 +17,6 @@ export class SpellListComponent implements OnInit {
   constructor(private _store: Store) { }
 
   ngOnInit(): void {
-    console.log('pau')
-    this._store.dispatch(Spell.GetAll);
+    this._store.dispatch(SpellActions.GetAll);
   }
 }

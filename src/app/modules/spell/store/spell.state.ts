@@ -3,10 +3,10 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
 
 import { SpellService } from '../providers/spell.service';
-import { Spell } from './spell.actions';
+import { SpellActions } from './spell.actions';
 import { SpellEntity } from './spell.entity';
 
-@State<Spell.StateModel>({
+@State<SpellActions.StateModel>({
   name: 'spell',
   defaults: {
     spells: [],
@@ -17,19 +17,19 @@ import { SpellEntity } from './spell.entity';
 export class SpellState {
 
   @Selector()
-  static spellList({ spells }: Spell.StateModel): SpellEntity[] {
+  static spellList({ spells }: SpellActions.StateModel): SpellEntity[] {
     return spells;
   }
 
   @Selector()
-  static selectedSpell({ selectedSpell }: Spell.StateModel): SpellEntity {
+  static selectedSpell({ selectedSpell }: SpellActions.StateModel): SpellEntity {
     return selectedSpell as SpellEntity;
   }
 
   constructor(private service: SpellService) {}
 
-  @Action(Spell.GetAll)
-  public getAll({ setState }: StateContext<Spell.StateModel>): void {
+  @Action(SpellActions.GetAll)
+  public getAll({ setState }: StateContext<SpellActions.StateModel>): void {
     this.service.getAll()
       .pipe(
         tap(result => {

@@ -33,7 +33,6 @@ export default {
   title: 'Spell/Card',
   component: CardComponent,
   parameters: {
-    // More on Story layout: https://storybook.js.org/docs/angular/configure/story-layout
     layout: 'centered',
   },
   decorators: [

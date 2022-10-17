@@ -21,7 +21,7 @@ export class IconComponent implements OnInit {
     color: '#000000',
     icon: faQuestionCircle
   };
-
+  
   ngOnInit() {
     this.icon = Icons.elements[this.element];
   }

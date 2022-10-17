@@ -1,7 +1,6 @@
 import { SpellEntity } from './spell.entity';
 
-export namespace Spell {
-
+export namespace SpellActions {
   export interface StateModel {
     spells: SpellEntity[];
     selectedSpell?: SpellEntity;
