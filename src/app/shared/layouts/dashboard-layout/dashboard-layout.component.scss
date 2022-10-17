@@ -8,6 +8,9 @@
     flex-direction: row;
     height: 100%;
     
+    mat-sidenav-content {
+      width: 100%;
+    }
     mat-sidenav {
       padding: 16px;
       width: 20%;

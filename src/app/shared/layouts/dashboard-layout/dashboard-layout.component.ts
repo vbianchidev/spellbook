@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faBook, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Layout } from 'src/app/core/store/layout.actions';
@@ -16,9 +16,11 @@ export class DashboardLayoutComponent {
   opened$!: Observable<boolean>;
 
   @Select(LayoutState.deviceMode) 
-  deviceMode$!: Observable<boolean>;
+  isHandset$!: Observable<boolean>;
 
-  logo = faBook;
+  menuItems: { name: string, icon: IconDefinition}[] = [
+    {name: 'logo', icon: faBook}
+  ]
 
   constructor(private _store: Store) {}
 
