@@ -22,6 +22,7 @@
     "paths": {
       "@components/*": ["src/app/shared/components/*"],
       "@layouts/*": ["src/app/core/layouts/*"],
+      "@core/*": ["src/app/core/*"],
       "bianchi-ui": [
         "dist/bianchi-ui"
       ]
