@@ -20,9 +20,10 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
       "@components/*": ["src/app/shared/components/*"],
       "@layouts/*": ["src/app/core/layouts/*"],
-      "@core/*": ["src/app/core/*"],
       "bianchi-ui": [
         "dist/bianchi-ui"
       ]

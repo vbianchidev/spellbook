@@ -26,8 +26,8 @@ const spellMock: SpellEntity = {
   castingTime: '1 Action',
   range: '60 Feet',
   duration: 'Instantaneous',
-  components: ['V', 'S']
-}
+  components: ['V', 'S'],
+};
 
 export default {
   title: 'Spell/Card',
@@ -49,5 +49,5 @@ const Template: Story<CardComponent> = (args: CardComponent) => ({
 
 export const Fire = Template.bind({});
 Fire.args = {
-  spell: {...spellMock, type: 'fire'},
+  spell: { ...spellMock, type: 'fire' },
 };

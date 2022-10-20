@@ -11,13 +11,14 @@ import { SpellState } from './store/spell.state';
 
 @NgModule({
   declarations: [SpellRoutingModule.components],
-  providers:    [SpellService, SpellResolver],
+  providers: [SpellService, SpellResolver],
   imports: [
-    HttpClientModule,
     CommonModule,
+    HttpClientModule,
     SpellRoutingModule,
-    SharedModule,
     NgxsModule.forFeature([SpellState]),
+    // My Imports
+    SharedModule,
   ],
 })
 export class SpellModule {}

@@ -3,7 +3,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { moduleMetadata } from '@storybook/angular';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 
-
 export default {
   title: 'Spell/Icon',
   component: IconComponent,
@@ -23,65 +22,65 @@ const Template: Story<IconComponent> = (args: IconComponent) => ({
 
 export const acid = Template.bind({});
 acid.args = {
-  element: 'acid'
+  element: 'acid',
 };
 
 export const cold = Template.bind({});
 cold.args = {
-  element: 'cold'
+  element: 'cold',
 };
 
 export const fire = Template.bind({});
 fire.args = {
-  element: 'fire'
+  element: 'fire',
 };
 
 export const force = Template.bind({});
 force.args = {
-  element: 'force'
+  element: 'force',
 };
 
 export const lightning = Template.bind({});
 lightning.args = {
-  element: 'lightning'
+  element: 'lightning',
 };
 
 export const necrotic = Template.bind({});
 necrotic.args = {
-  element: 'necrotic'
+  element: 'necrotic',
 };
 
 export const poison = Template.bind({});
 poison.args = {
-  element: 'poison'
+  element: 'poison',
 };
 
 export const psychic = Template.bind({});
 psychic.args = {
-  element: 'psychic'
+  element: 'psychic',
 };
 
 export const radiant = Template.bind({});
 radiant.args = {
-  element: 'radiant'
+  element: 'radiant',
 };
 
 export const thunder = Template.bind({});
 thunder.args = {
-  element: 'thunder'
+  element: 'thunder',
 };
 
 export const bludgeoning = Template.bind({});
 bludgeoning.args = {
-  element: 'bludgeoning'
+  element: 'bludgeoning',
 };
 
 export const piercing = Template.bind({});
 piercing.args = {
-  element: 'piercing'
+  element: 'piercing',
 };
 
 export const slashing = Template.bind({});
 slashing.args = {
-  element: 'slashing'
+  element: 'slashing',
 };
