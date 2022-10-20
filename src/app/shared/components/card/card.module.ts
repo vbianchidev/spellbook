@@ -11,22 +11,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PipesModule } from '../../pipes/pipes.module';
 import { CardComponent } from './card.component';
 
-
-
 @NgModule({
   imports: [
     PipesModule,
-    CommonModule, 
-    FontAwesomeModule, 
+    CommonModule,
+    FontAwesomeModule,
     MatIconModule,
     MatListModule,
-    MatCardModule, 
+    MatCardModule,
     MatChipsModule,
     MatButtonModule,
     MatToolbarModule,
-    CardModule
   ],
   declarations: [CardComponent],
-  exports:      [CardComponent],
+  exports: [CardComponent],
 })
-export class CardModule { }
+export class CardModule {}
