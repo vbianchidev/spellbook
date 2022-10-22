@@ -1,20 +1,6 @@
 :host {
-  margin: 1em;
+  margin: 32px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
-  app-card {
-    flex: 0 1 calc(33% - 1em);
-    margin-bottom: 1em;
-
-    @media screen and (max-width: 1280px) {
-      flex: 0 1 calc(50% - 1em);
-    }
-
-    @media screen and (max-width: 960px) {
-      flex: 0 1 calc(100% - 1em);
-      max-width: 100%;
-    }
-  }
 }
