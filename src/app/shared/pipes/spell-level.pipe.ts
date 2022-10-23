@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'iscantrip'
+  name: 'iscantrip',
 })
 export class SpellLevelPipe implements PipeTransform {
-  transform(value: number): string | number {
-    return value === 0 ? 'TRUQUE' : value;
+  transform(value: number | string): string | number {
+    return value == 0 ? 'TRUQUE' : value;
   }
 }

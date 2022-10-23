@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
 import { NgxsModule } from '@ngxs/store';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -16,6 +17,7 @@ import { SpellState } from './store/spell.state';
     CommonModule,
     HttpClientModule,
     SpellRoutingModule,
+    MatListModule,
     NgxsModule.forFeature([SpellState]),
     // My Imports
     SharedModule,
