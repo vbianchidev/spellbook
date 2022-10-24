@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { AlphabeticGroup, DictArray } from '@core/rules';
 import { Select } from '@ngxs/store';
-import { LevelOrdenationPipe } from '@shared/pipes/level-ordenation.pipe';
+import { GroupByPipe } from '@shared/pipes/group-by.pipe';
 import { Observable, tap } from 'rxjs';
 
 import { SpellEntity } from '../../store/spell.entity';

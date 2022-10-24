@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SpellLevelPipe } from './spell-level.pipe';
 import { AlphabeticOrdenationPipe } from './alphabetic-ordenation.pipe';
-import { LevelOrdenationPipe } from './level-ordenation.pipe';
+import { GroupByPipe } from './group-by.pipe';
 
 @NgModule({
-  declarations: [SpellLevelPipe, AlphabeticOrdenationPipe, LevelOrdenationPipe],
-  exports: [SpellLevelPipe, AlphabeticOrdenationPipe, LevelOrdenationPipe],
+  declarations: [SpellLevelPipe, AlphabeticOrdenationPipe, GroupByPipe],
+  exports: [SpellLevelPipe, AlphabeticOrdenationPipe, GroupByPipe],
 })
 export class PipesModule {}

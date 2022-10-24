@@ -1,8 +1,18 @@
-<h1>Spells</h1>
+<div class="title">
+  <h1>Spells</h1>
+  <span>99 spells</span>
+</div>
+
 <mat-list
-  *ngFor="let item of iterableDictionary(spellList$ | async | levelOrdenation)">
-  <div mat-subheader>{{ item.key | iscantrip }}</div>
-  <mat-list-item *ngFor="let spell of item.data">
+  *ngFor="
+    let item of iterableDictionary(spellList$ | async | groupBy: 'element')
+  ">
+  <div class="subheader" mat-subheader>
+    {{ item.key | iscantrip | uppercase }}
+  </div>
+  <mat-list-item *ngFor="let spell of item.data" matRipple>
+    <div mat-list-icon><app-icon [element]="spell.type"></app-icon></div>
     <div mat-line>{{ spell.name }}</div>
+    <div mat-line>{{ spell.duration }}</div>
   </mat-list-item>
 </mat-list>

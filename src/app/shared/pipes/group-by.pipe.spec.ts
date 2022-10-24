@@ -1,8 +1,8 @@
-import { LevelOrdenationPipe } from './level-ordenation.pipe';
+import { GroupByPipe } from './group-by.pipe';
 
 describe('LevelOrdenationPipe', () => {
   it('create an instance', () => {
-    const pipe = new LevelOrdenationPipe();
+    const pipe = new GroupByPipe();
     expect(pipe).toBeTruthy();
   });
 });

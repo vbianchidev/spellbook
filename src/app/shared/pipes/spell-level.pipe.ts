@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'iscantrip',
 })
 export class SpellLevelPipe implements PipeTransform {
-  transform(value: number | string): string | number {
-    return value == 0 ? 'TRUQUE' : value;
+  transform(value: number | string): string {
+    return value == 0 ? 'TRUQUE' : value.toString();
   }
 }
