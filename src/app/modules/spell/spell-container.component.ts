@@ -9,11 +9,8 @@ import { SpellState } from './store/spell.state';
 @Component({
   template: '<router-outlet></router-outlet>',
 })
-export class SpellContainerComponent 
-     extends BaseContainer
-  implements OnInit
-{
-  @Select(SpellState.spellList) 
+export class SpellContainerComponent extends BaseContainer implements OnInit {
+  @Select(SpellState.spellList)
   spellList$!: Observable<SpellEntity[]>;
 
   constructor(private _store: Store) {
@@ -25,6 +22,10 @@ export class SpellContainerComponent
   }
 
   public getAllEvent(): void {
-    this._store.dispatch(SpellActions.GetAll).pipe(takeUntil(this.unsubscribe$));
+    setTimeout(() => {
+      this._store
+        .dispatch(SpellActions.GetAll)
+        .pipe(takeUntil(this.unsubscribe$));
+    }, 5000);
   }
 }

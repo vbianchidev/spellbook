@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { IconModule } from '@components/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MaterialModule } from '@shared/material/material.module';
 
 import { PipesModule } from '../../pipes/pipes.module';
 import { CardComponent } from './card.component';
@@ -11,9 +11,10 @@ import { CardComponent } from './card.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    MatCardModule,
-    PipesModule,
+    // My Modules
     IconModule,
+    PipesModule,
+    MaterialModule,
   ],
   declarations: [CardComponent],
   exports: [CardComponent],

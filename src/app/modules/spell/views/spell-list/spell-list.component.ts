@@ -1,12 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AlphabeticGroup, DictArray } from '@core/rules';
 import { Select } from '@ngxs/store';
-import { GroupByPipe } from '@shared/pipes/group-by.pipe';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { SpellEntity } from '../../store/spell.entity';
 import { SpellState } from '../../store/spell.state';
@@ -15,7 +10,7 @@ import { SpellState } from '../../store/spell.state';
   selector: 'app-spell-list',
   templateUrl: './spell-list.component.html',
   styleUrls: ['./spell-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpellListComponent {
   @Select(SpellState.spellList)
@@ -34,5 +29,10 @@ export class SpellListComponent {
     });
     this.visibleSpells = result;
     return result;
+  }
+  hasLoaded(data: SpellEntity[] | null): boolean {
+    if (data === null) return false;
+    if (data.length === 0) return false;
+    return true;
   }
 }
