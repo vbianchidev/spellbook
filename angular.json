@@ -112,46 +112,6 @@
           }
         }
       }
-    },
-    "bianchi-ui": {
-      "projectType": "library",
-      "root": "projects/bianchi-ui",
-      "sourceRoot": "projects/bianchi-ui/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/bianchi-ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/bianchi-ui/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/bianchi-ui/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/bianchi-ui/src/test.ts",
-            "tsConfig": "projects/bianchi-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/bianchi-ui/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/bianchi-ui/**/*.ts",
-              "projects/bianchi-ui/**/*.html"
-            ]
-          }
-        }
-      }
     }
   },
   "cli": {

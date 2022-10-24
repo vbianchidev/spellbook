@@ -3,14 +3,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutState } from './core/store/layout.state';
 import { CoreModule } from './core/core.module';
-import { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';
-import { BreakpointService } from './core/services/breakpoint.service';
+import { LayoutState } from './core/store/layout.state';
 
 @NgModule({
   declarations: [AppComponent],
