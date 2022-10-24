@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { moduleMetadata } from '@storybook/angular';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 import { SpellEntity } from 'src/app/modules/spell/store/spell.entity';
-import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 const spellMock: SpellEntity = {
   id: 0,
