@@ -2,10 +2,23 @@
   <h1>Spells</h1>
   <span>99 spells</span>
   <div class="search">
-    <mat-form-field appearance="outline">
-      <input matInput placeholder="Placeholder" />
-    </mat-form-field>
-    <button mat-raised-button>SEARCH</button>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle #level value="level" (click)="filter = level.value"
+        >level</mat-button-toggle
+      >
+      <mat-button-toggle
+        #alphabetic
+        value="alphabetic"
+        (click)="filter = alphabetic.value"
+        >alphabetic</mat-button-toggle
+      >
+      <mat-button-toggle
+        #element
+        value="element"
+        (click)="filter = element.value"
+        >element</mat-button-toggle
+      >
+    </mat-button-toggle-group>
   </div>
 </div>
 
@@ -16,13 +29,15 @@
 <ng-template #list>
   <mat-list
     *ngFor="
-      let item of iterableDictionary(spellList$ | async | groupBy: 'element')
+      let item of iterableDictionary(spellList$ | async | groupBy: filter)
     ">
     <div class="subheader" mat-subheader>
       {{ item.key | iscantrip | uppercase }}
     </div>
     <mat-list-item *ngFor="let spell of item.data" matRipple>
-      <div mat-list-icon><app-icon [element]="spell.type"></app-icon></div>
+      <div mat-list-icon>
+        <app-icon [element]="spell.type"></app-icon>
+      </div>
       <div mat-line>{{ spell.name }}</div>
       <div mat-line>{{ spell.duration }}</div>
     </mat-list-item>

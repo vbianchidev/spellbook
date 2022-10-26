@@ -10,16 +10,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./modules/spell/spell.module').then((m) => m.SpellModule),
-      }
-    ]
-  }, {
+        loadChildren: () =>
+          import('./modules/spell/spell.module').then(m => m.SpellModule),
+      },
+    ],
+  },
+  {
     path: 'login',
     component: LoginLayoutComponent,
     loadChildren: () =>
-      import('./modules/login/login.module').then(
-        (m) => m.LoginModule
-      ),
+      import('./modules/login/login.module').then(m => m.LoginModule),
   },
 ];
 

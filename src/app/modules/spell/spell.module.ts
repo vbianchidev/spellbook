@@ -16,6 +16,7 @@ import { SpellState } from './store/spell.state';
     CommonModule,
     HttpClientModule,
     NgxsModule.forFeature([SpellState]),
+
     // My Imports
     SpellRoutingModule,
     SharedModule,

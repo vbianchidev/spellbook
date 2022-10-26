@@ -20,6 +20,8 @@ export class SpellListComponent {
 
   visibleSpells: DictArray<SpellEntity>[] = [];
 
+  filter: 'level' | 'alphabetic' | 'element' = 'level';
+
   iterableDictionary(
     dict: AlphabeticGroup<SpellEntity>
   ): DictArray<SpellEntity>[] {
@@ -30,6 +32,7 @@ export class SpellListComponent {
     this.visibleSpells = result;
     return result;
   }
+
   hasLoaded(data: SpellEntity[] | null): boolean {
     if (data === null) return false;
     if (data.length === 0) return false;
