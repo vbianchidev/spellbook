@@ -4,10 +4,8 @@ import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.
 import { BreakpointService } from './services/breakpoint.service';
 
 @NgModule({
-  exports: [
-    LayoutModule
-  ], 
-  providers: [BreakpointService]
+  exports: [LayoutModule],
+  providers: [BreakpointService],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
