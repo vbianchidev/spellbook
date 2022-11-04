@@ -4,11 +4,14 @@
 @include mat.core();
 @import "colors";
 
-$spellbook-primary: mat.define-palette($spellbook-primary, 700);
-$spellbook-accent:  mat.define-palette($spellbook-accent,  700);
-$spellbook-warn:    mat.define-palette($spellbook-warn,    800);
+// $spellbook-primary: mat.define-palette($spellbook-primary, 700);
+$spellbook-primary: mat.define-palette(mat.$cyan-palette, 600);
+// $spellbook-accent:  mat.define-palette($spellbook-accent,  700);
+$spellbook-accent: mat.define-palette(mat.$grey-palette, 600);
+// $spellbook-warn:    mat.define-palette($spellbook-warn,    800);
+$spellbook-warn:    mat.define-palette(mat.$pink-palette, 400);
 
-$spellbook-theme: mat.define-light-theme(
+$spellbook-theme: mat.define-dark-theme(
   (
     color: (
       primary: $spellbook-primary,

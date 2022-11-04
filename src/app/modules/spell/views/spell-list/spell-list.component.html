@@ -1,6 +1,9 @@
 <div class="title">
-  <h1>Spells</h1>
-  <span>99 spells</span>
+  <div class="text">
+    <h1>Spells</h1>
+    <span>99 spells</span>
+  </div>
+
   <div class="search">
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
       <mat-button-toggle #level value="level" (click)="filter = level.value">
@@ -31,9 +34,9 @@
     *ngFor="
       let item of iterableDictionary(spellList$ | async | groupBy: filter)
     ">
-    <div class="subheader" mat-subheader>
+    <mat-toolbar color="accent" mat-subheader>
       {{ item.key | iscantrip | uppercase }}
-    </div>
+    </mat-toolbar>
     <mat-list-item *ngFor="let spell of item.data" matRipple>
       <div mat-list-icon>
         <app-icon [element]="spell.type"></app-icon>

@@ -10,7 +10,8 @@
 
   .title {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 16px;
 
     h1 {

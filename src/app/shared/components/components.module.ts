@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CardModule } from './card/card.module';
-import { IconModule } from './icon/icon.module';
+import { CardComponent } from './card';
+import { IconComponent } from './icon';
+import { MagicTextComponent } from './magic-text/magic-text.component';
 
 @NgModule({
-  exports: [CardModule, IconModule],
+  imports: [CardComponent, IconComponent, MagicTextComponent],
+  exports: [CardComponent, IconComponent, MagicTextComponent],
 })
 export class ComponentsModule {}
