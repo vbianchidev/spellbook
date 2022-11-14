@@ -26,6 +26,6 @@ export class SpellContainerComponent extends BaseContainer implements OnInit {
       this._store
         .dispatch(SpellActions.GetAll)
         .pipe(takeUntil(this.unsubscribe$));
-    }, 500);
+    }, 2000);
   }
 }

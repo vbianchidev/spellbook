@@ -5,7 +5,7 @@ export interface RPGIcon {
   color: string;
 }
 
-export interface AlphabeticGroup<T> {
+export interface Dict<T> {
   [key: string]: T[];
 }
 

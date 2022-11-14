@@ -1,9 +1,69 @@
 {
     "pipes": [
         {
-            "name": "SpellLevelPipe",
-            "id": "pipe-SpellLevelPipe-c73115ef008746b46deed3d304d19adbb646e4701011534c75e6e85e89f094811458f92fce855ed7754519dd340593de4ab0a8b5b5e55bf93cfac2465826957a",
-            "file": "src/app/shared/pipes/spell-level.pipe.ts",
+            "name": "GroupByPipe",
+            "id": "pipe-GroupByPipe-0461ff1f324fde2b11a17a43b53bc9b41d3030d95a2e6829cb48ce5a94907320c26fe0fd01f9de3cbc43c909aef6060efa34beabde336481f10cbfa633fb5f11",
+            "file": "src/app/shared/pipes/group-by.pipe.ts",
+            "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "list",
+                            "type": "SpellEntity[] | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "type",
+                            "type": "\"level\" | \"alphabetic\" | \"element\"",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "AlphabeticGroup<SpellEntity>",
+                    "typeParameters": [],
+                    "line": 9,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "list",
+                            "type": "SpellEntity[] | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "type",
+                            "type": "\"level\" | \"alphabetic\" | \"element\"",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "ngname": "groupBy",
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\nimport { AlphabeticGroup } from '@core/rules';\nimport { SpellEntity } from 'src/app/modules/spell/store/spell.entity';\n\n@Pipe({\n  name: 'groupBy',\n})\nexport class GroupByPipe implements PipeTransform {\n  transform(\n    list: SpellEntity[] | null,\n    type?: 'level' | 'alphabetic' | 'element'\n  ): AlphabeticGroup<SpellEntity> {\n    if (!list) return {};\n    let data = list.reduce(\n      (result: AlphabeticGroup<SpellEntity>, element: SpellEntity) => {\n        let group = element.level.toString();\n\n        if (type && type === 'alphabetic') group = element.name[0];\n\n        if (type && type === 'element') group = element.type;\n\n        if (!result[group]) result[group] = [element];\n        else result[group].push(element);\n\n        return result;\n      },\n      {}\n    );\n    return data;\n  }\n}\n"
+        },
+        {
+            "name": "IsCantripPipe",
+            "id": "pipe-IsCantripPipe-17a3aedd7cb3396e5f6aac2291fdf4b607b94b54c91cdf0435409adfcd534269f30548673e3cae23320c18b0333422e3680446f3dd2f5b0e652f34ad4f215a5d",
+            "file": "src/app/shared/pipes/is-cantrip.pipe.ts",
             "type": "pipe",
             "deprecated": false,
             "deprecationMessage": "",
@@ -16,13 +76,13 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "number",
+                            "type": "number | string",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
                     ],
                     "optional": false,
-                    "returnType": "string | number",
+                    "returnType": "string",
                     "typeParameters": [],
                     "line": 7,
                     "deprecated": false,
@@ -30,7 +90,7 @@
                     "jsdoctags": [
                         {
                             "name": "value",
-                            "type": "number",
+                            "type": "number | string",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -41,10 +101,71 @@
                 }
             ],
             "ngname": "iscantrip",
-            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'iscantrip'\n})\nexport class SpellLevelPipe implements PipeTransform {\n  transform(value: number): string | number {\n    return value === 0 ? 'TRUQUE' : value;\n  }\n}\n"
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'iscantrip',\n})\nexport class IsCantripPipe implements PipeTransform {\n  transform(value: number | string): string {\n    return value == 0 ? 'TRUQUE' : value.toString();\n  }\n}\n"
         }
     ],
     "interfaces": [
+        {
+            "name": "AlphabeticGroup",
+            "id": "interface-AlphabeticGroup-aab16a8238133b2aaeb45e6c82ac0239c3e821ae413dd1f54213967ca7b441af5cb1c2aacc669731364565f92484b6649a0766118cad9e6dfc2874413c066189",
+            "file": "src/app/core/rules/core.rule.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { IconDefinition } from '@fortawesome/fontawesome-svg-core';\n\nexport interface RPGIcon {\n  icon: IconDefinition;\n  color: string;\n}\n\nexport interface AlphabeticGroup<T> {\n  [key: string]: T[];\n}\n\nexport interface DictArray<T> {\n  key: string;\n  data: T[];\n}\n",
+            "properties": [],
+            "indexSignatures": [
+                {
+                    "id": "index-declaration-aab16a8238133b2aaeb45e6c82ac0239c3e821ae413dd1f54213967ca7b441af5cb1c2aacc669731364565f92484b6649a0766118cad9e6dfc2874413c066189",
+                    "args": [
+                        {
+                            "name": "key",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "T[]",
+                    "line": 8,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "kind": 175,
+            "methods": []
+        },
+        {
+            "name": "DictArray",
+            "id": "interface-DictArray-aab16a8238133b2aaeb45e6c82ac0239c3e821ae413dd1f54213967ca7b441af5cb1c2aacc669731364565f92484b6649a0766118cad9e6dfc2874413c066189",
+            "file": "src/app/core/rules/core.rule.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { IconDefinition } from '@fortawesome/fontawesome-svg-core';\n\nexport interface RPGIcon {\n  icon: IconDefinition;\n  color: string;\n}\n\nexport interface AlphabeticGroup<T> {\n  [key: string]: T[];\n}\n\nexport interface DictArray<T> {\n  key: string;\n  data: T[];\n}\n",
+            "properties": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "key",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
         {
             "name": "IconElement",
             "id": "interface-IconElement-f0480128d70ad2d245527faa891ab12e4f8bf052c844b54e1725a925dc6cc6f8f4c6d0b7aa4311e83fa530d121550621667c40fed258afa06373dfe665ae6684",
@@ -79,12 +200,12 @@
         },
         {
             "name": "RPGIcon",
-            "id": "interface-RPGIcon-b98e3b0c07d82db910ed249c187bd2af7dfdbb5d80831fa34c61d0e827b82c2359b379fde14beb55925bc5022f13833132e40df49c7c8768cdf0cf6db627c642",
+            "id": "interface-RPGIcon-aab16a8238133b2aaeb45e6c82ac0239c3e821ae413dd1f54213967ca7b441af5cb1c2aacc669731364565f92484b6649a0766118cad9e6dfc2874413c066189",
             "file": "src/app/core/rules/core.rule.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { IconDefinition } from '@fortawesome/fontawesome-svg-core';\n\nexport interface RPGIcon {\n  icon: IconDefinition;\n  color: string;\n}\n",
+            "sourceCode": "import { IconDefinition } from '@fortawesome/fontawesome-svg-core';\n\nexport interface RPGIcon {\n  icon: IconDefinition;\n  color: string;\n}\n\nexport interface AlphabeticGroup<T> {\n  [key: string]: T[];\n}\n\nexport interface DictArray<T> {\n  key: string;\n  data: T[];\n}\n",
             "properties": [
                 {
                     "name": "color",
@@ -531,27 +652,6 @@
             "type": "injectable"
         },
         {
-            "name": "BianchiUiService",
-            "id": "injectable-BianchiUiService-2340f69748a4cf5d5fba47039683de39ca0687ca7acf035dded66e3d136d27c7d1c6718e8104b7b5c9b7f0e12cf71d0e1662a65893c82b302abb260fced1c461",
-            "file": "projects/bianchi-ui/src/lib/bianchi-ui.service.ts",
-            "properties": [],
-            "methods": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "description": "",
-            "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class BianchiUiService {\n\n  constructor() { }\n}\n",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 6
-            },
-            "type": "injectable"
-        },
-        {
             "name": "BreakpointService",
             "id": "injectable-BreakpointService-db758a28a760a69101b824151d3bd69e8d1e4971180429b80c3324d1cd943b414e8b9ca5e34aa43848d2247d998e5311c98af606cef4c5b272f8f40779718142",
             "file": "src/app/core/services/breakpoint.service.ts",
@@ -602,6 +702,65 @@
                     }
                 ]
             },
+            "type": "injectable"
+        },
+        {
+            "name": "EventsService",
+            "id": "injectable-EventsService-2ba11926d229ab34edff6df6eb44ac7b7b8ef9f5e4cc62f1ebf614300857974f4128880d718b0366e1090c361518b57c3e4d911bc8fbe03fae8fdd14f693991c",
+            "file": "src/app/core/services/events.service.ts",
+            "properties": [
+                {
+                    "name": "emitters",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 7,
+                    "modifierKind": [
+                        124
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "get",
+                    "args": [
+                        {
+                            "name": "nameEvent",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "EventEmitter<any>",
+                    "typeParameters": [],
+                    "line": 9,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "nameEvent",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { EventEmitter, Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class EventsService {\n  public static emitters: { [name: string]: EventEmitter<any> } = {};\n\n  public static get(nameEvent: string): EventEmitter<any> {\n    if (!this.emitters[nameEvent]) {\n      this.emitters[nameEvent] = new EventEmitter<any>();\n    }\n    return this.emitters[nameEvent];\n  }\n}\n",
             "type": "injectable"
         },
         {
@@ -773,12 +932,12 @@
         },
         {
             "name": "SpellService",
-            "id": "injectable-SpellService-56c640bcb04c080293b0097395c29323892053fb83a4059991c046e380e9c5169438bfdc5f6d3278a81ee329f9f8e81f1480c3e8b4923a600314ff38f4c25bfc",
+            "id": "injectable-SpellService-974f4d426bdc57eaa6ec75bd18428c44fcae82b9a9637878dd96de8e94f4fc58d3dfe0f636c1729c1e620f7c8210f425a94a9929edd690951b87a6ade3332d11",
             "file": "src/app/modules/spell/providers/spell.service.ts",
             "properties": [
                 {
                     "name": "endpoint",
-                    "defaultValue": "'spells'",
+                    "defaultValue": "'spell'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -983,7 +1142,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { BaseService } from 'src/app/core/services/base.service';\nimport { SpellContainerComponent } from '../spell-container.component';\nimport { SpellEntity } from '../store/spell.entity';\n\n@Injectable({\n  providedIn: SpellContainerComponent\n})\nexport class SpellService extends BaseService<SpellEntity> {\n  public endpoint: string = 'spells';\n\n  constructor(private http: HttpClient) { \n    super(http);\n  }\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { BaseService } from 'src/app/core/services/base.service';\nimport { SpellContainerComponent } from '../spell-container.component';\nimport { SpellEntity } from '../store/spell.entity';\n\n@Injectable({\n  providedIn: SpellContainerComponent,\n})\nexport class SpellService extends BaseService<SpellEntity> {\n  public endpoint: string = 'spell';\n\n  constructor(private http: HttpClient) {\n    super(http);\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -1636,24 +1795,61 @@
             }
         },
         {
-            "name": "BianchiUiComponent",
-            "id": "component-BianchiUiComponent-196b0abd0356511b7f3ae670bc0164fd869aa117a27a2843d4794f2d7e7edb8b696b1c0abcc310c017ccad553a3b84847d2823057997fd743ad61465797acd70",
-            "file": "projects/bianchi-ui/src/lib/bianchi-ui.component.ts",
+            "name": "BaseContainer",
+            "id": "component-BaseContainer-4a337ec0d8b76a41005c0bd46d28e6ff267351106b228d0fce324a7b824c2ad9abf8f83bc5756ca4a58b8a79572c8dfab58f0f80cee935b652c30a1f2349896e",
+            "file": "src/app/core/base/base.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "lib-bianchi-ui",
             "styleUrls": [],
             "styles": [],
-            "template": "<p>\n  Shwernols\n</p>\n",
+            "template": "",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_unsubscribe",
+                    "defaultValue": "new Subject()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subject<void>",
+                    "optional": false,
+                    "description": "",
+                    "line": 7,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "unsubscribeAction",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1661,22 +1857,28 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'lib-bianchi-ui',\n  template: `\n    <p>\n      Shwernols\n    </p>\n  `,\n  styles: [\n  ]\n})\nexport class BianchiUiComponent {\n  constructor() { }\n}\n",
+            "sourceCode": "import { Component, OnDestroy } from '@angular/core';\nimport { Subject } from 'rxjs';\n\n@Component({template: ''})\nexport abstract class BaseContainer implements OnDestroy { \n  private _unsubscribe: Subject<void> = new Subject();\n  get unsubscribe$(): Subject<void> { \n    return this._unsubscribe; \n  }\n  \n  ngOnDestroy(): void {\n    this.unsubscribeAction();\n  }\n\n  private unsubscribeAction(): void {\n    this._unsubscribe.next();\n    this._unsubscribe.complete();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 13
+            "implements": [
+                "OnDestroy"
+            ],
+            "accessors": {
+                "unsubscribe$": {
+                    "name": "unsubscribe$",
+                    "getSignature": {
+                        "name": "unsubscribe$",
+                        "type": "",
+                        "returnType": "Subject<void>",
+                        "line": 8
+                    }
+                }
             }
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-82ebb41f28fb8c783947b14f9f0563156bd121162b0d04e38ff43e0a19da32a4f47ff87b86208682a67759651f296bb14d8840d6a35ca9b1efba03356aaf22b0",
+            "id": "component-CardComponent-fdd91f4872f88d615410cf316fd8ddb1ecf6328e9d60fccc8f3fa54094bdfa632f288203b0cac4542257cafd593ea3accf2637b6f668f50e5e8af55f9849e534",
             "file": "src/app/shared/components/card/card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1698,7 +1900,7 @@
                     "name": "spell",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 26,
                     "type": "SpellEntity",
                     "decorators": []
                 }
@@ -1713,7 +1915,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { SpellEntity } from 'src/app/modules/spell/store/spell.entity';\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class CardComponent {\n  @Input()\n  spell!: SpellEntity;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\r\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\r\nimport { MaterialModule } from '@shared/material/material.module';\r\nimport { PipesModule } from '@shared/pipes';\r\nimport { SpellEntity } from 'src/app/modules/spell/store/spell.entity';\r\n\r\nimport { IconComponent } from '../icon';\r\n\r\n@Component({\r\n  standalone: true,\r\n  selector: 'app-card',\r\n  templateUrl: './card.component.html',\r\n  styleUrls: ['./card.component.scss'],\r\n  imports: [\r\n    CommonModule,\r\n    FontAwesomeModule,\r\n    IconComponent,\r\n    PipesModule,\r\n    MaterialModule,\r\n  ],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class CardComponent {\r\n  @Input()\r\n  spell!: SpellEntity;\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1722,12 +1924,12 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<mat-card>\n  <mat-card-header>\n    <h2><app-icon [element]=\"spell.type\"></app-icon> {{ spell.name }}</h2>\n    <div>\n      <span><strong>LEVEL: </strong>{{ spell.level | iscantrip }}</span>\n      <span><strong>CASTING TIME: </strong>{{ spell.castingTime }}</span>\n      <span><strong>DURATION: </strong>{{ spell.duration }}</span>\n      <span><strong>COMPONENTS: </strong>{{ spell.components }}</span>\n    </div>\n  </mat-card-header>\n  <mat-card-content>\n    {{ spell.description }}\n  </mat-card-content>\n  <mat-card-actions>\n    <mat-chip-list aria-label=\"Spells Tags\">\n      <mat-chip color=\"primary\"> DAMAGE </mat-chip>\n      <mat-chip color=\"primary\"> DAMAGE </mat-chip>\n      <mat-chip color=\"primary\"> DAMAGE </mat-chip>\n      <mat-chip color=\"primary\"> DAMAGE </mat-chip>\n      <mat-chip color=\"primary\"> DAMAGE </mat-chip>\n    </mat-chip-list>\n  </mat-card-actions>\n</mat-card>\n"
+            "templateData": "<mat-card>\n  <mat-card-header>\n    <h2><app-icon [element]=\"spell.type\"></app-icon> {{ spell.name }}</h2>\n    <div>\n      <span><strong>LEVEL: </strong>{{ spell.level | iscantrip }}</span>\n      <span><strong>CASTING TIME: </strong>{{ spell.castingTime }}</span>\n      <span><strong>DURATION: </strong>{{ spell.duration }}</span>\n      <span><strong>COMPONENTS: </strong>{{ spell.components }}</span>\n    </div>\n  </mat-card-header>\n</mat-card>\n"
         },
         {
             "name": "DashboardLayoutComponent",
-            "id": "component-DashboardLayoutComponent-669dc74219b9d134b83c3c85b17fa4337505a43a5a721b8eb7f0423cd11d50fec790430a34bc14d34eee18f7366eb6631796090eadabf883141c83fbc0702299",
-            "file": "src/app/shared/layouts/dashboard-layout/dashboard-layout.component.ts",
+            "id": "component-DashboardLayoutComponent-f6b4b0b2cc7cf8e889c27e0d685364dc87e3e500318b95c3bace368857db65a649f8566980ef829bd7f3d24eabfc6bc67704c9afc588a7ebc6f27a5d0a2bc4ff",
+            "file": "src/app/core/layouts/dashboard-layout/dashboard-layout.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -1747,7 +1949,7 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "deviceMode$",
+                    "name": "isHandset$",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Observable<boolean>",
@@ -1806,11 +2008,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';\nimport { faBook, IconDefinition } from '@fortawesome/free-solid-svg-icons';\nimport { Select, Store } from '@ngxs/store';\nimport { Observable } from 'rxjs';\nimport { Layout } from 'src/app/core/store/layout.actions';\nimport { LayoutState } from 'src/app/core/store/layout.state';\n\n@Component({\n  selector: 'app-dashboard-layout',\n  templateUrl: './dashboard-layout.component.html',\n  styleUrls: ['./dashboard-layout.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class DashboardLayoutComponent {\n  @Select(LayoutState.isOpened) \n  opened$!: Observable<boolean>;\n\n  @Select(LayoutState.deviceMode) \n  deviceMode$!: Observable<boolean>;\n\n  menuItems: { name: string, icon: IconDefinition}[] = [\n    {name: 'logo', icon: faBook}\n  ]\n\n  constructor(private _store: Store) {}\n\n  toggle(): void {\n    this._store.dispatch(new Layout.ToogleSidenav());\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';\nimport { faBook, IconDefinition } from '@fortawesome/free-solid-svg-icons';\nimport { Select, Store } from '@ngxs/store';\nimport { Observable } from 'rxjs';\nimport { Layout } from 'src/app/core/store/layout.actions';\nimport { LayoutState } from 'src/app/core/store/layout.state';\n\n@Component({\n  selector: 'app-dashboard-layout',\n  templateUrl: './dashboard-layout.component.html',\n  styleUrls: ['./dashboard-layout.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class DashboardLayoutComponent {\n  @Select(LayoutState.isOpened) \n  opened$!: Observable<boolean>;\n\n  @Select(LayoutState.deviceMode) \n  isHandset$!: Observable<boolean>;\n\n  menuItems: { name: string, icon: IconDefinition}[] = [\n    {name: 'logo', icon: faBook}\n  ]\n\n  constructor(private _store: Store) {}\n\n  toggle(): void {\n    this._store.dispatch(new Layout.ToogleSidenav());\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\r\n  display: flex;\r\n  flex-direction: column;\r\n  height: 100vh;\r\n  \r\n  mat-sidenav-container {\r\n    display: flex;\r\n    flex-direction: row;\r\n    height: 100%;\r\n    \r\n    mat-sidenav {\r\n      padding: 16px;\r\n      width: 20%;\r\n      min-width: 300px;\r\n    }\r\n  }\r\n}\r\n\r\n.open { margin-left: 32px !important; }",
+                    "data": ":host {\r\n  display: flex;\r\n  flex-direction: column;\r\n  height: 100vh;\r\n  \r\n  mat-sidenav-container {\r\n    display: flex;\r\n    flex-direction: row;\r\n    height: 100%;\r\n    \r\n    mat-sidenav-content {\r\n      width: 100%;\r\n      display: flex;\r\n      flex-direction: column;\r\n      align-items: center;\r\n\r\n      mat-toolbar {\r\n        width: 100%;\r\n        display: flex;\r\n        background-color: #303030;\r\n        min-height: 64px !important;\r\n      }\r\n\r\n      main {\r\n        width: calc(100% - 32px);\r\n        margin: 32px 0px;\r\n        background-color: #424242;\r\n        border-radius: 16px;\r\n      }\r\n    }\r\n    \r\n    mat-sidenav {\r\n      padding: 16px;\r\n      width: 20%;\r\n      min-width: 300px;\r\n    }\r\n  }\r\n}\r\n\r\n.open { margin-left: 32px !important; }",
                     "styleUrl": "./dashboard-layout.component.scss"
                 }
             ],
@@ -1841,11 +2043,11 @@
                     }
                 ]
             },
-            "templateData": "<mat-toolbar color=\"primary\">\n  <button mat-icon-button (click)=\"toggle()\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <span>SpellBook</span>\n  <span class=\"flex-spacer\"></span>\n  <button mat-icon-button>\n    <mat-icon>book</mat-icon>\n  </button>\n  <button mat-icon-button>\n    <mat-icon>account_circle</mat-icon>\n  </button>\n</mat-toolbar>\n\n<mat-sidenav-container>\n  <mat-sidenav\n    [mode]=\"(deviceMode$ | async) ? 'side' : 'over'\"\n    [opened]=\"opened$ | async\">\n    <mat-list role=\"list\">\n      <div class=\"subheader\" mat-subheader>Personagens</div>\n      <ng-container *ngFor=\"let item of menuItems\">\n        <mat-list-item [routerLink]=\"['/']\">\n          <mat-icon mat-list-icon>\n            <fa-icon [icon]=\"item.icon\"></fa-icon>\n          </mat-icon>\n          <div mat-line>{{ item.name }}</div>\n        </mat-list-item>\n      </ng-container>\n    </mat-list>\n  </mat-sidenav>\n\n  <mat-sidenav-content>\n    <router-outlet></router-outlet>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+            "templateData": "<mat-sidenav-container>\n  <mat-sidenav\n    [mode]=\"(isHandset$ | async) ? 'side' : 'over'\"\n    [opened]=\"opened$ | async\">\n    <mat-list role=\"list\">\n      <div class=\"subheader\" mat-subheader>Personagens</div>\n      <ng-container *ngFor=\"let item of menuItems\">\n        <mat-list-item [routerLink]=\"['/']\">\n          <mat-icon mat-list-icon>\n            <fa-icon [icon]=\"item.icon\"></fa-icon>\n          </mat-icon>\n          <div mat-line>{{ item.name }}</div>\n        </mat-list-item>\n      </ng-container>\n    </mat-list>\n  </mat-sidenav>\n\n  <mat-sidenav-content>\n    <mat-toolbar>\n      <button mat-icon-button (click)=\"toggle()\">\n        <mat-icon>menu</mat-icon>\n      </button>\n      <span><app-magic-text>SpellBook</app-magic-text></span>\n      <span class=\"flex-spacer\"></span>\n      <button mat-icon-button>\n        <mat-icon>book</mat-icon>\n      </button>\n      <button mat-icon-button>\n        <mat-icon>account_circle</mat-icon>\n      </button>\n    </mat-toolbar>\n\n    <main class=\"mat-elevation-z2\">\n      <router-outlet></router-outlet>\n    </main>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
         },
         {
             "name": "IconComponent",
-            "id": "component-IconComponent-52967bb5737e2d1a28ca9d713acb8c709d5550d9275800d59f2f534776886fe65e2acb6e9b024a80737ecf7dd208d64f6749c3c07ed0138aeb2f447897f752b7",
+            "id": "component-IconComponent-0076debc97a7539474aaea4a510f8c9d71d2541ef0fb77197f272056e95e68b4d409e6e6f7f2b2eff72eef3ed2029d4637674a7ff7962240ef8d4ba079986a67",
             "file": "src/app/shared/components/icon/icon.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1856,7 +2058,7 @@
             "selector": "app-icon",
             "styleUrls": [],
             "styles": [],
-            "template": "<fa-icon\n  [style.color]=\"icon.color\"\n  [icon]=\"icon.icon\">\n</fa-icon>\n",
+            "template": "<fa-icon\n  class=\"magic-color\"\n  [style.color]=\"'rgb(  0, 229, 255)'\"\n  [icon]=\"icon.icon\">\n</fa-icon>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
@@ -1865,7 +2067,7 @@
                     "defaultValue": "'acid'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 28,
                     "type": "RPGMagicEffect",
                     "decorators": []
                 }
@@ -1874,13 +2076,13 @@
             "propertiesClass": [
                 {
                     "name": "icon",
-                    "defaultValue": "{\n    color: '#000000',\n    icon: faQuestionCircle\n  }",
+                    "defaultValue": "{\n    color: '#000000',\n    icon: faQuestionCircle,\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "IconElement",
                     "optional": false,
                     "description": "",
-                    "line": 20
+                    "line": 30
                 }
             ],
             "methodsClass": [
@@ -1890,7 +2092,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1902,7 +2104,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';\nimport { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';\nimport { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';\nimport { IconElement, Icons } from './icons.interface';\n\n@Component({\n  selector: 'app-icon',\n  template: `\n    <fa-icon \n      [style.color]=\"icon.color\" \n      [icon]=\"icon.icon\">\n    </fa-icon>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class IconComponent implements OnInit {\n  @Input()\n  element: RPGMagicEffect = 'acid';\n\n  icon: IconElement = {\n    color: '#000000',\n    icon: faQuestionCircle\n  };\n  \n  ngOnInit() {\n    this.icon = Icons.elements[this.element];\n  }\n}\n",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n} from '@angular/core';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';\nimport { RPGMagicEffect } from 'src/app/core/rules/rpg.rule';\nimport { MagicTextComponent } from '../magic-text/magic-text.component';\nimport { IconElement, Icons } from './icons.interface';\n\n@Component({\n  standalone: true,\n  imports: [FontAwesomeModule, MagicTextComponent],\n  selector: 'app-icon',\n  template: `\n    <fa-icon\n      class=\"magic-color\"\n      [style.color]=\"'rgb(  0, 229, 255)'\"\n      [icon]=\"icon.icon\">\n    </fa-icon>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class IconComponent implements OnInit {\n  @Input()\n  element: RPGMagicEffect = 'acid';\n\n  icon: IconElement = {\n    color: '#000000',\n    icon: faQuestionCircle,\n  };\n\n  ngOnInit() {\n    this.icon = Icons.elements[this.element];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1961,7 +2163,7 @@
         {
             "name": "LoginLayoutComponent",
             "id": "component-LoginLayoutComponent-18623de813ec4a2ccb28284827cc97292ce3ccc406aae16b13fc8b4b99bc3b5f8ab1a298404d6fc0336ef6190bda550c416726a71becb957c017b845009c635a",
-            "file": "src/app/shared/layouts/login-layout/login-layout.component.ts",
+            "file": "src/app/core/layouts/login-layout/login-layout.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -2008,8 +2210,206 @@
             "templateData": "<p>login-layout works!</p>\n"
         },
         {
+            "name": "MagicTextComponent",
+            "id": "component-MagicTextComponent-f0b1c4a1742dc97bae20aeaeef7e4c3a9a3510ad3df2a9df951eda2ba293d7bdfcef116d4a539bfb385b3b029299db04ef2ad606d264c61ade3e18ce3226e2bc",
+            "file": "src/app/shared/components/magic-text/magic-text.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-magic-text",
+            "styleUrls": [
+                "./magic-text.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./magic-text.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "index",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "interval",
+                    "defaultValue": "1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "animate",
+                    "args": [
+                        {
+                            "name": "star",
+                            "type": "HTMLElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "star",
+                            "type": "HTMLElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "magic",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'click'"
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "rand",
+                    "args": [
+                        {
+                            "name": "min",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "max",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "min",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "max",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "click",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  HostListener,\n  Input,\n  OnInit,\n} from '@angular/core';\n\n@Component({\n  standalone: true,\n  imports: [CommonModule],\n  selector: 'app-magic-text',\n  templateUrl: './magic-text.component.html',\n  styleUrls: ['./magic-text.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MagicTextComponent implements OnInit {\n  index = 0;\n  interval = 1;\n\n  constructor(private elem: ElementRef) {}\n\n  ngOnInit() {\n    this.magic();\n  }\n\n  @HostListener('click')\n  magic() {\n    for (const star of this.elem.nativeElement.querySelectorAll(\n      '.magic-star'\n    )) {\n      this.animate(star);\n    }\n  }\n\n  rand(min: number, max: number) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n  }\n\n  animate(star: HTMLElement) {\n    star.style.setProperty('--star-left', `${this.rand(-10, 100)}%`);\n    star.style.setProperty('--star-top', `${this.rand(-40, 80)}%`);\n    star.style.animation = 'none';\n    star.offsetHeight;\n    star.style.animation = '';\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": " \r\n$color-1: rgb( 41, 121, 255);\r\n$color-2: rgb(  0, 176, 255);\r\n$color-3: rgb(  0, 229, 255);\r\n$color-4: rgb( 29, 233, 182);\r\n\r\n\r\n@keyframes background-pan {\r\n  from { background-position: 0% center; }\r\n  to { background-position: -200% center; }\r\n}\r\n\r\n@keyframes scale {\r\n  from, to { transform: scale(0); }\r\n  50% { transform: scale(1); }\r\n}\r\n\r\n@keyframes rotate {\r\n  from { transform: rotate(0deg); }\r\n  to { transform: rotate(180deg); }\r\n}\r\n\r\nbody {\r\n  background-color: rgb(10, 10, 10);\r\n  display: grid;\r\n  height: 100vh;\r\n  margin: 0px;\r\n  overflow: hidden;\r\n  place-items: center;\r\n}\r\n\r\nh1 {\r\n  color: white;\r\n  font-size: 24px;\r\n  font-weight: 500;\r\n  margin: 0px;\r\n  padding: 20px;\r\n  text-align: center;\r\n\r\n  .magic {\r\n    display: inline-block;\r\n    position: relative;\r\n\r\n    .magic-star {\r\n      $size: 24px;\r\n      \r\n      animation: scale 700ms ease forwards;\r\n      display: block;\r\n      height: $size;\r\n      left: var(--star-left);\r\n      position: absolute;\r\n      top:var(--star-top);\r\n      width: $size;\r\n\r\n      svg {\r\n        animation: rotate 1000ms linear infinite;\r\n        display: block;\r\n        opacity: 0.7;\r\n\r\n        path {\r\n          fill: $color-3;\r\n        }\r\n      }\r\n    }\r\n\r\n    .magic-text {\r\n      animation: background-pan 4s linear infinite;\r\n      background: linear-gradient(\r\n        to right,\r\n        $color-1,\r\n        $color-3,\r\n        $color-2,\r\n        $color-1\r\n      );\r\n      background-size: 200%;\r\n      -webkit-background-clip: text;\r\n      -webkit-text-fill-color: transparent;\r\n      white-space: nowrap;\r\n    }\r\n  }\r\n}",
+                    "styleUrl": "./magic-text.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "elem",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 21,
+                "jsdoctags": [
+                    {
+                        "name": "elem",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<h1>\n  <span class=\"magic\">\n    <span class=\"magic-star\">\n      <svg viewBox=\"0 0 512 512\">\n        <path\n          d=\"M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z\" />\n      </svg>\n    </span>\n    <span class=\"magic-text\">\n      <ng-content></ng-content>\n    </span>\n  </span>\n</h1>\n"
+        },
+        {
             "name": "SpellContainerComponent",
-            "id": "component-SpellContainerComponent-9ee7cdcb3a02ed46687eb9fe4ce46c8eac2b2b2b5c40c88c4d7f8489e18e9dc01fca995ee155662f16d4783e232cd3b8beeef1f3bb75fd79add05ef710aa8f4d",
+            "id": "component-SpellContainerComponent-5b120bb69a2becf05e2211c81e994519ce9dac4b50df2ac7083de4baf29682be9f5bbad4e0e059b38261f0932bf802c4012535daf967053aa4966e23d8621a4c",
             "file": "src/app/modules/spell/spell-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2025,34 +2425,74 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "spellList$",
+                    "name": "_unsubscribe",
+                    "defaultValue": "new Subject()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Observable<SpellEntity[]>",
+                    "type": "Subject<void>",
                     "optional": false,
                     "description": "",
-                    "line": 13,
-                    "decorators": [
-                        {
-                            "name": "Select",
-                            "stringifiedArguments": "SpellState.spellList"
-                        }
-                    ]
+                    "line": 7,
+                    "modifierKind": [
+                        121
+                    ],
+                    "inheritance": {
+                        "file": "BaseContainer"
+                    }
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "getAllEvent",
+                    "name": "getAll",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 20,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
                         123
                     ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "inheritance": {
+                        "file": "BaseContainer"
+                    }
+                },
+                {
+                    "name": "unsubscribeAction",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        121
+                    ],
+                    "inheritance": {
+                        "file": "BaseContainer"
+                    }
                 }
             ],
             "deprecated": false,
@@ -2062,7 +2502,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { Select, Store } from '@ngxs/store';\nimport { Observable } from 'rxjs';\nimport { SpellActions } from './store/spell.actions';\nimport { SpellEntity } from './store/spell.entity';\nimport { SpellState } from './store/spell.state';\n\n@Component({\n  template: '<router-outlet></router-outlet>',\n})\nexport class SpellContainerComponent {\n  @Select(SpellState.spellList) \n  spellList$!: Observable<SpellEntity[]>;\n\n  constructor(private _store: Store) {\n    this.getAllEvent();\n  }\n\n  public getAllEvent(): void {\n    this._store.dispatch(SpellActions.GetAll);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { Store } from '@ngxs/store';\r\nimport { takeUntil } from 'rxjs';\r\nimport { BaseContainer } from 'src/app/core/base/base.component';\r\n\r\nimport { SpellActions } from './store/spell.actions';\r\n\r\n@Component({\r\n  template: `<router-outlet></router-outlet>`,\r\n})\r\nexport class SpellContainerComponent extends BaseContainer implements OnInit {\r\n  constructor(private _store: Store) {\r\n    super();\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.getAll();\r\n  }\r\n\r\n  public getAll(): void {\r\n    this._store\r\n      .dispatch(SpellActions.GetAll)\r\n      .pipe(takeUntil(this.unsubscribe$));\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2079,7 +2519,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 13,
+                "line": 11,
                 "jsdoctags": [
                     {
                         "name": "_store",
@@ -2091,7 +2531,11 @@
                         }
                     }
                 ]
-            }
+            },
+            "extends": "BaseContainer",
+            "implements": [
+                "OnInit"
+            ]
         },
         {
             "name": "SpellDetailComponent",
@@ -2134,21 +2578,21 @@
             "templateData": "<p>spell-detail works!</p>\n"
         },
         {
-            "name": "SpellListComponent",
-            "id": "component-SpellListComponent-a4cf1d2be1f492475ec53bb819d468ea73a958a373719b7b91c58b48bb884479baf12b2169f1543d8574acd505af1597f5579c870199ae00c071e02a021a4d63",
-            "file": "src/app/modules/spell/views/spell-list/spell-list.component.ts",
+            "name": "SpellFormComponent",
+            "id": "component-SpellFormComponent-b9c1a8c390ecd30a7c5fa2a546edccbac3e221c9817c68dfc8cb207eb57b88cf78345f96c843f8e58f143a2be2c71c43d8ef53102572a113443ce96dc0ba2104",
+            "file": "src/app/modules/spell/views/spell-form/spell-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-spell-list",
+            "selector": "app-spell-form",
             "styleUrls": [
-                "./spell-list.component.scss"
+                "./spell-form.component.scss"
             ],
             "styles": [],
             "templateUrl": [
-                "./spell-list.component.html"
+                "./spell-form.component.html"
             ],
             "viewProviders": [],
             "inputsClass": [],
@@ -2170,16 +2614,149 @@
                     ]
                 }
             ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { Select } from '@ngxs/store';\nimport { Observable } from 'rxjs';\n\nimport { SpellEntity } from '../../store/spell.entity';\nimport { SpellState } from '../../store/spell.state';\n\n@Component({\n  selector: 'app-spell-form',\n  templateUrl: './spell-form.component.html',\n  styleUrls: ['./spell-form.component.scss'],\n})\nexport class SpellFormComponent {\n  @Select(SpellState.spellList)\n  spellList$!: Observable<SpellEntity[]>;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./spell-form.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<h1>Luanzinho o bala</h1>\n\n<pre>\n  {{ spellList$ | async | json }}\n</pre>\n"
+        },
+        {
+            "name": "SpellListComponent",
+            "id": "component-SpellListComponent-c0d40a67307822a525fe6655188a1b2297e6192a4687724da8f9419ba0cbb9bcbe45cde2edd8e1d3b260231bac02d2c058fbd55c114f5f82bcd2c17760a377e4",
+            "file": "src/app/modules/spell/views/spell-list/spell-list.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-spell-list",
+            "styleUrls": [
+                "./spell-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./spell-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "filter",
+                    "defaultValue": "'level'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"level\" | \"alphabetic\" | \"element\"",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "spellList$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<SpellEntity[]>",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "decorators": [
+                        {
+                            "name": "Select",
+                            "stringifiedArguments": "SpellState.spellList"
+                        }
+                    ]
+                },
+                {
+                    "name": "spellsCount",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "visibleSpells",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DictArray<SpellEntity>[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                }
+            ],
             "methodsClass": [
                 {
-                    "name": "ngOnInit",
-                    "args": [],
+                    "name": "hasLoaded",
+                    "args": [
+                        {
+                            "name": "data",
+                            "type": "SpellEntity[] | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
-                    "returnType": "void",
+                    "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 36,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "data",
+                            "type": "SpellEntity[] | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "iterableDictionary",
+                    "args": [
+                        {
+                            "name": "dict",
+                            "type": "AlphabeticGroup<SpellEntity>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "DictArray[]",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "dict",
+                            "type": "AlphabeticGroup<SpellEntity>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
@@ -2189,57 +2766,28 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Select, Store } from '@ngxs/store';\nimport { Observable } from 'rxjs';\nimport { SpellActions } from '../../store/spell.actions';\nimport { SpellEntity } from '../../store/spell.entity';\nimport { SpellState } from '../../store/spell.state';\n\n@Component({\n  selector: 'app-spell-list',\n  templateUrl: './spell-list.component.html',\n  styleUrls: ['./spell-list.component.scss']\n})\nexport class SpellListComponent implements OnInit {\n  @Select(SpellState.spellList) \n  spellList$!: Observable<SpellEntity[]>;\n\n  constructor(private _store: Store) { }\n\n  ngOnInit(): void {\n    this._store.dispatch(SpellActions.GetAll);\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { AlphabeticGroup, DictArray } from '@core/rules';\nimport { Select } from '@ngxs/store';\nimport { Observable } from 'rxjs';\n\nimport { SpellEntity } from '../../store/spell.entity';\nimport { SpellState } from '../../store/spell.state';\n\n@Component({\n  selector: 'app-spell-list',\n  templateUrl: './spell-list.component.html',\n  styleUrls: ['./spell-list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SpellListComponent {\n  @Select(SpellState.spellList)\n  spellList$!: Observable<SpellEntity[]>;\n\n  spellsCount: number = 0;\n\n  visibleSpells: DictArray<SpellEntity>[] = [];\n\n  filter: 'level' | 'alphabetic' | 'element' = 'level';\n\n  iterableDictionary(\n    dict: AlphabeticGroup<SpellEntity>\n  ): DictArray<SpellEntity>[] {\n    let result: DictArray<SpellEntity>[] = [];\n    Object.entries(dict).forEach(([key, value]) => {\n      result.push({ key: key, data: value });\n    });\n    this.visibleSpells = result;\n    return result;\n  }\n\n  hasLoaded(data: SpellEntity[] | null): boolean {\n    if (data === null) return false;\n    if (data.length === 0) return false;\n    return true;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\r\n  margin: 1em;\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: space-between;\r\n\r\n  app-card {\r\n    flex: 0 1 calc(33% - 1em);\r\n    margin-bottom: 1em;\r\n\r\n    @media screen and (max-width: 1280px) {\r\n      flex: 0 1 calc(50% - 1em);\r\n    }\r\n\r\n    @media screen and (max-width: 960px) {\r\n      flex: 0 1 calc(100% - 1em);\r\n      max-width: 100%;\r\n    }\r\n  }\r\n}",
+                    "data": ":host {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n  flex: 1;\r\n  \r\n  mat-progress-bar {\r\n    margin: 0px 0px 16px 0px;\r\n  }\r\n\r\n  .title {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    margin: 16px;\r\n\r\n    h1 {\r\n      margin-bottom: 0;\r\n    }\r\n\r\n    .search {\r\n      display: flex;\r\n      align-items: stretch;\r\n      gap: 16px;\r\n      mat-form-field {\r\n        flex: auto;\r\n      }\r\n      button {\r\n        padding: 0px 16px;\r\n        height: 54px;\r\n        border-radius: 27px;\r\n      }\r\n    }\r\n    \r\n  }\r\n  mat-list {\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex: 1;\r\n\r\n    .subheader {\r\n      width: 100%;\r\n      background-color: rgba(0,0,0,0.10);\r\n    }\r\n\r\n    mat-list-item {\r\n      border-bottom: 1px solid rgba(0,0,0,0.10);\r\n      width: 100%;\r\n    }\r\n  }\r\n}",
                     "styleUrl": "./spell-list.component.scss"
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "_store",
-                        "type": "Store",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 15,
-                "jsdoctags": [
-                    {
-                        "name": "_store",
-                        "type": "Store",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<ng-container *ngFor=\"let spell of spellList$ | async\">\n  <app-card [spell]=\"spell\"></app-card>\n</ng-container>\n"
+            "templateData": "<div class=\"title\">\n  <div class=\"text\">\n    <h1>Spells</h1>\n    <span>99 spells</span>\n  </div>\n\n  <div class=\"search\">\n    <mat-button-toggle-group name=\"fontStyle\" aria-label=\"Font Style\">\n      <mat-button-toggle #level value=\"level\" (click)=\"filter = level.value\">\n        level\n      </mat-button-toggle>\n      <mat-button-toggle\n        #alphabetic\n        value=\"alphabetic\"\n        (click)=\"filter = alphabetic.value\">\n        alphabetic\n      </mat-button-toggle>\n      <mat-button-toggle\n        #element\n        value=\"element\"\n        (click)=\"filter = element.value\">\n        element\n      </mat-button-toggle>\n    </mat-button-toggle-group>\n  </div>\n</div>\n\n<div *ngIf=\"hasLoaded(spellList$ | async); then list; else loading\">\n  here is ignored\n</div>\n\n<ng-template #list>\n  <mat-list\n    *ngFor=\"\n      let item of iterableDictionary(spellList$ | async | groupBy: filter)\n    \">\n    <mat-toolbar color=\"accent\" mat-subheader>\n      {{ item.key | iscantrip | uppercase }}\n    </mat-toolbar>\n    <mat-list-item *ngFor=\"let spell of item.data\" matRipple>\n      <div mat-list-icon>\n        <app-icon [element]=\"spell.type\"></app-icon>\n      </div>\n      <div mat-line>{{ spell.name }}</div>\n      <div mat-line>{{ spell.duration }}</div>\n    </mat-list-item>\n  </mat-list>\n</ng-template>\n\n<ng-template #loading>\n  <mat-progress-bar mode=\"indeterminate\"></mat-progress-bar>\n</ng-template>\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-7987fda02bb4e68056cdfc4e409bce4ae366e26dabe268f81c6f365c0987590a88004b9ae89601d8fa1ce1afae85a6892749026a4d5cc3a8fb6855ae45ea908e",
+            "id": "module-AppModule-772e875e1857b37d159bcd88763c82de237b7e818bef59909d7d81634c54fc341941fa5f85f69b655a3330de00c62f1bca3742ff6998095d3ab08e632e64bd22",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { NgxsModule } from '@ngxs/store';\nimport { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { LayoutState } from './core/store/layout.state';\nimport { CoreModule } from './core/core.module';\nimport { BianchiUiModule } from 'projects/bianchi-ui/src/public-api';\nimport { BreakpointService } from './core/services/breakpoint.service';\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    BrowserModule,\n    FlexLayoutModule,\n    AppRoutingModule,\n    FontAwesomeModule,\n    BrowserAnimationsModule,\n    NgxsModule.forRoot([LayoutState]),\n    NgxsReduxDevtoolsPluginModule.forRoot(),\n    CoreModule,\n  ],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';\nimport { NgxsModule } from '@ngxs/store';\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { CoreModule } from './core/core.module';\nimport { LayoutState } from './core/store/layout.state';\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    BrowserModule,\n    FlexLayoutModule,\n    AppRoutingModule,\n    FontAwesomeModule,\n    BrowserAnimationsModule,\n    NgxsModule.forRoot([LayoutState]),\n    NgxsReduxDevtoolsPluginModule.forRoot(),\n    CoreModule,\n  ],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2284,13 +2832,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-50a59ccb8ef9d5bd855e36bfff4fdeb1c687c0ba09b71686e2c93a5164536501ab669f1cfb1ba5b062fbef6a6229c51d452f8ae9e0bf32217ddcdd043f71b7a9",
+            "id": "module-AppRoutingModule-dd11ee0a8b47d020cddbc82daca36b99709366d9affb9e6719d8eb69fc3b0bb22eceab7a9242226f8a447505c646cc2358f15211e77e965e62e7c8d1235b894f",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { AuthGuard } from './core/auth/auth.guard';\n\nconst routes: Routes = [\n  {\n    path: '',\n    loadChildren: () =>\n      \"import('./modules/spell/spell.module').then(\\\n        (m) => m.SpellModule\\\n      )\",\n  }, {\n    path: 'login',\n    loadChildren: () =>\n      \"import('./modules/login/login.module').then(\\\n        (m) => m.LoginModule\\\n      )\",\n  },\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule],\n})\nexport class AppRoutingModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { DashboardLayoutComponent } from '@layouts/dashboard-layout';\nimport { LoginLayoutComponent } from '@layouts/login-layout';\n\nconst routes: Routes = [\n  {\n    path: '',\n    component: DashboardLayoutComponent,\n    children: [\n      {\n        path: '',\n        loadChildren: () =>\n          \"import('./modules/spell/spell.module').then(m => m.SpellModule)\",\n      },\n    ],\n  },\n  {\n    path: 'login',\n    component: LoginLayoutComponent,\n    loadChildren: () =>\n      \"import('./modules/login/login.module').then(m => m.LoginModule)\",\n  },\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule],\n})\nexport class AppRoutingModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2307,50 +2855,6 @@
                 {
                     "type": "exports",
                     "elements": []
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "BianchiUiModule",
-            "id": "module-BianchiUiModule-4748f777d68d5aa55dddb70f46b05141c5fbd3160af3e8f19f00655762c159aa07e13eb28c7132573f33687f02f02da15e0719e7f913f05abea01715e4fe2e06",
-            "description": "",
-            "deprecationMessage": "",
-            "deprecated": false,
-            "file": "projects/bianchi-ui/src/lib/bianchi-ui.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BianchiUiComponent } from './bianchi-ui.component';\n\n\n\n@NgModule({\n  declarations: [\n    BianchiUiComponent\n  ],\n  imports: [\n  ],\n  exports: [\n    BianchiUiComponent\n  ]\n})\nexport class BianchiUiModule { }\n",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "BianchiUiComponent"
-                        }
-                    ]
-                },
-                {
-                    "type": "imports",
-                    "elements": []
-                },
-                {
-                    "type": "exports",
-                    "elements": [
-                        {
-                            "name": "BianchiUiComponent"
-                        }
-                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -2364,13 +2868,13 @@
         },
         {
             "name": "ComponentsModule",
-            "id": "module-ComponentsModule-2ec912226197f655282905e0e5926194921b39b7446bf23465ee92f4fe9e487cf59f299b555c7ba372453cefde18ab2ac792097eefb0882dbc50a67057947543",
+            "id": "module-ComponentsModule-bfe283ab464305cf858ad9cd3df2ee7ce2c697be12e75766dcec53f793f33f95bdb3b2fb20e0cc3c640fb0f64231aba3915618115afcbc112be2850e778f965c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/components/components.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatChipsModule } from '@angular/material/chips';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { CardComponent } from './card/card.component';\nimport { IconComponent } from './icon/icon.component';\nimport { SpellLevelPipe } from '../pipes/spell-level.pipe';\nimport { PipesModule } from '../pipes/pipes.module';\n\n\n\n@NgModule({\n  imports: [\n    PipesModule,\n    CommonModule, \n    FontAwesomeModule, \n    MatCardModule, \n    MatChipsModule,\n  ],\n  declarations: [CardComponent, IconComponent],\n  exports:      [CardComponent, IconComponent],\n})\nexport class ComponentsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CardComponent } from './card';\nimport { IconComponent } from './icon';\nimport { MagicTextComponent } from './magic-text/magic-text.component';\n\n@NgModule({\n  imports: [CardComponent, IconComponent, MagicTextComponent],\n  exports: [CardComponent, IconComponent, MagicTextComponent],\n})\nexport class ComponentsModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2378,18 +2882,21 @@
                 },
                 {
                     "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
                     "elements": [
                         {
                             "name": "CardComponent"
                         },
                         {
                             "name": "IconComponent"
+                        },
+                        {
+                            "name": "MagicTextComponent"
                         }
                     ]
-                },
-                {
-                    "type": "imports",
-                    "elements": []
                 },
                 {
                     "type": "exports",
@@ -2399,6 +2906,9 @@
                         },
                         {
                             "name": "IconComponent"
+                        },
+                        {
+                            "name": "MagicTextComponent"
                         }
                     ]
                 },
@@ -2414,13 +2924,13 @@
         },
         {
             "name": "CoreModule",
-            "id": "module-CoreModule-05e06cc8fb66579de77a3c988cf5802f316e6b98df53b46a9a52242408844116c68eecac76280973b60bc149dba505bbd451ab88465a122c8db19b7c4ca9bf60",
+            "id": "module-CoreModule-e4624f76d64898a8dbcf34354eb14b3b321140f4a4d349690e2cd7834c5062db5addbdfe9527d02ecaac8f89dd1bef6f3548c352896eac9ac5d2c42afd185477",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/core/core.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule, Optional, SkipSelf } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';\nimport { BreakpointService } from './services/breakpoint.service';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ], \n  providers: [\n    BreakpointService\n  ]\n})\nexport class CoreModule extends EnsureModuleLoadedOnceGuard {\n  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {\n    super(parentModule);\n  }\n}\n",
+            "sourceCode": "import { LayoutModule } from '@angular/cdk/layout';\nimport { NgModule, Optional, SkipSelf } from '@angular/core';\nimport { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';\nimport { BreakpointService } from './services/breakpoint.service';\n\n@NgModule({\n  exports: [LayoutModule],\n  providers: [BreakpointService],\n})\nexport class CoreModule extends EnsureModuleLoadedOnceGuard {\n  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {\n    super(parentModule);\n  }\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2454,13 +2964,13 @@
         },
         {
             "name": "DashboardLayoutModule",
-            "id": "module-DashboardLayoutModule-84e6a0d2573218dd00b3f597f12b55ac46206ed912eab753fb0c42bb5b5ee85ebd6e9b8290c07b21a929457c70b57f19ce8c87b7eb047041ee5928d961edeb70",
+            "id": "module-DashboardLayoutModule-206bb8badb180738df9c137b2679d9615a20384baf3788fa15fcc2b006e560fb5906f12695ff5dfeb219b27f5775ec6cc601f364b33ca6589514c4422a16a271",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/shared/layouts/dashboard-layout/dashboard-layout.module.ts",
+            "file": "src/app/core/layouts/dashboard-layout/dashboard-layout.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatListModule } from '@angular/material/list';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { RouterModule } from '@angular/router';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\n\nimport { DashboardLayoutComponent } from './dashboard-layout.component';\n\n@NgModule({\n  declarations: [DashboardLayoutComponent],\n  imports: [\n    CommonModule, \n    RouterModule,\n    MatCardModule,\n    MatListModule, \n    MatIconModule,\n    MatButtonModule,\n    MatToolbarModule,\n    MatSidenavModule,\n    FontAwesomeModule,\n  ],\n  exports: [DashboardLayoutComponent],\n})\nexport class DashboardLayoutModule {}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { RouterModule } from '@angular/router';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { ComponentsModule } from '@shared/components/components.module';\nimport { MaterialModule } from '@shared/material/material.module';\n\nimport { DashboardLayoutComponent } from './dashboard-layout.component';\n\n@NgModule({\n  declarations: [DashboardLayoutComponent],\n  imports: [\n    CommonModule,\n    ComponentsModule,\n    RouterModule,\n    FontAwesomeModule,\n    MaterialModule,\n  ],\n  exports: [DashboardLayoutComponent],\n})\nexport class DashboardLayoutModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2476,7 +2986,11 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "MaterialModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
@@ -2502,7 +3016,7 @@
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/shared/layouts/layouts.module.ts",
+            "file": "src/app/core/layouts/layouts.module.ts",
             "methods": [],
             "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DashboardLayoutModule } from './dashboard-layout/dashboard-layout.module';\nimport { LoginLayoutModule } from './login-layout/login-layout.module';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n    LoginLayoutModule\n  ],\n  exports: [\n    DashboardLayoutModule\n  ]\n})\nexport class LayoutsModule { }\n",
             "children": [
@@ -2546,7 +3060,7 @@
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/shared/layouts/login-layout/login-layout.module.ts",
+            "file": "src/app/core/layouts/login-layout/login-layout.module.ts",
             "methods": [],
             "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\n\nimport { LoginLayoutComponent } from './login-layout.component';\n\n\n\n@NgModule({\n  declarations: [LoginLayoutComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class LoginLayoutModule { }\n",
             "children": [
@@ -2661,14 +3175,50 @@
             ]
         },
         {
+            "name": "MaterialModule",
+            "id": "module-MaterialModule-092e58a502217909ab43e24fc46078089dd0df55186fd03af202aa99bebacb700a4e0cacaffd454111f408762a156f3d1f872b8b8d06d31a71eabaf6f40ae7a5",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/material/material.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCardModule } from '@angular/material/card';\nimport { MatRippleModule } from '@angular/material/core';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatListModule } from '@angular/material/list';\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\nimport { MatSidenavModule } from '@angular/material/sidenav';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\n\n@NgModule({\n  exports: [\n    MatCardModule,\n    MatListModule,\n    MatIconModule,\n    MatInputModule,\n    MatRippleModule,\n    MatButtonModule,\n    MatToolbarModule,\n    MatSidenavModule,\n    MatFormFieldModule,\n    MatProgressBarModule,\n    MatButtonToggleModule,\n  ],\n})\nexport class MaterialModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
             "name": "PipesModule",
-            "id": "module-PipesModule-458ed8d7f8bacaa3cbb85b3596957ca8d07821956a75bc0d75e0a56627f7be5788a255dcf4f630796178efb51ce15050692d2dde9d8506b6cec7a84f294b3ffb",
+            "id": "module-PipesModule-dcf1c04c53d823f24c5708222b5fd64c990ff32657261b717a4bc9749f92f74598e4b008c7d93651d82eaf1a5904a09ff5195e130f2bef927a68322a2a4fe648",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/pipes/pipes.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { SpellLevelPipe } from './spell-level.pipe';\n\n\n@NgModule({\n  declarations: [SpellLevelPipe],\n  exports:      [SpellLevelPipe],\n})\nexport class PipesModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { GroupByPipe } from './group-by.pipe';\nimport { IsCantripPipe } from './is-cantrip.pipe';\n\n@NgModule({\n  declarations: [IsCantripPipe, GroupByPipe],\n  exports: [IsCantripPipe, GroupByPipe],\n})\nexport class PipesModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2678,7 +3228,10 @@
                     "type": "declarations",
                     "elements": [
                         {
-                            "name": "SpellLevelPipe"
+                            "name": "GroupByPipe"
+                        },
+                        {
+                            "name": "IsCantripPipe"
                         }
                     ]
                 },
@@ -2690,7 +3243,10 @@
                     "type": "exports",
                     "elements": [
                         {
-                            "name": "SpellLevelPipe"
+                            "name": "GroupByPipe"
+                        },
+                        {
+                            "name": "IsCantripPipe"
                         }
                     ]
                 },
@@ -2706,13 +3262,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-61b10f5c6e3c052fe58dde0e3e2c2d0d65ea12e58ac0397cbf087dc7ffa6c6338026b139ab86ca3b368f5b23fda4a1674cca4dcb6b0693e8030806b21f0c1985",
+            "id": "module-SharedModule-0c9496a04f4f83851fef94199101548ac84a4dad745d4b509bc194ce2a5ff6fd2f980203e3962e8b01dde8b9d30ee82850e0af0d5957ad3d62ba7c1032387648",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ComponentsModule } from '@components/components.module';\nimport { LayoutsModule } from './layouts/layouts.module';\nimport { PipesModule } from './pipes/pipes.module';\n\n\n\n@NgModule({\n  exports: [\n    PipesModule,\n    LayoutsModule,\n    ComponentsModule,\n  ]\n})\nexport class SharedModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ComponentsModule } from '@components/components.module';\nimport { PipesModule } from '@shared/pipes/pipes.module';\nimport { MaterialModule } from './material/material.module';\n\n@NgModule({\n  exports: [PipesModule, ComponentsModule, MaterialModule],\n})\nexport class SharedModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2730,7 +3286,7 @@
                     "type": "exports",
                     "elements": [
                         {
-                            "name": "LayoutsModule"
+                            "name": "MaterialModule"
                         }
                     ]
                 },
@@ -2746,13 +3302,13 @@
         },
         {
             "name": "SpellModule",
-            "id": "module-SpellModule-afb7b49dce6420c2e9b2eafb8e462947f62e3428999ff7ae660ab78ad69d816e0cb3652834e2a096786627063c1b9b56f01ba05bf860236df72278c85cf30e4b",
+            "id": "module-SpellModule-1d703474a2b14ac231522ef1ed5a1bc35f2536c043620840e4e0ddd4caa55f938be0f2def4f9f88cb1412ae9d1041393e6240579614e9dcd999fec89412dde00",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/modules/spell/spell.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { HttpClientModule } from '@angular/common/http';\nimport { NgModule } from '@angular/core';\nimport { NgxsModule } from '@ngxs/store';\nimport { SharedModule } from 'src/app/shared/shared.module';\n\nimport { SpellResolver } from './providers/spell.resolver';\nimport { SpellService } from './providers/spell.service';\nimport { SpellRoutingModule } from './spell-routing.module';\nimport { SpellState } from './store/spell.state';\n\n@NgModule({\n  declarations: [SpellRoutingModule.components],\n  providers:    [SpellService, SpellResolver],\n  imports: [\n    HttpClientModule,\n    CommonModule,\n    SpellRoutingModule,\n    SharedModule,\n    NgxsModule.forFeature([SpellState]),\n  ],\n})\nexport class SpellModule {}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { HttpClientModule } from '@angular/common/http';\nimport { NgModule } from '@angular/core';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { NgxsModule } from '@ngxs/store';\nimport { SharedModule } from 'src/app/shared/shared.module';\n\nimport { SpellResolver } from './providers/spell.resolver';\nimport { SpellService } from './providers/spell.service';\nimport { SpellRoutingModule } from './spell-routing.module';\nimport { SpellState } from './store/spell.state';\nimport { SpellFormComponent } from './views/spell-form/spell-form.component';\n\n@NgModule({\n  declarations: [SpellRoutingModule.components, SpellFormComponent],\n  providers: [SpellService, SpellResolver],\n  imports: [\n    FormsModule,\n    CommonModule,\n    HttpClientModule,\n    ReactiveFormsModule,\n    NgxsModule.forFeature([SpellState]),\n\n    // My Imports\n    SpellRoutingModule,\n    SharedModule,\n  ],\n})\nexport class SpellModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2764,7 +3320,11 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "SpellFormComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "imports",
@@ -2793,13 +3353,13 @@
         },
         {
             "name": "SpellRoutingModule",
-            "id": "module-SpellRoutingModule-74c4cbdfe082a97a2d4473924a0e95c5c7d6df12558f1b0af7eba544536c4e200772bec8b8da8ffd725a8945c9e62bdfff666941890429c142cca77abbc8f2d2",
+            "id": "module-SpellRoutingModule-ac6b2206a379c2911387d97086a0ab20360330838805fda4c3965ab8eb987e7b8f9620270fe1f35e5e366252a01f9798258950f44dedd13c30c7ed9b15891692",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/modules/spell/spell-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { DashboardLayoutComponent } from 'src/app/shared/layouts/dashboard-layout/dashboard-layout.component';\nimport { SpellContainerComponent } from './spell-container.component';\nimport { SpellDetailComponent } from './views/spell-detail/spell-detail.component';\nimport { SpellListComponent } from './views/spell-list/spell-list.component';\n\n\nconst routes: Routes = [\n  {\n    path: '',\n    component: DashboardLayoutComponent,\n    children: [{ \n      path: '', \n      component: SpellContainerComponent, \n      children: [\n        {path: '', component: SpellListComponent},\n        {path: 'spell/:id', component: SpellDetailComponent}\n      ]\n    }],\n  },\n];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule],\n})\nexport class SpellRoutingModule {\n  static components = [ \n    SpellContainerComponent,\n    SpellListComponent,\n    SpellDetailComponent\n  ]\n}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\n\nimport { SpellContainerComponent } from './spell-container.component';\nimport { SpellDetailComponent } from './views/spell-detail/spell-detail.component';\nimport { SpellFormComponent } from './views/spell-form/spell-form.component';\nimport { SpellListComponent } from './views/spell-list/spell-list.component';\n\nconst routes: Routes = [\n  {\n    path: '',\n    component: SpellContainerComponent,\n    children: [\n      { path: '', component: SpellListComponent },\n      { path: 'spell/detail/:id', component: SpellDetailComponent },\n      { path: 'spell/create', component: SpellFormComponent },\n    ],\n  },\n];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule],\n})\nexport class SpellRoutingModule {\n  static components = [\n    SpellContainerComponent,\n    SpellListComponent,\n    SpellDetailComponent,\n  ];\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2871,14 +3431,14 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
-                "name": "context",
+                "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/bianchi-ui/src/test.ts",
+                "file": "src/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                "type": "object",
+                "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3000',\n}"
             },
             {
                 "name": "environment",
@@ -2889,16 +3449,6 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: true,\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/environments/environment.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3000',\n}"
             },
             {
                 "name": "fire",
@@ -3020,15 +3570,6 @@
                 "type": "literal type"
             },
             {
-                "name": "require",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/bianchi-ui/src/test.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "literal type"
-            },
-            {
                 "name": "slashing",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -3042,21 +3583,11 @@
                 "name": "spellMock",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "mock/mock.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  \"spells\": [\n    {\n      \"id\": 0,\n      \"name\": \"Acid Splash\",\n      \"type\": \"acid\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Blade Ward\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Abjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"1 Round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Booming Blade\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"1 round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Chill Touch\",\n      \"type\": \"necrotic\",\n      \"level\": 0,\n      \"school\": \"Necromancy\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"1 round\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Control Flames\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous or 1 hour\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Create Bonfire\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Dancing Lights\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Druidcraft\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Eldritch Blast\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Encode Thoughts\",\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"8 hours\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Fire Bolt\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Friends\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 12,\n      \"name\": \"Frostbite\",\n      \"type\": \"cold\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Green-Flame Blade\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 14,\n      \"name\": \"Guidance\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Divination\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Touch\",\n      \"duration\": \"Concentration up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 15,\n      \"name\": \"Gust\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 16,\n      \"name\": \"Infestation\",\n      \"type\": \"poison\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    }\n  ]\n}"
-            },
-            {
-                "name": "spellMock",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "SpellEntity",
-                "defaultValue": "{\n  id: 0,\n  name: 'Mock Spell',\n  description: `\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n    Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n    Pellentesque commodo purus sed consectetur lacinia. \n    Aenean ornare quam quis imperdiet accumsan. \n    Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n    Mauris a ultrices justo. Aenean sit amet volutpat felis. \n    Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n    Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n    Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n    Vestibulum egestas at purus posuere scelerisque.`,\n  type: 'acid',\n  level: 0,\n  school: 'evocation',\n  castingTime: '1 Action',\n  range: '60 Feet',\n  duration: 'Instantaneous',\n  components: ['V', 'S']\n}"
+                "defaultValue": "{\r\n  id: 0,\r\n  name: 'Mock Spell',\r\n  description: `\r\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n    Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \r\n    Pellentesque commodo purus sed consectetur lacinia. \r\n    Aenean ornare quam quis imperdiet accumsan. \r\n    Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \r\n    Mauris a ultrices justo. Aenean sit amet volutpat felis. \r\n    Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \r\n    Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \r\n    Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \r\n    Vestibulum egestas at purus posuere scelerisque.`,\r\n  type: 'acid',\r\n  level: 0,\r\n  school: 'evocation',\r\n  castingTime: '1 Action',\r\n  range: '60 Feet',\r\n  duration: 'Instantaneous',\r\n  components: ['V', 'S'],\r\n}"
             },
             {
                 "name": "Template",
@@ -3066,7 +3597,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CardComponent>",
-                "defaultValue": "(args: CardComponent) => ({\n  props: args,\n})"
+                "defaultValue": "(args: CardComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -3345,25 +3876,16 @@
                     "type": "literal type"
                 }
             ],
-            "projects/bianchi-ui/src/test.ts": [
+            "src/environments/environment.ts": [
                 {
-                    "name": "context",
+                    "name": "environment",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/bianchi-ui/src/test.ts",
+                    "file": "src/environments/environment.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
-                },
-                {
-                    "name": "require",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/bianchi-ui/src/test.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "literal type"
+                    "type": "object",
+                    "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3000',\n}"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -3376,18 +3898,6 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: true,\n}"
-                }
-            ],
-            "src/environments/environment.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false,\n  baseUrl: 'http://localhost:3000',\n}"
                 }
             ],
             "src/stories/card.stories.ts": [
@@ -3409,7 +3919,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "SpellEntity",
-                    "defaultValue": "{\n  id: 0,\n  name: 'Mock Spell',\n  description: `\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n    Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \n    Pellentesque commodo purus sed consectetur lacinia. \n    Aenean ornare quam quis imperdiet accumsan. \n    Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \n    Mauris a ultrices justo. Aenean sit amet volutpat felis. \n    Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \n    Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \n    Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \n    Vestibulum egestas at purus posuere scelerisque.`,\n  type: 'acid',\n  level: 0,\n  school: 'evocation',\n  castingTime: '1 Action',\n  range: '60 Feet',\n  duration: 'Instantaneous',\n  components: ['V', 'S']\n}"
+                    "defaultValue": "{\r\n  id: 0,\r\n  name: 'Mock Spell',\r\n  description: `\r\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n    Nullam consequat, tortor vel eleifend volutpat, felis leo rhoncus nunc, a eleifend justo justo ac mauris. \r\n    Pellentesque commodo purus sed consectetur lacinia. \r\n    Aenean ornare quam quis imperdiet accumsan. \r\n    Sed rutrum, arcu quis scelerisque pellentesque, elit enim ultrices quam, sit amet tincidunt risus urna ut neque. \r\n    Mauris a ultrices justo. Aenean sit amet volutpat felis. \r\n    Sed pellentesque, augue eu euismod bibendum, nunc orci lobortis enim, vitae molestie magna nisi nec lacus. \r\n    Quisque iaculis posuere orci, sed fermentum arcu sollicitudin ut. \r\n    Suspendisse nulla mauris, euismod nec eros et, malesuada porta sem. \r\n    Vestibulum egestas at purus posuere scelerisque.`,\r\n  type: 'acid',\r\n  level: 0,\r\n  school: 'evocation',\r\n  castingTime: '1 Action',\r\n  range: '60 Feet',\r\n  duration: 'Instantaneous',\r\n  components: ['V', 'S'],\r\n}"
                 },
                 {
                     "name": "Template",
@@ -3419,7 +3929,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<CardComponent>",
-                    "defaultValue": "(args: CardComponent) => ({\n  props: args,\n})"
+                    "defaultValue": "(args: CardComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/app/shared/components/icon/icons.interface.ts": [
@@ -3442,18 +3952,6 @@
                     "deprecationMessage": "",
                     "type": "Record<RPGMagicEffect, IconElement>",
                     "defaultValue": "{\n  acid: {\n    color: '#53A548',\n    icon: faFlask,\n  },\n  cold: {\n    color: '#55C1FF',\n    icon: faSnowflake,\n  },\n  fire: {\n    color: '#EB5E28',\n    icon: faFire,\n  },\n  force: {\n    color: '#A4BFEB',\n    icon: faWind,\n  },\n  lightning: {\n    color: '#FFD23F',\n    icon: faBolt,\n  },\n  necrotic: {\n    color: '#370031',\n    icon: faSkull,\n  },\n  poison: {\n    color: '#53A548',\n    icon: faDroplet,\n  },\n  psychic: {\n    color: '#6320EE',\n    icon: faBrain,\n  },\n  radiant: {\n    color: '#FFD23F',\n    icon: faSun,\n  },\n  thunder: {\n    color: '#173753',\n    icon: faCloudBolt,\n  },\n\n  bludgeoning: {\n    color: '#FF312E',\n    icon: faGavel,\n  },\n  piercing: {\n    color: '#FF312E',\n    icon: faPen,\n  },\n  slashing: {\n    color: '#FF312E',\n    icon: faCut,\n  },\n}"
-                }
-            ],
-            "mock/mock.ts": [
-                {
-                    "name": "spellMock",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "mock/mock.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  \"spells\": [\n    {\n      \"id\": 0,\n      \"name\": \"Acid Splash\",\n      \"type\": \"acid\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Blade Ward\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Abjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"1 Round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Booming Blade\",\n      \"type\": \"slashing\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"1 round\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Chill Touch\",\n      \"type\": \"necrotic\",\n      \"level\": 0,\n      \"school\": \"Necromancy\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"1 round\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Control Flames\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous or 1 hour\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Create Bonfire\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Dancing Lights\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Druidcraft\",\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Eldritch Blast\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Encode Thoughts\",\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"8 hours\",\n      \"components\": [\"s\"]\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Fire Bolt\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"120 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Friends\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Enchantment\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self\",\n      \"duration\": \"Concentration, up to 1 minute\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 12,\n      \"name\": \"Frostbite\",\n      \"type\": \"cold\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"60 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Green-Flame Blade\",\n      \"type\": \"fire\",\n      \"level\": 0,\n      \"school\": \"Evocation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Self (5-foot radius)\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"s\", \"m\"]\n    },\n    {\n      \"id\": 14,\n      \"name\": \"Guidance\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Divination\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"Touch\",\n      \"duration\": \"Concentration up to 1 minute\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 15,\n      \"name\": \"Gust\",\n      \"type\": null,\n      \"level\": 0,\n      \"school\": \"Transmutation\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\"]\n    },\n    {\n      \"id\": 16,\n      \"name\": \"Infestation\",\n      \"type\": \"poison\",\n      \"level\": 0,\n      \"school\": \"Conjuration\",\n      \"castingTime\": \"1 Action\",\n      \"range\": \"30 Feet\",\n      \"duration\": \"Instantaneous\",\n      \"components\": [\"v\", \"s\", \"m\"]\n    }\n  ]\n}"
                 }
             ]
         },
@@ -3564,19 +4062,19 @@
                 "children": [
                     {
                         "path": "",
-                        "loadChildren": "./modules/spell/spell.module#SpellModule",
+                        "component": "DashboardLayoutComponent",
                         "children": [
                             {
-                                "kind": "module",
+                                "path": "",
+                                "loadChildren": "./modules/spell/spell.module#SpellModule",
                                 "children": [
                                     {
-                                        "name": "routes",
-                                        "filename": "src/app/modules/spell/spell-routing.module.ts",
-                                        "module": "SpellRoutingModule",
+                                        "kind": "module",
                                         "children": [
                                             {
-                                                "path": "",
-                                                "component": "DashboardLayoutComponent",
+                                                "name": "routes",
+                                                "filename": "src/app/modules/spell/spell-routing.module.ts",
+                                                "module": "SpellRoutingModule",
                                                 "children": [
                                                     {
                                                         "path": "",
@@ -3587,23 +4085,28 @@
                                                                 "component": "SpellListComponent"
                                                             },
                                                             {
-                                                                "path": "spell/:id",
+                                                                "path": "spell/detail/:id",
                                                                 "component": "SpellDetailComponent"
+                                                            },
+                                                            {
+                                                                "path": "spell/create",
+                                                                "component": "SpellFormComponent"
                                                             }
                                                         ]
                                                     }
-                                                ]
+                                                ],
+                                                "kind": "module"
                                             }
                                         ],
-                                        "kind": "module"
+                                        "module": "SpellModule"
                                     }
-                                ],
-                                "module": "SpellModule"
+                                ]
                             }
                         ]
                     },
                     {
                         "path": "login",
+                        "component": "LoginLayoutComponent",
                         "loadChildren": "./modules/login/login.module#LoginModule",
                         "children": [
                             {
@@ -3636,54 +4139,6 @@
         "status": "low",
         "files": [
             {
-                "filePath": "mock/mock.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "spellMock",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/bianchi-ui/src/lib/bianchi-ui.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "BianchiUiComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/bianchi-ui/src/lib/bianchi-ui.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "BianchiUiService",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/bianchi-ui/src/test.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "context",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/bianchi-ui/src/test.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "require",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "src/app/app.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -3711,12 +4166,57 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/core/base/base.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BaseContainer",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/core/guards/ensure-module-loaded-once.guard.ts",
                 "type": "class",
                 "linktype": "classe",
                 "name": "EnsureModuleLoadedOnceGuard",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/layouts/dashboard-layout/dashboard-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DashboardLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/layouts/login-layout/login-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/rules/core.rule.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "AlphabeticGroup",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/rules/core.rule.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "DictArray",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -3742,6 +4242,15 @@
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "BreakpointService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/events.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "EventsService",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
@@ -3815,7 +4324,7 @@
                 "linktype": "component",
                 "name": "SpellContainerComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -3873,12 +4382,21 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/modules/spell/views/spell-form/spell-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SpellFormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/modules/spell/views/spell-list/spell-list.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "SpellListComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -3929,28 +4447,28 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/layouts/dashboard-layout/dashboard-layout.component.ts",
+                "filePath": "src/app/shared/components/magic-text/magic-text.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "DashboardLayoutComponent",
+                "name": "MagicTextComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/layouts/login-layout/login-layout.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "LoginLayoutComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/pipes/spell-level.pipe.ts",
+                "filePath": "src/app/shared/pipes/group-by.pipe.ts",
                 "type": "pipe",
                 "linktype": "pipe",
-                "name": "SpellLevelPipe",
+                "name": "GroupByPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/pipes/is-cantrip.pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "IsCantripPipe",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

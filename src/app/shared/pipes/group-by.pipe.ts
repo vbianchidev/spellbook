@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AlphabeticGroup } from '@core/rules';
+import { Dict } from '@core/rules';
 import { SpellEntity } from 'src/app/modules/spell/store/spell.entity';
 
 @Pipe({
@@ -9,10 +9,23 @@ export class GroupByPipe implements PipeTransform {
   transform(
     list: SpellEntity[] | null,
     type?: 'level' | 'alphabetic' | 'element'
-  ): AlphabeticGroup<SpellEntity> {
+  ): Dict<SpellEntity> {
     if (!list) return {};
+
+    const numero = [1, 2, 3, 4, 5];
+
+    numero.reduce((somatoria: number, elementoAutal: number) => {
+      return (somatoria += elementoAutal);
+    });
+
+    console.log(
+      numero.reduce((somatoria: number, elementoAutal: number) => {
+        return (somatoria += elementoAutal);
+      })
+    );
+
     let data = list.reduce(
-      (result: AlphabeticGroup<SpellEntity>, element: SpellEntity) => {
+      (result: Dict<SpellEntity>, element: SpellEntity) => {
         let group = element.level.toString();
 
         if (type && type === 'alphabetic') group = element.name[0];

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AlphabeticGroup, DictArray } from '@core/rules';
+import { Dict, DictArray } from '@core/rules';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -22,10 +22,9 @@ export class SpellListComponent {
 
   filter: 'level' | 'alphabetic' | 'element' = 'level';
 
-  iterableDictionary(
-    dict: AlphabeticGroup<SpellEntity>
-  ): DictArray<SpellEntity>[] {
+  iterableDictionary(dict: Dict<SpellEntity>): DictArray<SpellEntity>[] {
     let result: DictArray<SpellEntity>[] = [];
+    
     Object.entries(dict).forEach(([key, value]) => {
       result.push({ key: key, data: value });
     });

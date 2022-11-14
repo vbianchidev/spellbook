@@ -37,8 +37,7 @@ export default {
   },
   decorators: [
     moduleMetadata({
-      declarations: [CardComponent, IconComponent],
-      imports: [PipesModule, FontAwesomeModule],
+      imports: [PipesModule, FontAwesomeModule, CardComponent],
     }),
   ],
 } as Meta;

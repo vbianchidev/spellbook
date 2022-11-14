@@ -5,12 +5,12 @@ import { SpellContainerComponent } from '../spell-container.component';
 import { SpellEntity } from '../store/spell.entity';
 
 @Injectable({
-  providedIn: SpellContainerComponent
+  providedIn: SpellContainerComponent,
 })
 export class SpellService extends BaseService<SpellEntity> {
   public endpoint: string = 'spells';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     super(http);
   }
 }
