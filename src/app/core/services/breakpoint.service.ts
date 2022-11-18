@@ -7,7 +7,7 @@ import { distinctUntilChanged } from 'rxjs';
 })
 export class BreakpointService {
   readonly breakpoint$ = this.breakpointObserver
-    .observe([Breakpoints.Handset])
+    .observe([Breakpoints.Handset, Breakpoints.Small])
     .pipe(distinctUntilChanged());
 
   constructor(private breakpointObserver: BreakpointObserver) {}
