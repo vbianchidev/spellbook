@@ -1,3 +1,5 @@
+<app-hotbar [hidden]="(isHandset$ | async) ? false : true"></app-hotbar>
+
 <mat-sidenav-container>
   <mat-sidenav
     [mode]="(isHandset$ | async) ? 'side' : 'over'"
@@ -20,7 +22,7 @@
       <button mat-icon-button (click)="toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span><app-magic-text>SpellBook</app-magic-text></span>
+      <span>SpellBook</span>
       <span class="flex-spacer"></span>
       <button mat-icon-button>
         <mat-icon>book</mat-icon>

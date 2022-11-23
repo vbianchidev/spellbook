@@ -6,9 +6,10 @@ import { ComponentsModule } from '@shared/components/components.module';
 import { MaterialModule } from '@shared/material/material.module';
 
 import { DashboardLayoutComponent } from './dashboard-layout.component';
+import { HotbarComponent } from './hotbar/hotbar.component';
 
 @NgModule({
-  declarations: [DashboardLayoutComponent],
+  declarations: [DashboardLayoutComponent, HotbarComponent],
   imports: [
     CommonModule,
     ComponentsModule,
@@ -16,6 +17,6 @@ import { DashboardLayoutComponent } from './dashboard-layout.component';
     FontAwesomeModule,
     MaterialModule,
   ],
-  exports: [DashboardLayoutComponent],
+  exports: [DashboardLayoutComponent, HotbarComponent],
 })
 export class DashboardLayoutModule {}

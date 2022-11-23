@@ -31,7 +31,6 @@
         border-radius: 27px;
       }
     }
-    
   }
   mat-list {
     display: flex;
@@ -47,5 +46,21 @@
       border-bottom: 1px solid rgba(0,0,0,0.10);
       width: 100%;
     }
+  }
+
+  ::ng-deep .mat-progress-bar-fill::after {
+    background: linear-gradient(115.81deg, #A73EE7 23.92%, #00EBFF 73.05%);
+  }
+
+  ::ng-deep .mat-progress-bar-buffer {
+    background: rgba(0,0,0,0.10);
+  }
+
+  ::ng-deep .mat-progress-bar-background {
+    fill: rgba(0,0,0,0);
+  }
+
+  ::ng-deep .mat-progress-bar {
+      border-radius: 2px;
   }
 }
