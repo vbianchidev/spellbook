@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class IsCantripPipe implements PipeTransform {
   transform(value: number | string): string {
-    return value == 0 ? 'TRUQUE' : value.toString();
+    return value == 0 ? 'Cantrip' : value.toString();
   }
 }
