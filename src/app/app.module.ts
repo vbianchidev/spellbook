@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { httpInterceptorProviders } from '@core/auth/http.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -22,7 +23,7 @@ import { LayoutState } from './core/store/layout.state';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     CoreModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

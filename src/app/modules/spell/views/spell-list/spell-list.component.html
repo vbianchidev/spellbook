@@ -36,6 +36,7 @@
     <mat-toolbar color="accent" mat-subheader>
       {{ item.key | iscantrip | uppercase }}
     </mat-toolbar>
+
     <mat-list-item *ngFor="let spell of item.data" matRipple>
       <div mat-list-icon>
         <app-icon [element]="spell.type"></app-icon>

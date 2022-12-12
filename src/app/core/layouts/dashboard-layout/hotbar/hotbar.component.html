@@ -1,7 +1,13 @@
 <aside>
   <app-logo></app-logo>
 
-  <button mat-icon-button>
-    <mat-icon>add</mat-icon>
+  <button 
+    mat-icon-button
+    matRipple 
+    [matRippleRadius]="32"
+    [matRippleCentered]="false"
+    [matRippleUnbounded]="false"
+    [matRippleColor]="'#A73EE7'">
+    <mat-icon >add</mat-icon>
   </button>
 </aside>

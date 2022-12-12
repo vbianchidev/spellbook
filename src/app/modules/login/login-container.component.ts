@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  template: './login.component.html',
 })
-export class LoginComponent {
+export class LoginContainerComponent {
   constructor() {}
 }
