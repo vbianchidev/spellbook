@@ -18,14 +18,18 @@ export class SpellContainerComponent extends BaseContainer implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllEvent();
+    this.getAll();
   }
 
-  public getAllEvent(): void {
-    setTimeout(() => {
-      this._store
-        .dispatch(SpellActions.GetAll)
-        .pipe(takeUntil(this.unsubscribe$));
-    }, 2000);
+  getAll(): void {
+    this._store
+      .dispatch(SpellActions.GetAll)
+      .pipe(takeUntil(this.unsubscribe$));
   }
+
+  create({}: SpellEntity): void {}
+
+  update({}: SpellEntity): void {}
+
+  delete(id: string): void {}
 }
