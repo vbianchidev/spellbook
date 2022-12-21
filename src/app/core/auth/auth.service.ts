@@ -1,6 +1,6 @@
 import { HostListener, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { LogInParams, SignUpParams } from './auth.types';
 
 import { AuthenticationClient } from './authentication-client.service';

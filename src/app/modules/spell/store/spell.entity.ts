@@ -1,4 +1,8 @@
-import { RPGMagicComponents, RPGMagicEffect, RPGMagicSchool } from 'src/app/core/rules/rpg.rule';
+import {
+  RPGMagicComponents,
+  RPGMagicEffect,
+  RPGMagicSchool,
+} from 'src/app/core/rules/rpg.rule';
 
 export interface SpellEntity {
   id: number;

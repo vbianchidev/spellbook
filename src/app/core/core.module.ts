@@ -8,7 +8,11 @@ import { BreakpointService } from './services/breakpoint.service';
   providers: [BreakpointService],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: CoreModule
+  ) {
     super(parentModule);
   }
 }

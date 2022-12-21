@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BaseResponseArray } from '@core/base/base.response';
 import { Dict, DictArray } from '@core/rules';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -14,17 +15,19 @@ import { SpellState } from '../../store/spell.state';
 })
 export class SpellListComponent {
   @Select(SpellState.spellList)
-  spellList$!: Observable<SpellEntity[]>;
+  spellList$!: Observable<BaseResponseArray<SpellEntity>>;
 
   spellsCount: number = 0;
 
-  visibleSpells: DictArray<SpellEntity>[] = [];
+  visibleSpells: DictArray<BaseResponseArray<SpellEntity>>[] = [];
 
   filter: 'level' | 'alphabetic' | 'element' = 'level';
 
-  iterableDictionary(dict: Dict<SpellEntity>): DictArray<SpellEntity>[] {
-    let result: DictArray<SpellEntity>[] = [];
-    
+  iterableDictionary(
+    dict: Dict<BaseResponseArray<SpellEntity>>
+  ): DictArray<BaseResponseArray<SpellEntity>>[] {
+    let result: DictArray<BaseResponseArray<SpellEntity>>[] = [];
+
     Object.entries(dict).forEach(([key, value]) => {
       result.push({ key: key, data: value });
     });
@@ -32,9 +35,9 @@ export class SpellListComponent {
     return result;
   }
 
-  hasLoaded(data: SpellEntity[] | null): boolean {
-    if (data === null) return false;
-    if (data.length === 0) return false;
+  hasLoaded(raw: BaseResponseArray<SpellEntity> | null): boolean {
+    if (raw === null) return false;
+    if (raw.data.length === 0) return false;
     return true;
   }
 }

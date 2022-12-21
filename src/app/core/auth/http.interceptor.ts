@@ -4,21 +4,21 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({
-      withCredentials: true,
-    });
-
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    req = req.clone({ withCredentials: true });
     return next.handle(req);
   }
 }
 
-export const httpInterceptorProviders = [
+export const DEFAULT_HTTP_INTERCEPTORS = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
 ];

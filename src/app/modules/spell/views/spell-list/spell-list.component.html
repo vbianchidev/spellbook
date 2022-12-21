@@ -31,7 +31,7 @@
 <ng-template #list>
   <mat-list
     *ngFor="
-      let item of iterableDictionary(spellList$ | async | groupBy: filter)
+      let item of iterableDictionary((spellList$ | async).data)
     ">
     <mat-toolbar color="accent" mat-subheader>
       {{ item.key | iscantrip | uppercase }}

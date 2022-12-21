@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BaseResponse, BaseResponseArray } from '@core/base/base.response';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
 
@@ -9,35 +10,39 @@ import { SpellEntity } from './spell.entity';
 @State<SpellActions.StateModel>({
   name: 'spell',
   defaults: {
-    spells: [],
-    selectedSpell: undefined
-  }
+    spells: undefined,
+    selectedSpell: undefined,
+  },
 })
 @Injectable()
 export class SpellState {
-
   @Selector()
-  static spellList({ spells }: SpellActions.StateModel): SpellEntity[] {
-    return spells;
+  static spellList({
+    spells,
+  }: SpellActions.StateModel): BaseResponseArray<SpellEntity> {
+    return spells as BaseResponseArray<SpellEntity>;
   }
 
   @Selector()
-  static selectedSpell({ selectedSpell }: SpellActions.StateModel): SpellEntity {
-    return selectedSpell as SpellEntity;
+  static selectedSpell({
+    selectedSpell,
+  }: SpellActions.StateModel): BaseResponse<SpellEntity> {
+    return selectedSpell as BaseResponse<SpellEntity>;
   }
 
   constructor(private service: SpellService) {}
 
   @Action(SpellActions.GetAll)
-  public getAll({ setState }: StateContext<SpellActions.StateModel>): void {
-    this.service.getAll()
+  getAll({ setState }: StateContext<SpellActions.StateModel>): void {
+    this.service
+      .getAll()
       .pipe(
         tap(result => {
-          console.log(result)
+          console.log(result);
           setState({
             spells: result,
-            selectedSpell: undefined
-          })
+            selectedSpell: undefined,
+          });
         })
       )
       .subscribe();
