@@ -8,23 +8,22 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export abstract class BaseService<T> {
+  abstract readonly endpoint: string;
   private readonly _url: string = environment.baseUrl;
-
-  public abstract readonly endpoint: string;
 
   constructor(private _http: HttpClient) {}
 
-  public getAll(): Observable<BaseResponse<T[]>> {
+  getAll(): Observable<BaseResponse<T[]>> {
     return this._http.get<BaseResponse<T[]>>(`${this._url}/${this.endpoint}`);
   }
 
-  public getOne(_id: string): Observable<BaseResponse<T>> {
+  getOne(_id: string): Observable<BaseResponse<T>> {
     return this._http.get<BaseResponse<T>>(
       `${this._url}/${this.endpoint}/${_id}`
     );
   }
 
-  public create(_data: T): Observable<BaseResponse<T[]>> {
+  create(_data: T): Observable<BaseResponse<T[]>> {
     return this._http.post<BaseResponse<T[]>>(
       `${this._url}/${this.endpoint}`,
       _data

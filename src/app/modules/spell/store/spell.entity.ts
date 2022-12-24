@@ -8,7 +8,7 @@ export interface SpellEntity {
   id: number;
   name: string;
   description: string;
-  type: RPGMagicEffect;
+  damage: RPGMagicEffect;
   level: number;
   school: RPGMagicSchool;
   castingTime: string;

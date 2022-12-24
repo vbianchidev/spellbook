@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DEFAULT_HTTP_INTERCEPTORS } from '@core/auth/http.interceptor';
 import { DEFAULT_ERROR_HANDLER } from '@core/base/error-handler';
+import { NotificationService } from '@core/services/notification.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -20,6 +22,7 @@ import { LayoutState } from './core/store/layout.state';
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+
     NgxsModule.forRoot([LayoutState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     CoreModule,

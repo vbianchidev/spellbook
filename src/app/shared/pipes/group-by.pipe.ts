@@ -30,7 +30,7 @@ export class GroupByPipe implements PipeTransform {
 
         if (type && type === 'alphabetic') group = element.name[0];
 
-        if (type && type === 'element') group = element.type;
+        if (type && type === 'element') group = element.damage;
 
         if (!result[group]) result[group] = [element];
         else result[group].push(element);

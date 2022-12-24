@@ -1,9 +1,9 @@
-import { BaseResponse, BaseResponseArray } from '@core/base/base.response';
+import { BaseResponse } from '@core/base/base.response';
 import { SpellEntity } from './spell.entity';
 
 export namespace SpellActions {
   export interface StateModel {
-    spells?: BaseResponseArray<SpellEntity>;
+    spells?: BaseResponse<SpellEntity[]>;
     selectedSpell?: BaseResponse<SpellEntity>;
   }
 

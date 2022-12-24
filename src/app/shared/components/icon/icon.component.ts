@@ -17,7 +17,7 @@ import { IconElement, Icons } from './icons.interface';
   template: `
     <fa-icon
       class="magic-color"
-      [style.color]="'rgb(  0, 229, 255)'"
+      [style.color]="'rgb(0, 229, 255)'"
       [icon]="icon.icon">
     </fa-icon>
   `,
@@ -25,7 +25,10 @@ import { IconElement, Icons } from './icons.interface';
 })
 export class IconComponent implements OnInit {
   @Input()
-  element: RPGMagicEffect = 'acid';
+  set element(damageType: RPGMagicEffect) {
+    this._element = damageType.toLowerCase() as RPGMagicEffect;
+  }
+  private _element: RPGMagicEffect = 'acid';
 
   icon: IconElement = {
     color: '#000000',
@@ -33,6 +36,6 @@ export class IconComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.icon = Icons.elements[this.element];
+    this.icon = Icons.elements[this._element];
   }
 }

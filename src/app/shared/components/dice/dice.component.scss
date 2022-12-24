@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+}

@@ -9,10 +9,18 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   color: #101a3a !important;
 }
 
 .flex-spacer {
   flex: 1 1 auto;
+}
+
+.warn-notification {
+  background: #f32133;
+}
+
+.success-notification {
+  background: #03c54d;
 }
